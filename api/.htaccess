@@ -1,0 +1,5 @@
+# Belt and braces: even if a .env ever lands in the web root, refuse to serve it.
+<FilesMatch "^\.env">
+  Require all denied
+</FilesMatch>
+Options -Indexes
