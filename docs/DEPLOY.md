@@ -3,51 +3,95 @@
 Business is shared PHP hosting — no Node. That's why the API layer is a
 single PHP file with no dependencies and no build step.
 
-## Layout on the server
+Live target: **https://fl.unhackdemocracy.us** (HTTPS is issued
+automatically; HTTP 301s to it).
+
+## Where things go
+
+The subdomain has its own document root, kept separate from the root
+domain so `unhackdemocracy.us` stays free for a project landing page. Find
+the exact path in hPanel under **Websites → unhackdemocracy.us → Domains →
+Subdomains**; it will look like:
 
 ```
-/home/USER/
-  .env                 <-- API key lives HERE, above the web root
-  domains/DOMAIN/public_html/
-    index.html         <-- contents of web/
-    styles.css
-    app.js
-    data/fl-counties.json
-    api/index.php
-    api/.htaccess
+/home/uXXXXXXXXX/domains/unhackdemocracy.us/public_html/fl/
 ```
 
-**The key must sit above `public_html`.** Anything inside it is served
-over HTTP. `api/index.php` looks two levels up first for exactly this
-reason, and `api/.htaccess` refuses to serve a stray `.env` as a backstop.
+Upload into that folder:
 
-## Steps
+```
+<subdomain docroot>/
+  index.html          <- from web/
+  styles.css          <- from web/
+  app.js              <- from web/
+  data/
+    fl-counties.json  <- from data/
+  api/
+    index.php         <- from api/
+    .htaccess         <- from api/
+```
 
-1. In hPanel, point a domain or subdomain at a new site. `billbrocker.com`
-   and `billb.tech` are both on the plan; a subdomain such as
-   `fl.billbrocker.com` keeps this separate from anything else.
-2. Upload `web/*` to `public_html/`, plus `data/` and `api/`.
-3. Create `/home/USER/.env` containing:
-   `ANTHROPIC_API_KEY=sk-ant-...`
-4. Confirm PHP 8.1+ and that cURL is enabled (both are standard on
-   Business).
-5. Verify the key is NOT reachable: `curl https://DOMAIN/.env` and
-   `curl https://DOMAIN/api/.env` must both fail.
+`app.js` fetches `../data/fl-counties.json` and posts to `../api/`, both
+relative to `web/`. Since `index.html` lands at the docroot rather than
+inside a `web/` folder, keep `data/` and `api/` as siblings of
+`index.html` exactly as shown and the relative paths resolve.
+
+## The API key
+
+**Put `.env` above the web root.** Anything inside a document root is
+served over HTTP. Recommended location:
+
+```
+/home/uXXXXXXXXX/domains/unhackdemocracy.us/.env
+```
+
+containing:
+
+```
+ANTHROPIC_API_KEY=sk-ant-...
+```
+
+`api/index.php` searches upward from itself and will find it there. It
+also checks `/home/USER/.env` and `/home/USER/domains/.env` — either is
+fine, and higher is safer. `api/.htaccess` refuses to serve a stray `.env`
+as a backstop, but the backstop is not the plan.
+
+**Verify it is unreachable** after uploading. Both of these must fail:
+
+```bash
+curl -sI https://fl.unhackdemocracy.us/.env | head -1
+curl -sI https://fl.unhackdemocracy.us/api/.env | head -1
+```
 
 ## Check it works
 
-```
-curl -s -X POST https://DOMAIN/api/ \
+```bash
+curl -s -X POST https://fl.unhackdemocracy.us/api/ \
   -H 'content-type: application/json' \
   -d '{"action":"explain","passage":"Chapter 119 does not set an express deadline.","question":"How fast must they respond?"}'
 ```
 
-Expect `{"ok":true,"text":"..."}`. An `{"ok":false}` with "Server is not
-configured" means the `.env` isn't where PHP is looking.
+Expect `{"ok":true,"text":"..."}`.
+
+- `{"ok":false,"error":"Server is not configured."}` → PHP can't find the
+  `.env`. Check the path and that it is readable.
+- `502` → key present but rejected upstream, or cURL is blocked.
+- `405` in a browser is correct: the endpoint is POST-only.
+
+Then load the site, pick a county, and run one real records request end to
+end. That path — the live model call and the draft rendering — is the only
+part never exercised locally.
+
+## Confirm the root stayed separate
+
+After uploading, `https://unhackdemocracy.us` should still show
+Hostinger's default page rather than the tool. If it shows the tool, the
+subdomain is sharing the root's `public_html` and needs recreating with
+only "Custom folder" ticked.
 
 ## Cost control
 
 The proxy caps output tokens and rate-limits to 8 requests per IP per 10
-minutes. Watch usage in the Anthropic console for the first week and
-tighten `RATE_LIMIT` if anything looks off — a public endpoint is a
-standing invitation.
+minutes. Watch usage in the Anthropic console for the first week and lower
+`RATE_LIMIT` if anything looks off — a public endpoint is a standing
+invitation.

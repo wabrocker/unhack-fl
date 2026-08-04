@@ -28,9 +28,24 @@ function fail(int $code, string $msg): never {
     exit;
 }
 
-/** Load .env from above the web root first, then alongside. Never logged. */
+/**
+ * Load .env, preferring locations ABOVE the web root. Never logged.
+ *
+ * From <docroot>/api/ these resolve to, in order:
+ *   /home/USER/.env                     — safest, outside every site
+ *   /home/USER/domains/.env
+ *   /home/USER/domains/SITE/.env        — recommended: above public_html
+ *   <docroot>/.env                      — web-served; .htaccess blocks it
+ *   <docroot>/api/.env                  — likewise, fallback only
+ */
 function env_key(): string {
-    foreach ([__DIR__ . '/../../.env', __DIR__ . '/../.env', __DIR__ . '/.env'] as $p) {
+    foreach ([
+        __DIR__ . '/../../../../.env',
+        __DIR__ . '/../../../.env',
+        __DIR__ . '/../../.env',
+        __DIR__ . '/../.env',
+        __DIR__ . '/.env',
+    ] as $p) {
         if (is_readable($p)) {
             foreach (file($p, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES) as $line) {
                 if ($line[0] === '#') continue;
