@@ -58,6 +58,41 @@
 
   </section>
 
+  <section id="records-form" hidden aria-labelledby="records-form-h">
+    <h2 id="records-form-h">Draft a records request</h2>
+    <p>
+      Florida's public records law is broad. The hard part is knowing the
+      form — so you say what you want to know, and we put it in the shape
+      an agency expects.
+    </p>
+
+    <form id="records">
+      <p>
+        <label for="agency">Which office holds the records?</label>
+        <input id="agency" name="agency" type="text" required
+               autocomplete="off"
+               placeholder="e.g. the county school board, the city police department">
+        <span class="hint" id="agency-hint"></span>
+      </p>
+
+      <p>
+        <label for="want">What do you want to know?</label>
+        <textarea id="want" name="want" rows="5" required
+          placeholder="In your own words. Be as specific as you can about what records, and roughly what dates. Example: how much the city spent on outside legal counsel in 2025, and which firms."></textarea>
+        <span class="hint">
+          This part has to be yours. We won't invent a request, and if
+          what you write is too vague to identify records we'll ask you
+          questions instead of guessing.
+        </span>
+      </p>
+
+      <p>
+        <button type="submit" id="records-submit">Draft it</button>
+        <span class="hint" id="records-status" role="status"></span>
+      </p>
+    </form>
+  </section>
+
   <section id="output" hidden aria-live="polite"></section>
 
 </main>

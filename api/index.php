@@ -151,12 +151,14 @@ $actions = [
 $action = (string) ($in['action'] ?? '');
 if (!isset($actions[$action])) fail(400, 'Unknown action.');
 
+// Validate and build first, so a bad request gets a useful 400 rather than
+// being masked by a server-config error.
+[$system, $user] = $actions[$action]($in);
+
 $key = env_key();
 if ($key === '') fail(500, 'Server is not configured.');
 
 rate_limit();
-
-[$system, $user] = $actions[$action]($in);
 
 $payload = json_encode([
     'model'      => MODEL,
