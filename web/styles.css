@@ -1,0 +1,97 @@
+/* Deliberately plain. Legibility over personality — this is civic
+   information, and it has to read as trustworthy on a phone in a parking
+   lot. No framework, no build step. */
+
+:root {
+  --ink: #14181d;
+  --ink-soft: #4a5560;
+  --line: #d8dee5;
+  --bg: #ffffff;
+  --bg-soft: #f5f7f9;
+  --accent: #1a5f7a;
+  --warn: #8a5a00;
+  --radius: 10px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ink: #e8edf2;
+    --ink-soft: #a3b0bd;
+    --line: #2b333c;
+    --bg: #12161a;
+    --bg-soft: #1a2027;
+    --accent: #6fb3cc;
+    --warn: #e0b062;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 17px/1.6 system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+.wrap { max-width: 44rem; margin: 0 auto; padding: 1.25rem; }
+
+h1 { font-size: 1.9rem; margin: 1.5rem 0 .25rem; letter-spacing: -.02em; }
+h2 { font-size: 1.15rem; margin: 2rem 0 .5rem; }
+h3 { font-size: 1.1rem; margin: 0 0 .5rem; }
+
+.lede { color: var(--ink-soft); margin: 0 0 1rem; font-size: 1.05rem; }
+.note { color: var(--ink-soft); font-size: .92rem; }
+.meta { color: var(--ink-soft); font-size: .85rem; margin: .5rem 0 1rem; }
+
+select {
+  width: 100%;
+  padding: .7rem .8rem;
+  font: inherit;
+  color: var(--ink);
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.cards { display: grid; gap: 1rem; margin-top: 1.5rem; }
+@media (min-width: 40rem) { .cards { grid-template-columns: 1fr 1fr; } }
+
+.card {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.1rem;
+  background: var(--bg-soft);
+  display: flex;
+  flex-direction: column;
+}
+.card p { margin: 0 0 .5rem; }
+.card button { margin-top: auto; }
+
+button {
+  font: inherit;
+  padding: .6rem 1rem;
+  color: #fff;
+  background: var(--accent);
+  border: 0;
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+button[disabled] { opacity: .5; cursor: not-allowed; }
+button:not([disabled]):hover { filter: brightness(1.1); }
+
+/* Used wherever a fact is missing rather than guessed. */
+.unsourced {
+  border-left: 3px solid var(--warn);
+  padding: .6rem .8rem;
+  background: var(--bg-soft);
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+
+footer { border-top: 1px solid var(--line); margin-top: 3rem; color: var(--ink-soft); font-size: .9rem; }
+footer a { color: var(--accent); }
+
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap;
+}

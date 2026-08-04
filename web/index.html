@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Unhack FL — two things you can do this week</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="wrap">
+  <h1>Unhack&nbsp;FL</h1>
+  <p class="lede">
+    Two things a Floridian can actually do this week. Pick your county to
+    start.
+  </p>
+</header>
+
+<main class="wrap">
+
+  <section aria-labelledby="county-h">
+    <h2 id="county-h">Your county</h2>
+    <label class="visually-hidden" for="county">County</label>
+    <select id="county" data-testid="county">
+      <option value="">Select a county…</option>
+    </select>
+    <p class="note" id="county-note" hidden></p>
+  </section>
+
+  <section class="cards" aria-label="Actions">
+
+    <article class="card" id="card-pollworker">
+      <h3>Work the polls</h3>
+      <p>
+        Counties are chronically short of poll workers, both parties need
+        them, and the job is paid. Training is required before each
+        election.
+      </p>
+      <p class="meta">Consensus action · individual · paid</p>
+      <button type="button" data-action="pollworker" disabled>
+        Pick a county first
+      </button>
+    </article>
+
+    <article class="card" id="card-records">
+      <h3>Ask a public question</h3>
+      <p>
+        Florida's public records law is unusually strong. The barrier is
+        knowing the form — so tell us what you want to know, and we'll
+        draft a correctly-formed Chapter&nbsp;119 request you can send
+        yourself.
+      </p>
+      <p class="meta">Consensus action · individual · free</p>
+      <button type="button" data-action="records" disabled>
+        Pick a county first
+      </button>
+    </article>
+
+  </section>
+
+  <section id="output" hidden aria-live="polite"></section>
+
+</main>
+
+<footer class="wrap">
+  <p>
+    Florida only, on purpose — records law, eligibility, and deadlines are
+    state- and county-specific, and a national version would be vague or
+    wrong.
+  </p>
+  <p>
+    Every factual claim here links its source. Nothing is sent on your
+    behalf: you review and send it yourself.
+  </p>
+  <p>
+    <a href="https://github.com/wabrocker/unhack-fl">Source code</a> ·
+    MIT licensed
+  </p>
+</footer>
+
+<script src="app.js" type="module"></script>
+</body>
+</html>

@@ -1,0 +1,680 @@
+{
+  "_meta": {
+    "description": "Florida counties and their Supervisor of Elections offices.",
+    "county_names_source": "Florida has 67 counties; names are stable public record.",
+    "unpopulated_fields_note": "soe_name, soe_url, soe_phone, poll_worker_url are NULL until sourced from the Florida Division of Elections county SOE directory (dos.fl.gov). DO NOT fill these in from memory — a wrong county elections URL is exactly the failure this project cannot afford.",
+    "verified": null
+  },
+  "counties": [
+    {
+      "name": "Alachua",
+      "slug": "alachua",
+      "soe_name": null,
+      "soe_url": null,
+      "soe_phone": null,
+      "poll_worker_url": null,
+      "source": null,
+      "verified": null
+    },
+    {
+      "name": "Baker",
+      "slug": "baker",
+      "soe_name": null,
+      "soe_url": null,
+      "soe_phone": null,
+      "poll_worker_url": null,
+      "source": null,
+      "verified": null
+    },
+    {
+      "name": "Bay",
+      "slug": "bay",
+      "soe_name": null,
+      "soe_url": null,
+      "soe_phone": null,
+      "poll_worker_url": null,
+      "source": null,
+      "verified": null
+    },
+    {
+      "name": "Bradford",
+      "slug": "bradford",
+      "soe_name": null,
+      "soe_url": null,
+      "soe_phone": null,
+      "poll_worker_url": null,
+      "source": null,
+      "verified": null
+    },
+    {
+      "name": "Brevard",
+      "slug": "brevard",
+      "soe_name": null,
+      "soe_url": null,
+      "soe_phone": null,
+      "poll_worker_url": null,
+      "source": null,
+      "verified": null
+    },
+    {
+      "name": "Broward",
+      "slug": "broward",
+      "soe_name": null,
+      "soe_url": null,
+      "soe_phone": null,
+      "poll_worker_url": null,
+      "source": null,
+      "verified": null
+    },
+    {
+      "name": "Calhoun",
+      "slug": "calhoun",
+      "soe_name": null,
+      "soe_url": null,
+      "soe_phone": null,
+      "poll_worker_url": null,
+      "source": null,
+      "verified": null
+    },
+    {
+      "name": "Charlotte",
+      "slug": "charlotte",
+      "soe_name": null,
+      "soe_url": null,
+      "soe_phone": null,
+      "poll_worker_url": null,
+      "source": null,
+      "verified": null
+    },
+    {
+      "name": "Citrus",
+      "slug": "citrus",
+      "soe_name": null,
+      "soe_url": null,
+      "soe_phone": null,
+      "poll_worker_url": null,
+      "source": null,
+      "verified": null
+    },
+    {
+      "name": "Clay",
+      "slug": "clay",
+      "soe_name": null,
+      "soe_url": null,
+      "soe_phone": null,
+      "poll_worker_url": null,
+      "source": null,
+      "verified": null
+    },
+    {
+      "name": "Collier",
+      "slug": "collier",
+      "soe_name": null,
+      "soe_url": null,
+      "soe_phone": null,
+      "poll_worker_url": null,
+      "source": null,
+      "verified": null
+    },
+    {
+      "name": "Columbia",
+      "slug": "columbia",
+      "soe_name": null,
+      "soe_url": null,
+      "soe_phone": null,
+      "poll_worker_url": null,
+      "source": null,
+      "verified": null
+    },
+    {
+      "name": "DeSoto",
+      "slug": "desoto",
+      "soe_name": null,
+      "soe_url": null,
+      "soe_phone": null,
+      "poll_worker_url": null,
+      "source": null,
+      "verified": null
+    },
+    {
+      "name": "Dixie",
+      "slug": "dixie",
+      "soe_name": null,
+      "soe_url": null,
+      "soe_phone": null,
+      "poll_worker_url": null,
+      "source": null,
+      "verified": null
+    },
+    {
+      "name": "Duval",
+      "slug": "duval",
+      "soe_name": null,
+      "soe_url": null,
+      "soe_phone": null,
+      "poll_worker_url": null,
+      "source": null,
+      "verified": null
+    },
+    {
+      "name": "Escambia",
+      "slug": "escambia",
+      "soe_name": null,
+      "soe_url": null,
+      "soe_phone": null,
+      "poll_worker_url": null,
+      "source": null,
+      "verified": null
+    },
+    {
+      "name": "Flagler",
+      "slug": "flagler",
+      "soe_name": null,
+      "soe_url": null,
+      "soe_phone": null,
+      "poll_worker_url": null,
+      "source": null,
+      "verified": null
+    },
+    {
+      "name": "Franklin",
+      "slug": "franklin",
+      "soe_name": null,
+      "soe_url": null,
+      "soe_phone": null,
+      "poll_worker_url": null,
+      "source": null,
+      "verified": null
+    },
+    {
+      "name": "Gadsden",
+      "slug": "gadsden",
+      "soe_name": null,
+      "soe_url": null,
+      "soe_phone": null,
+      "poll_worker_url": null,
+      "source": null,
+      "verified": null
+    },
+    {
+      "name": "Gilchrist",
+      "slug": "gilchrist",
+      "soe_name": null,
+      "soe_url": null,
+      "soe_phone": null,
+      "poll_worker_url": null,
+      "source": null,
+      "verified": null
+    },
+    {
+      "name": "Glades",
+      "slug": "glades",
+      "soe_name": null,
+      "soe_url": null,
+      "soe_phone": null,
+      "poll_worker_url": null,
+      "source": null,
+      "verified": null
+    },
+    {
+      "name": "Gulf",
+      "slug": "gulf",
+      "soe_name": null,
+      "soe_url": null,
+      "soe_phone": null,
+      "poll_worker_url": null,
+      "source": null,
+      "verified": null
+    },
+    {
+      "name": "Hamilton",
+      "slug": "hamilton",
+      "soe_name": null,
+      "soe_url": null,
+      "soe_phone": null,
+      "poll_worker_url": null,
+      "source": null,
+      "verified": null
+    },
+    {
+      "name": "Hardee",
+      "slug": "hardee",
+      "soe_name": null,
+      "soe_url": null,
+      "soe_phone": null,
+      "poll_worker_url": null,
+      "source": null,
+      "verified": null
+    },
+    {
+      "name": "Hendry",
+      "slug": "hendry",
+      "soe_name": null,
+      "soe_url": null,
+      "soe_phone": null,
+      "poll_worker_url": null,
+      "source": null,
+      "verified": null
+    },
+    {
+      "name": "Hernando",
+      "slug": "hernando",
+      "soe_name": null,
+      "soe_url": null,
+      "soe_phone": null,
+      "poll_worker_url": null,
+      "source": null,
+      "verified": null
+    },
+    {
+      "name": "Highlands",
+      "slug": "highlands",
+      "soe_name": null,
+      "soe_url": null,
+      "soe_phone": null,
+      "poll_worker_url": null,
+      "source": null,
+      "verified": null
+    },
+    {
+      "name": "Hillsborough",
+      "slug": "hillsborough",
+      "soe_name": null,
+      "soe_url": null,
+      "soe_phone": null,
+      "poll_worker_url": null,
+      "source": null,
+      "verified": null
+    },
+    {
+      "name": "Holmes",
+      "slug": "holmes",
+      "soe_name": null,
+      "soe_url": null,
+      "soe_phone": null,
+      "poll_worker_url": null,
+      "source": null,
+      "verified": null
+    },
+    {
+      "name": "Indian River",
+      "slug": "indian-river",
+      "soe_name": null,
+      "soe_url": null,
+      "soe_phone": null,
+      "poll_worker_url": null,
+      "source": null,
+      "verified": null
+    },
+    {
+      "name": "Jackson",
+      "slug": "jackson",
+      "soe_name": null,
+      "soe_url": null,
+      "soe_phone": null,
+      "poll_worker_url": null,
+      "source": null,
+      "verified": null
+    },
+    {
+      "name": "Jefferson",
+      "slug": "jefferson",
+      "soe_name": null,
+      "soe_url": null,
+      "soe_phone": null,
+      "poll_worker_url": null,
+      "source": null,
+      "verified": null
+    },
+    {
+      "name": "Lafayette",
+      "slug": "lafayette",
+      "soe_name": null,
+      "soe_url": null,
+      "soe_phone": null,
+      "poll_worker_url": null,
+      "source": null,
+      "verified": null
+    },
+    {
+      "name": "Lake",
+      "slug": "lake",
+      "soe_name": null,
+      "soe_url": null,
+      "soe_phone": null,
+      "poll_worker_url": null,
+      "source": null,
+      "verified": null
+    },
+    {
+      "name": "Lee",
+      "slug": "lee",
+      "soe_name": null,
+      "soe_url": null,
+      "soe_phone": null,
+      "poll_worker_url": null,
+      "source": null,
+      "verified": null
+    },
+    {
+      "name": "Leon",
+      "slug": "leon",
+      "soe_name": null,
+      "soe_url": null,
+      "soe_phone": null,
+      "poll_worker_url": null,
+      "source": null,
+      "verified": null
+    },
+    {
+      "name": "Levy",
+      "slug": "levy",
+      "soe_name": null,
+      "soe_url": null,
+      "soe_phone": null,
+      "poll_worker_url": null,
+      "source": null,
+      "verified": null
+    },
+    {
+      "name": "Liberty",
+      "slug": "liberty",
+      "soe_name": null,
+      "soe_url": null,
+      "soe_phone": null,
+      "poll_worker_url": null,
+      "source": null,
+      "verified": null
+    },
+    {
+      "name": "Madison",
+      "slug": "madison",
+      "soe_name": null,
+      "soe_url": null,
+      "soe_phone": null,
+      "poll_worker_url": null,
+      "source": null,
+      "verified": null
+    },
+    {
+      "name": "Manatee",
+      "slug": "manatee",
+      "soe_name": null,
+      "soe_url": null,
+      "soe_phone": null,
+      "poll_worker_url": null,
+      "source": null,
+      "verified": null
+    },
+    {
+      "name": "Marion",
+      "slug": "marion",
+      "soe_name": null,
+      "soe_url": null,
+      "soe_phone": null,
+      "poll_worker_url": null,
+      "source": null,
+      "verified": null
+    },
+    {
+      "name": "Martin",
+      "slug": "martin",
+      "soe_name": null,
+      "soe_url": null,
+      "soe_phone": null,
+      "poll_worker_url": null,
+      "source": null,
+      "verified": null
+    },
+    {
+      "name": "Miami-Dade",
+      "slug": "miami-dade",
+      "soe_name": null,
+      "soe_url": null,
+      "soe_phone": null,
+      "poll_worker_url": null,
+      "source": null,
+      "verified": null
+    },
+    {
+      "name": "Monroe",
+      "slug": "monroe",
+      "soe_name": null,
+      "soe_url": null,
+      "soe_phone": null,
+      "poll_worker_url": null,
+      "source": null,
+      "verified": null
+    },
+    {
+      "name": "Nassau",
+      "slug": "nassau",
+      "soe_name": null,
+      "soe_url": null,
+      "soe_phone": null,
+      "poll_worker_url": null,
+      "source": null,
+      "verified": null
+    },
+    {
+      "name": "Okaloosa",
+      "slug": "okaloosa",
+      "soe_name": null,
+      "soe_url": null,
+      "soe_phone": null,
+      "poll_worker_url": null,
+      "source": null,
+      "verified": null
+    },
+    {
+      "name": "Okeechobee",
+      "slug": "okeechobee",
+      "soe_name": null,
+      "soe_url": null,
+      "soe_phone": null,
+      "poll_worker_url": null,
+      "source": null,
+      "verified": null
+    },
+    {
+      "name": "Orange",
+      "slug": "orange",
+      "soe_name": null,
+      "soe_url": null,
+      "soe_phone": null,
+      "poll_worker_url": null,
+      "source": null,
+      "verified": null
+    },
+    {
+      "name": "Osceola",
+      "slug": "osceola",
+      "soe_name": null,
+      "soe_url": null,
+      "soe_phone": null,
+      "poll_worker_url": null,
+      "source": null,
+      "verified": null
+    },
+    {
+      "name": "Palm Beach",
+      "slug": "palm-beach",
+      "soe_name": null,
+      "soe_url": null,
+      "soe_phone": null,
+      "poll_worker_url": null,
+      "source": null,
+      "verified": null
+    },
+    {
+      "name": "Pasco",
+      "slug": "pasco",
+      "soe_name": null,
+      "soe_url": null,
+      "soe_phone": null,
+      "poll_worker_url": null,
+      "source": null,
+      "verified": null
+    },
+    {
+      "name": "Pinellas",
+      "slug": "pinellas",
+      "soe_name": null,
+      "soe_url": null,
+      "soe_phone": null,
+      "poll_worker_url": null,
+      "source": null,
+      "verified": null
+    },
+    {
+      "name": "Polk",
+      "slug": "polk",
+      "soe_name": null,
+      "soe_url": null,
+      "soe_phone": null,
+      "poll_worker_url": null,
+      "source": null,
+      "verified": null
+    },
+    {
+      "name": "Putnam",
+      "slug": "putnam",
+      "soe_name": null,
+      "soe_url": null,
+      "soe_phone": null,
+      "poll_worker_url": null,
+      "source": null,
+      "verified": null
+    },
+    {
+      "name": "St. Johns",
+      "slug": "st-johns",
+      "soe_name": null,
+      "soe_url": null,
+      "soe_phone": null,
+      "poll_worker_url": null,
+      "source": null,
+      "verified": null
+    },
+    {
+      "name": "St. Lucie",
+      "slug": "st-lucie",
+      "soe_name": null,
+      "soe_url": null,
+      "soe_phone": null,
+      "poll_worker_url": null,
+      "source": null,
+      "verified": null
+    },
+    {
+      "name": "Santa Rosa",
+      "slug": "santa-rosa",
+      "soe_name": null,
+      "soe_url": null,
+      "soe_phone": null,
+      "poll_worker_url": null,
+      "source": null,
+      "verified": null
+    },
+    {
+      "name": "Sarasota",
+      "slug": "sarasota",
+      "soe_name": null,
+      "soe_url": null,
+      "soe_phone": null,
+      "poll_worker_url": null,
+      "source": null,
+      "verified": null
+    },
+    {
+      "name": "Seminole",
+      "slug": "seminole",
+      "soe_name": null,
+      "soe_url": null,
+      "soe_phone": null,
+      "poll_worker_url": null,
+      "source": null,
+      "verified": null
+    },
+    {
+      "name": "Sumter",
+      "slug": "sumter",
+      "soe_name": null,
+      "soe_url": null,
+      "soe_phone": null,
+      "poll_worker_url": null,
+      "source": null,
+      "verified": null
+    },
+    {
+      "name": "Suwannee",
+      "slug": "suwannee",
+      "soe_name": null,
+      "soe_url": null,
+      "soe_phone": null,
+      "poll_worker_url": null,
+      "source": null,
+      "verified": null
+    },
+    {
+      "name": "Taylor",
+      "slug": "taylor",
+      "soe_name": null,
+      "soe_url": null,
+      "soe_phone": null,
+      "poll_worker_url": null,
+      "source": null,
+      "verified": null
+    },
+    {
+      "name": "Union",
+      "slug": "union",
+      "soe_name": null,
+      "soe_url": null,
+      "soe_phone": null,
+      "poll_worker_url": null,
+      "source": null,
+      "verified": null
+    },
+    {
+      "name": "Volusia",
+      "slug": "volusia",
+      "soe_name": null,
+      "soe_url": null,
+      "soe_phone": null,
+      "poll_worker_url": null,
+      "source": null,
+      "verified": null
+    },
+    {
+      "name": "Wakulla",
+      "slug": "wakulla",
+      "soe_name": null,
+      "soe_url": null,
+      "soe_phone": null,
+      "poll_worker_url": null,
+      "source": null,
+      "verified": null
+    },
+    {
+      "name": "Walton",
+      "slug": "walton",
+      "soe_name": null,
+      "soe_url": null,
+      "soe_phone": null,
+      "poll_worker_url": null,
+      "source": null,
+      "verified": null
+    },
+    {
+      "name": "Washington",
+      "slug": "washington",
+      "soe_name": null,
+      "soe_url": null,
+      "soe_phone": null,
+      "poll_worker_url": null,
+      "source": null,
+      "verified": null
+    }
+  ]
+}
