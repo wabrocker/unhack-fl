@@ -95,3 +95,9 @@ footer a { color: var(--accent); }
   position: absolute; width: 1px; height: 1px;
   overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap;
 }
+
+.contact { display: grid; grid-template-columns: max-content 1fr; gap: .35rem .9rem; margin: 1rem 0; }
+.contact dt { color: var(--ink-soft); font-size: .9rem; }
+.contact dd { margin: 0; overflow-wrap: anywhere; }
+.contact a { color: var(--accent); }
+#output { margin-top: 2rem; border-top: 1px solid var(--line); padding-top: 1rem; }

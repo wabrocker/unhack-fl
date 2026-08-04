@@ -16,16 +16,21 @@ rather than inventing an answer.
 
 ## `fl-counties.json`
 
-All 67 Florida counties. Names are stable public record and are populated.
-Everything else is `null` pending a sourcing pass:
+All 67 Florida counties. **Populated 2026-08-04** from the state's own
+county-info export, `qrycountyinfo_excel.xls`, linked from
+dos.fl.gov/elections/contacts/supervisor-of-elections/ (the file itself was
+last saved by the state on 2026-08-03).
 
-| field | source to use |
-|---|---|
-| `soe_name`, `soe_url`, `soe_phone` | Florida Division of Elections county Supervisor of Elections directory (dos.fl.gov) |
-| `poll_worker_url` | the individual county SOE site — each publishes its own poll-worker page |
+Populated per county: `supervisor`, `soe_url`, `soe_phone`, `soe_email`,
+`soe_address` — zero nulls. Each record carries `source` and `verified`.
 
-Set `source` to the URL the value came from and `verified` to the date
-checked, per record. Re-verify before each election cycle: offices move,
+`poll_worker_url` is **null for every county** and should stay that way
+until sourced individually: the state file doesn't carry it, and each
+county publishes its own page under no common scheme. Do not construct one
+from the SOE domain.
+
+A spot check of 12 random county sites found no dead links (9 × 200/202;
+3 × 403, which is bot-blocking of bare `curl`, not a broken site). Re-verify before each election cycle: offices move,
 and Florida election statutes have changed repeatedly in recent years.
 
 ## Statutes
