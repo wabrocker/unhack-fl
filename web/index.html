@@ -282,8 +282,15 @@
   <section id="output" hidden aria-live="polite"></section>
 
   <section id="help-build" aria-labelledby="help-build-h">
-    <h2 id="help-build-h">Help build this</h2>
+    <h2 id="help-build-h">
+      <button type="button" id="help-build-toggle" aria-expanded="false"
+              aria-controls="help-build-body">
+        Help build this
+        <span class="chevron" aria-hidden="true"></span>
+      </button>
+    </h2>
 
+    <div id="help-build-body" hidden>
     <p>
       It's free, open source, and made by people who live here. Four kinds
       of help, and only one of them is code.
@@ -338,6 +345,7 @@
       <a href="mailto:bill@unhackdemocracy.us">bill@unhackdemocracy.us</a>
       directly — you're welcome to leave out which office you work for.
     </p>
+    </div>
   </section>
 
 </main>

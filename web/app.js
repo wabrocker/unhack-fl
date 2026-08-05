@@ -91,6 +91,18 @@ async function init() {
   }
   el.form?.addEventListener("submit", onRecordsSubmit);
 
+  // "Help build this" is a whole section, not a contextual aside, so it
+  // gets its own toggle rather than joining the info-toggle group below —
+  // opening it shouldn't close an unrelated panel someone left open
+  // higher up the page.
+  const helpToggle = document.getElementById("help-build-toggle");
+  const helpBody = document.getElementById("help-build-body");
+  helpToggle?.addEventListener("click", () => {
+    const open = helpToggle.getAttribute("aria-expanded") === "true";
+    helpToggle.setAttribute("aria-expanded", String(!open));
+    helpBody.hidden = open;
+  });
+
   // Circled-"i" disclosures. The panels live below the card grid, not
   // inside the cards — otherwise opening one stretches its grid row and
   // shoves the neighbouring card's button down.

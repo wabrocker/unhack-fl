@@ -249,3 +249,21 @@ h2 .info-toggle { font-size: .7em; }
 .topic-btn { font-size: .92rem; padding: .5rem .85rem; }
 .topic-btn[aria-pressed="true"] { background: var(--accent); color: var(--bg); }
 #topic-result { margin-top: .75rem; }
+
+/* "Help build this" collapses behind its own heading. */
+#help-build-h { margin: 0; }
+#help-build-toggle {
+  display: flex; align-items: center; gap: .5rem;
+  width: 100%; padding: 0; margin: 2rem 0 .5rem;
+  font: inherit; font-weight: 700; font-size: 1.15rem;
+  color: var(--ink); background: transparent; border: 0;
+  cursor: pointer; text-align: left;
+}
+#help-build-toggle:hover { color: var(--accent); }
+.chevron {
+  width: .6em; height: .6em; flex: none;
+  border-right: 2px solid currentColor; border-bottom: 2px solid currentColor;
+  transform: rotate(45deg); transition: transform .15s ease;
+}
+#help-build-toggle[aria-expanded="true"] .chevron { transform: rotate(-135deg); }
+#help-build-body { margin-top: 1rem; }
