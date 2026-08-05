@@ -24,10 +24,20 @@ last saved by the state on 2026-08-03).
 Populated per county: `supervisor`, `soe_url`, `soe_phone`, `soe_email`,
 `soe_address` — zero nulls. Each record carries `source` and `verified`.
 
-`poll_worker_url` is **null for every county** and should stay that way
-until sourced individually: the state file doesn't carry it, and each
-county publishes its own page under no common scheme. Do not construct one
-from the SOE domain.
+`poll_worker_url` was populated **2026-08-05** for **59 of 67** counties
+by `scripts/find_pollworker_urls.py`, which reads each county's own SOE
+site — and its sitemap — for a poll-worker or election-worker page, then
+confirms the URL resolves. **Never constructed from the SOE domain**;
+there is no common scheme, and a guessed link that lands on the wrong page
+is the failure this project cannot survive.
+
+The eight nulls are deliberate: Baker and Flagler block automated
+requests, and Gilchrist, Glades, Hardee, Holmes, Lafayette and Liberty
+publish no page a crawl could find — several small counties take
+applications by phone. Null renders as "we couldn't find one, ask the
+office", never a guess.
+
+Re-run the script before each election cycle; county sites reorganise.
 
 A spot check of 12 random county sites found no dead links (9 × 200/202;
 3 × 403, which is bot-blocking of bare `curl`, not a broken site). Re-verify before each election cycle: offices move,

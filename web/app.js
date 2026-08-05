@@ -165,16 +165,32 @@ function contactBlock(c) {
 
 /** Renders the poll-worker panel for a county. Safe to call repeatedly. */
 function renderPollWorker(c) {
+  // The county's own poll-worker page, when one was found on their site —
+  // never a URL guessed from their domain.
+  const apply = c.poll_worker_url
+    ? `<p class="apply">
+         <a class="btn-secondary" href="${esc(c.poll_worker_url)}" rel="noopener">
+           ${esc(c.name)} County's poll worker page →
+         </a>
+       </p>
+       <p class="note">Found on the county's own site${
+         c.poll_worker_verified ? `, checked ${esc(c.poll_worker_verified)}` : ""
+       }.</p>`
+    : `<p class="unsourced">We couldn't find a poll-worker page on
+       ${esc(c.name)} County's site, so we won't guess at one — contact the
+       office below and ask. Some counties take applications by phone or in
+       person rather than publishing a form.</p>`;
+
   el.output.hidden = false;
   el.output.innerHTML = `
     <h2>Working the polls in ${esc(c.name)} County</h2>
     <p>Poll workers are hired and trained by your county Supervisor of
     Elections — that office is who you apply to.</p>
+    ${apply}
     ${contactBlock(c)}
-    <p class="unsourced">Statewide requirements (eligibility, mandatory
-    pre-election training, county-set pay) still need verifying against
-    current law before we state them here. Ask the office above, or see
-    their site — each county publishes its own poll-worker page.</p>`;
+    <p class="note">Eligibility, training, and pay are set county by county
+    and change between elections. Treat the county page and the office
+    itself as authoritative over anything summarised here.</p>`;
 }
 
 function onAction(kind) {

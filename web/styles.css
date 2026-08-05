@@ -202,3 +202,6 @@ textarea { resize: vertical; line-height: 1.5; }
    dragging the neighbouring card's button down with it. */
 .info-panel { max-width: 44rem; margin: 0 auto 1rem; }
 .info-title { margin: 0 0 .7rem; font-size: 1rem; }
+
+.apply { margin: 1rem 0 .25rem; }
+.apply .btn-secondary { font-weight: 600; }

@@ -4,7 +4,8 @@
     "source": "https://dos.fl.gov/media/711276/qrycountyinfo_excel.xls",
     "source_note": "Official Florida Division of Elections county-info export, linked from dos.fl.gov/elections/contacts/supervisor-of-elections/. File last saved by the state 2026-08-03.",
     "verified": "2026-08-04",
-    "unpopulated_fields_note": "poll_worker_url is null for every county: the state file does not carry it and each county publishes its own page. Do NOT construct these from the SOE domain — link the county site instead. Re-verify all records before each election cycle."
+    "unpopulated_fields_note": "poll_worker_url is null for every county: the state file does not carry it and each county publishes its own page. Do NOT construct these from the SOE domain — link the county site instead. Re-verify all records before each election cycle.",
+    "poll_worker_note": "poll_worker_url discovered 2026-08-05 by crawling each county's own Supervisor of Elections site (and its sitemap) for a poll-worker or election-worker page, then confirming the URL resolves. Never constructed from a pattern. 59 of 67 populated; the rest are null because the county site was unreachable to an automated request or publishes no such page. Null renders in the UI as a link to the county site, never a guess."
   },
   "counties": [
     {
@@ -15,9 +16,10 @@
       "soe_phone": "352-374-5252",
       "soe_email": "kbarton@alachuacounty.us",
       "soe_address": "515 N. Main St., Suite 300, Gainesville, FL 32601",
-      "poll_worker_url": null,
+      "poll_worker_url": "https://www.votealachua.gov/193/Election-Workers",
       "source": "https://dos.fl.gov/media/711276/qrycountyinfo_excel.xls",
-      "verified": "2026-08-04"
+      "verified": "2026-08-04",
+      "poll_worker_verified": "2026-08-05"
     },
     {
       "name": "Baker",
@@ -29,7 +31,8 @@
       "soe_address": "PO Box 505, 32 North 5th Street, Suite A, Macclenny, FL 32063",
       "poll_worker_url": null,
       "source": "https://dos.fl.gov/media/711276/qrycountyinfo_excel.xls",
-      "verified": "2026-08-04"
+      "verified": "2026-08-04",
+      "poll_worker_verified": null
     },
     {
       "name": "Bay",
@@ -39,9 +42,10 @@
       "soe_phone": "850-784-6100",
       "soe_email": "elections@bayvotesfl.gov",
       "soe_address": "830 West 11th Street, Panama City, FL 32401",
-      "poll_worker_url": null,
+      "poll_worker_url": "https://www.bayvotesfl.gov/about/election-workers/",
       "source": "https://dos.fl.gov/media/711276/qrycountyinfo_excel.xls",
-      "verified": "2026-08-04"
+      "verified": "2026-08-04",
+      "poll_worker_verified": "2026-08-05"
     },
     {
       "name": "Bradford",
@@ -51,9 +55,10 @@
       "soe_phone": "904-966-6266",
       "soe_email": "bradsoe@votebradfordfl.gov",
       "soe_address": "PO Box 58, 945 N. Temple Ave. Suite C, Starke, FL 32091",
-      "poll_worker_url": null,
+      "poll_worker_url": "https://www.votebradfordfl.gov/election/election_workers.php",
       "source": "https://dos.fl.gov/media/711276/qrycountyinfo_excel.xls",
-      "verified": "2026-08-04"
+      "verified": "2026-08-04",
+      "poll_worker_verified": "2026-08-05"
     },
     {
       "name": "Brevard",
@@ -63,9 +68,10 @@
       "soe_phone": "321-290-8683",
       "soe_email": "soe@votebrevard.gov",
       "soe_address": "PO Box 410819, 2725 Judge Fran Jamieson Way, Bldg C, Melbourne, FL 32941",
-      "poll_worker_url": null,
+      "poll_worker_url": "https://www.votebrevard.gov/Election-Workers/Poll-Worker-Information",
       "source": "https://dos.fl.gov/media/711276/qrycountyinfo_excel.xls",
-      "verified": "2026-08-04"
+      "verified": "2026-08-04",
+      "poll_worker_verified": "2026-08-05"
     },
     {
       "name": "Broward",
@@ -75,9 +81,10 @@
       "soe_phone": "954-357-7050",
       "soe_email": "elections@browardvotes.gov",
       "soe_address": "4650 NW 21st Avenue, Fort Lauderdale, FL 33309",
-      "poll_worker_url": null,
+      "poll_worker_url": "https://browardvotes.gov/get-involved/what-election-day-worker",
       "source": "https://dos.fl.gov/media/711276/qrycountyinfo_excel.xls",
-      "verified": "2026-08-04"
+      "verified": "2026-08-04",
+      "poll_worker_verified": "2026-08-05"
     },
     {
       "name": "Calhoun",
@@ -87,9 +94,10 @@
       "soe_phone": "850-674-8568",
       "soe_email": "soe@votecalhounfl.gov",
       "soe_address": "20859 Central Avenue E., Room 117, Blountstown, FL 32424",
-      "poll_worker_url": null,
+      "poll_worker_url": "https://votecalhounfl.gov/election-workers/",
       "source": "https://dos.fl.gov/media/711276/qrycountyinfo_excel.xls",
-      "verified": "2026-08-04"
+      "verified": "2026-08-04",
+      "poll_worker_verified": "2026-08-05"
     },
     {
       "name": "Charlotte",
@@ -99,9 +107,10 @@
       "soe_phone": "941-833-5400",
       "soe_email": "soe@soecharlottecountyfl.gov",
       "soe_address": "226 Taylor Street, Unit 120, Punta Gorda, FL 33950",
-      "poll_worker_url": null,
+      "poll_worker_url": "https://www.soecharlottecountyfl.gov/1199/Election-Workers",
       "source": "https://dos.fl.gov/media/711276/qrycountyinfo_excel.xls",
-      "verified": "2026-08-04"
+      "verified": "2026-08-04",
+      "poll_worker_verified": "2026-08-05"
     },
     {
       "name": "Citrus",
@@ -111,9 +120,10 @@
       "soe_phone": "352-564-7120",
       "soe_email": "vote@votecitrus.gov",
       "soe_address": "PO Box 1870, 1500 N. Meadowcrest Blvd., Crystal River, FL, Lecanto, FL 34460",
-      "poll_worker_url": null,
+      "poll_worker_url": "https://www.votecitrus.gov/165/Poll-Workers",
       "source": "https://dos.fl.gov/media/711276/qrycountyinfo_excel.xls",
-      "verified": "2026-08-04"
+      "verified": "2026-08-04",
+      "poll_worker_verified": "2026-08-05"
     },
     {
       "name": "Clay",
@@ -123,9 +133,10 @@
       "soe_phone": "904-269-6350",
       "soe_email": "mail@ClayElections.gov",
       "soe_address": "PO Box 337, 500 N. Orange Ave., Green Cove Spring, FL 32043",
-      "poll_worker_url": null,
+      "poll_worker_url": "https://clayelections.gov/election-workers-volunteers/",
       "source": "https://dos.fl.gov/media/711276/qrycountyinfo_excel.xls",
-      "verified": "2026-08-04"
+      "verified": "2026-08-04",
+      "poll_worker_verified": "2026-08-05"
     },
     {
       "name": "Collier",
@@ -135,9 +146,10 @@
       "soe_phone": "239-252-8683",
       "soe_email": "Supervisor.Elections@CollierVotes.gov",
       "soe_address": "3750 Enterprise Avenue, Naples, FL 34104",
-      "poll_worker_url": null,
+      "poll_worker_url": "https://www.colliervotes.gov/335/Election-Worker-Training",
       "source": "https://dos.fl.gov/media/711276/qrycountyinfo_excel.xls",
-      "verified": "2026-08-04"
+      "verified": "2026-08-04",
+      "poll_worker_verified": "2026-08-05"
     },
     {
       "name": "Columbia",
@@ -147,9 +159,10 @@
       "soe_phone": "386-758-1026",
       "soe_email": "vote@votecolumbiafl.gov",
       "soe_address": "971 W. Duval Street, Suite 102, Lake City, FL 32055",
-      "poll_worker_url": null,
+      "poll_worker_url": "https://www.votecolumbiafl.gov/election_information/pollworker.php",
       "source": "https://dos.fl.gov/media/711276/qrycountyinfo_excel.xls",
-      "verified": "2026-08-04"
+      "verified": "2026-08-04",
+      "poll_worker_verified": "2026-08-05"
     },
     {
       "name": "DeSoto",
@@ -159,9 +172,10 @@
       "soe_phone": "863-993-4871",
       "soe_email": "Dwertz@votedesotofl.gov",
       "soe_address": "PO Box 89, 201 E. Oak Street, Suite 104, Arcadia, FL 34265",
-      "poll_worker_url": null,
+      "poll_worker_url": "https://votedesotofl.gov/election-information/poll-workers/",
       "source": "https://dos.fl.gov/media/711276/qrycountyinfo_excel.xls",
-      "verified": "2026-08-04"
+      "verified": "2026-08-04",
+      "poll_worker_verified": "2026-08-05"
     },
     {
       "name": "Dixie",
@@ -171,9 +185,10 @@
       "soe_phone": "352-498-1216",
       "soe_email": "elections@dixievotes.com",
       "soe_address": "PO Box 2057, 229 NE 351 Hwy., Suite A, Cross City, FL 32628",
-      "poll_worker_url": null,
+      "poll_worker_url": "https://dixievotes.gov/election-information/election-workers/poll-worker-application/",
       "source": "https://dos.fl.gov/media/711276/qrycountyinfo_excel.xls",
-      "verified": "2026-08-04"
+      "verified": "2026-08-04",
+      "poll_worker_verified": "2026-08-05"
     },
     {
       "name": "Duval",
@@ -183,9 +198,10 @@
       "soe_phone": "904-255-8683",
       "soe_email": "jholland@coj.net",
       "soe_address": "105 E. Monroe Street, Jacksonville, FL 32202",
-      "poll_worker_url": null,
+      "poll_worker_url": "https://www.duvalelections.gov/35/Poll-Workers",
       "source": "https://dos.fl.gov/media/711276/qrycountyinfo_excel.xls",
-      "verified": "2026-08-04"
+      "verified": "2026-08-04",
+      "poll_worker_verified": "2026-08-05"
     },
     {
       "name": "Escambia",
@@ -195,9 +211,10 @@
       "soe_phone": "850-595-3900",
       "soe_email": "soe@escambiavotes.gov",
       "soe_address": "PO Box 12601, 213 Palafox Place, 2nd Floor, Pensacola, FL 32591",
-      "poll_worker_url": null,
+      "poll_worker_url": "https://escambiavotes.gov/election-worker-information",
       "source": "https://dos.fl.gov/media/711276/qrycountyinfo_excel.xls",
-      "verified": "2026-08-04"
+      "verified": "2026-08-04",
+      "poll_worker_verified": "2026-08-05"
     },
     {
       "name": "Flagler",
@@ -209,7 +226,8 @@
       "soe_address": "PO Box 901, 1769 E. Moody Blvd., Bldg. 2, Suite 101, Bunnell, FL 32110",
       "poll_worker_url": null,
       "source": "https://dos.fl.gov/media/711276/qrycountyinfo_excel.xls",
-      "verified": "2026-08-04"
+      "verified": "2026-08-04",
+      "poll_worker_verified": null
     },
     {
       "name": "Franklin",
@@ -219,9 +237,10 @@
       "soe_phone": "850-653-9520",
       "soe_email": "Heather@votefranklinfl.gov",
       "soe_address": "47 Avenue F, Apalachicola, FL 32320",
-      "poll_worker_url": null,
+      "poll_worker_url": "https://www.votefranklinfl.gov/election_information/election_worker_application.php",
       "source": "https://dos.fl.gov/media/711276/qrycountyinfo_excel.xls",
-      "verified": "2026-08-04"
+      "verified": "2026-08-04",
+      "poll_worker_verified": "2026-08-05"
     },
     {
       "name": "Gadsden",
@@ -231,9 +250,10 @@
       "soe_phone": "850-627-9910",
       "soe_email": "info@gadsdensoefl.gov",
       "soe_address": "PO Box 186, 16 S. Madison Street, Quincy, FL 32353",
-      "poll_worker_url": null,
+      "poll_worker_url": "https://app.pollworkerhub.com/live-form/731d2032-46bf-4845-8fae-335133e3040b",
       "source": "https://dos.fl.gov/media/711276/qrycountyinfo_excel.xls",
-      "verified": "2026-08-04"
+      "verified": "2026-08-04",
+      "poll_worker_verified": "2026-08-05"
     },
     {
       "name": "Gilchrist",
@@ -245,7 +265,8 @@
       "soe_address": "112 S. Main Street, Room 137, Trenton, FL 32693",
       "poll_worker_url": null,
       "source": "https://dos.fl.gov/media/711276/qrycountyinfo_excel.xls",
-      "verified": "2026-08-04"
+      "verified": "2026-08-04",
+      "poll_worker_verified": null
     },
     {
       "name": "Glades",
@@ -257,7 +278,8 @@
       "soe_address": "PO Box 668, 998 S. U.S. Hwy. 27, Moore Haven, FL 33471",
       "poll_worker_url": null,
       "source": "https://dos.fl.gov/media/711276/qrycountyinfo_excel.xls",
-      "verified": "2026-08-04"
+      "verified": "2026-08-04",
+      "poll_worker_verified": null
     },
     {
       "name": "Gulf",
@@ -267,9 +289,10 @@
       "soe_phone": "850-229-6117",
       "soe_email": "gulfsoe@votegulf.gov",
       "soe_address": "401 Long Avenue, Port St. Joe, FL 32456",
-      "poll_worker_url": null,
+      "poll_worker_url": "https://votegulf.gov/elections/poll-workers/",
       "source": "https://dos.fl.gov/media/711276/qrycountyinfo_excel.xls",
-      "verified": "2026-08-04"
+      "verified": "2026-08-04",
+      "poll_worker_verified": "2026-08-05"
     },
     {
       "name": "Hamilton",
@@ -279,9 +302,10 @@
       "soe_phone": "386-792-1426",
       "soe_email": "elect@hamiltonvotesfl.gov",
       "soe_address": "1153 US Hwy 41 NW, Suite 1, Jasper, FL 32052",
-      "poll_worker_url": null,
+      "poll_worker_url": "https://www.hamiltonvotesfl.gov/elections/poll-worker-information/",
       "source": "https://dos.fl.gov/media/711276/qrycountyinfo_excel.xls",
-      "verified": "2026-08-04"
+      "verified": "2026-08-04",
+      "poll_worker_verified": "2026-08-05"
     },
     {
       "name": "Hardee",
@@ -293,7 +317,8 @@
       "soe_address": "131 K.D. Revell Road, Wauchula, FL 33873",
       "poll_worker_url": null,
       "source": "https://dos.fl.gov/media/711276/qrycountyinfo_excel.xls",
-      "verified": "2026-08-04"
+      "verified": "2026-08-04",
+      "poll_worker_verified": null
     },
     {
       "name": "Hendry",
@@ -303,9 +328,10 @@
       "soe_phone": "863-675-5230",
       "soe_email": "Supervisor@hendryelections.gov",
       "soe_address": "PO Box 174, 25 E. Hickpochee Avenue, LaBelle, FL 33975",
-      "poll_worker_url": null,
+      "poll_worker_url": "https://www.hendryelections.gov/elections/election_workers.php",
       "source": "https://dos.fl.gov/media/711276/qrycountyinfo_excel.xls",
-      "verified": "2026-08-04"
+      "verified": "2026-08-04",
+      "poll_worker_verified": "2026-08-05"
     },
     {
       "name": "Hernando",
@@ -315,9 +341,10 @@
       "soe_phone": "352-754-4125",
       "soe_email": "Elections@hernandovotes.gov",
       "soe_address": "16264 Spring Hill Drive, Brooksville, FL 34604",
-      "poll_worker_url": null,
+      "poll_worker_url": "https://www.hernandovotes.gov/1199/ElectionWorker",
       "source": "https://dos.fl.gov/media/711276/qrycountyinfo_excel.xls",
-      "verified": "2026-08-04"
+      "verified": "2026-08-04",
+      "poll_worker_verified": "2026-08-05"
     },
     {
       "name": "Highlands",
@@ -327,9 +354,10 @@
       "soe_phone": "863-402-6655",
       "soe_email": "vote@votehighlands.gov",
       "soe_address": "PO Drawer 3448, 580 S. Commerce Ave, Room A201, Sebring, FL 33871",
-      "poll_worker_url": null,
+      "poll_worker_url": "https://www.votehighlands.gov/election-worker-application",
       "source": "https://dos.fl.gov/media/711276/qrycountyinfo_excel.xls",
-      "verified": "2026-08-04"
+      "verified": "2026-08-04",
+      "poll_worker_verified": "2026-08-05"
     },
     {
       "name": "Hillsborough",
@@ -339,9 +367,10 @@
       "soe_phone": "813-744-5900",
       "soe_email": "voter@votehillsborough.gov",
       "soe_address": "2514 N. Falkenburg Rd., Tampa, FL 33619",
-      "poll_worker_url": null,
+      "poll_worker_url": "https://www.votehillsborough.gov/179/Poll-Workers",
       "source": "https://dos.fl.gov/media/711276/qrycountyinfo_excel.xls",
-      "verified": "2026-08-04"
+      "verified": "2026-08-04",
+      "poll_worker_verified": "2026-08-05"
     },
     {
       "name": "Holmes",
@@ -353,7 +382,8 @@
       "soe_address": "201 N. Oklahoma Street, Ste 102, Bonifay, FL 32425",
       "poll_worker_url": null,
       "source": "https://dos.fl.gov/media/711276/qrycountyinfo_excel.xls",
-      "verified": "2026-08-04"
+      "verified": "2026-08-04",
+      "poll_worker_verified": null
     },
     {
       "name": "Indian River",
@@ -363,9 +393,10 @@
       "soe_phone": "772-226-4700",
       "soe_email": "info@voteindianriver.gov",
       "soe_address": "4375 43rd Avenue, Vero Beach, FL 32967",
-      "poll_worker_url": null,
+      "poll_worker_url": "https://www.voteindianriver.gov/election_workers/index.php",
       "source": "https://dos.fl.gov/media/711276/qrycountyinfo_excel.xls",
-      "verified": "2026-08-04"
+      "verified": "2026-08-04",
+      "poll_worker_verified": "2026-08-05"
     },
     {
       "name": "Jackson",
@@ -375,9 +406,10 @@
       "soe_phone": "850-482-9652",
       "soe_email": "email@votejacksonfl.gov",
       "soe_address": "2851 Jefferson Street, Marianna, FL 32448",
-      "poll_worker_url": null,
+      "poll_worker_url": "https://votejacksonfl.gov/voter-education/election-worker-information/",
       "source": "https://dos.fl.gov/media/711276/qrycountyinfo_excel.xls",
-      "verified": "2026-08-04"
+      "verified": "2026-08-04",
+      "poll_worker_verified": "2026-08-05"
     },
     {
       "name": "Jefferson",
@@ -387,9 +419,10 @@
       "soe_phone": "850-997-3348",
       "soe_email": "mmilligan@jeffersonvotesfl.gov",
       "soe_address": "1175 W. Washington Street, Monticello, FL 32344",
-      "poll_worker_url": null,
+      "poll_worker_url": "https://jeffersonvotesfl.gov/poll-workers/",
       "source": "https://dos.fl.gov/media/711276/qrycountyinfo_excel.xls",
-      "verified": "2026-08-04"
+      "verified": "2026-08-04",
+      "poll_worker_verified": "2026-08-05"
     },
     {
       "name": "Lafayette",
@@ -401,7 +434,8 @@
       "soe_address": "PO Box 76, 120 W. Main Street, Room 129, Mayo, FL 32066",
       "poll_worker_url": null,
       "source": "https://dos.fl.gov/media/711276/qrycountyinfo_excel.xls",
-      "verified": "2026-08-04"
+      "verified": "2026-08-04",
+      "poll_worker_verified": null
     },
     {
       "name": "Lake",
@@ -411,9 +445,10 @@
       "soe_phone": "352-343-9734",
       "soe_email": "hays@lakevotes.gov",
       "soe_address": "PO Box  457, 1898 E. Burleigh Blvd., Tavares, FL 32778",
-      "poll_worker_url": null,
+      "poll_worker_url": "https://www.lakevotes.gov/35/Election-Workers",
       "source": "https://dos.fl.gov/media/711276/qrycountyinfo_excel.xls",
-      "verified": "2026-08-04"
+      "verified": "2026-08-04",
+      "poll_worker_verified": "2026-08-05"
     },
     {
       "name": "Lee",
@@ -423,9 +458,10 @@
       "soe_phone": "239-533-8683",
       "soe_email": "elections@lee.vote",
       "soe_address": "PO Box 2545, 2480 Thompson Street, Fort Myers, FL 33902",
-      "poll_worker_url": null,
+      "poll_worker_url": "https://www.lee.vote/312/Become-a-Poll-Worker",
       "source": "https://dos.fl.gov/media/711276/qrycountyinfo_excel.xls",
-      "verified": "2026-08-04"
+      "verified": "2026-08-04",
+      "poll_worker_verified": "2026-08-05"
     },
     {
       "name": "Leon",
@@ -435,9 +471,10 @@
       "soe_phone": "850-606-8683",
       "soe_email": "Vote@LeonVotes.gov",
       "soe_address": "PO Box 7357, 2990-1 Apalachee Parkway, Tallahassee, FL 32314",
-      "poll_worker_url": null,
+      "poll_worker_url": "https://www.leonvotes.gov/Employment/Election-Workers",
       "source": "https://dos.fl.gov/media/711276/qrycountyinfo_excel.xls",
-      "verified": "2026-08-04"
+      "verified": "2026-08-04",
+      "poll_worker_verified": "2026-08-05"
     },
     {
       "name": "Levy",
@@ -447,9 +484,10 @@
       "soe_phone": "352-486-5163",
       "soe_email": "elections@votelevy.com",
       "soe_address": "421 S. Court Street, Bronson, FL 32621",
-      "poll_worker_url": null,
+      "poll_worker_url": "https://www.votelevy.gov/elections/poll-workers/",
       "source": "https://dos.fl.gov/media/711276/qrycountyinfo_excel.xls",
-      "verified": "2026-08-04"
+      "verified": "2026-08-04",
+      "poll_worker_verified": "2026-08-05"
     },
     {
       "name": "Liberty",
@@ -461,7 +499,8 @@
       "soe_address": "PO Box 597, 10818 NW SR 20, Bristol, FL 32321",
       "poll_worker_url": null,
       "source": "https://dos.fl.gov/media/711276/qrycountyinfo_excel.xls",
-      "verified": "2026-08-04"
+      "verified": "2026-08-04",
+      "poll_worker_verified": null
     },
     {
       "name": "Madison",
@@ -471,9 +510,10 @@
       "soe_phone": "850-973-6507",
       "soe_email": "hdriggers@votemadison.com",
       "soe_address": "239 SW Pinckney St., Madison, FL 32340",
-      "poll_worker_url": null,
+      "poll_worker_url": "https://www.votemadison.com/poll-workers/",
       "source": "https://dos.fl.gov/media/711276/qrycountyinfo_excel.xls",
-      "verified": "2026-08-04"
+      "verified": "2026-08-04",
+      "poll_worker_verified": "2026-08-05"
     },
     {
       "name": "Manatee",
@@ -483,9 +523,10 @@
       "soe_phone": "941-741-3823",
       "soe_email": "info@votemanatee.gov",
       "soe_address": "PO Box 1000, 600 301 Blvd. W., Ste 108, Bradenton, FL 34206",
-      "poll_worker_url": null,
+      "poll_worker_url": "https://www.votemanatee.gov/become-an-election-worker/",
       "source": "https://dos.fl.gov/media/711276/qrycountyinfo_excel.xls",
-      "verified": "2026-08-04"
+      "verified": "2026-08-04",
+      "poll_worker_verified": "2026-08-05"
     },
     {
       "name": "Marion",
@@ -495,9 +536,10 @@
       "soe_phone": "352-620-3290",
       "soe_email": "Elections@VoteMarion.gov",
       "soe_address": "PO Box 289, 981 NE 16th Street, Ocala, FL 34478",
-      "poll_worker_url": null,
+      "poll_worker_url": "https://www.votemarion.gov/173/Election-Workers",
       "source": "https://dos.fl.gov/media/711276/qrycountyinfo_excel.xls",
-      "verified": "2026-08-04"
+      "verified": "2026-08-04",
+      "poll_worker_verified": "2026-08-05"
     },
     {
       "name": "Martin",
@@ -507,9 +549,10 @@
       "soe_phone": "772-288-5637",
       "soe_email": "elections@martinvotes.gov",
       "soe_address": "PO Box 1257, 135 SE Martin Luther King, Jr. Blvd., Stuart, FL 34995",
-      "poll_worker_url": null,
+      "poll_worker_url": "https://www.martinvotes.gov/election-information/become-an-election-worker/",
       "source": "https://dos.fl.gov/media/711276/qrycountyinfo_excel.xls",
-      "verified": "2026-08-04"
+      "verified": "2026-08-04",
+      "poll_worker_verified": "2026-08-05"
     },
     {
       "name": "Miami-Dade",
@@ -519,9 +562,10 @@
       "soe_phone": "305-499-8683",
       "soe_email": "soedade@miamidade.gov",
       "soe_address": "PO Box 521550, 2700 NW 87th Avenue, Miami, FL 33152",
-      "poll_worker_url": null,
+      "poll_worker_url": "https://www.votemiamidade.gov/elections/poll-workers/home.page",
       "source": "https://dos.fl.gov/media/711276/qrycountyinfo_excel.xls",
-      "verified": "2026-08-04"
+      "verified": "2026-08-04",
+      "poll_worker_verified": "2026-08-05"
     },
     {
       "name": "Monroe",
@@ -531,9 +575,10 @@
       "soe_phone": "305-292-3416",
       "soe_email": "info@votemonroeflkeys.gov",
       "soe_address": "5200 College Road, Key West, FL 33040",
-      "poll_worker_url": null,
+      "poll_worker_url": "https://www.votemonroeflkeys.gov/Election-Workers/Election-Worker-Information-Application",
       "source": "https://dos.fl.gov/media/711276/qrycountyinfo_excel.xls",
-      "verified": "2026-08-04"
+      "verified": "2026-08-04",
+      "poll_worker_verified": "2026-08-05"
     },
     {
       "name": "Nassau",
@@ -543,9 +588,10 @@
       "soe_phone": "904-491-7500",
       "soe_email": "info@votenassaufl.gov",
       "soe_address": "96135 Nassau Place, Ste 3, Yulee, FL 32097",
-      "poll_worker_url": null,
+      "poll_worker_url": "https://www.votenassaufl.gov/election-workers",
       "source": "https://dos.fl.gov/media/711276/qrycountyinfo_excel.xls",
-      "verified": "2026-08-04"
+      "verified": "2026-08-04",
+      "poll_worker_verified": "2026-08-05"
     },
     {
       "name": "Okaloosa",
@@ -555,9 +601,10 @@
       "soe_phone": "850-689-5600",
       "soe_email": "plux@myokaloosa.com",
       "soe_address": "302 N. Wilson St., Ste 102, Crestview, FL 32536",
-      "poll_worker_url": null,
+      "poll_worker_url": "https://www.voteokaloosa.gov/elections/poll-workers/",
       "source": "https://dos.fl.gov/media/711276/qrycountyinfo_excel.xls",
-      "verified": "2026-08-04"
+      "verified": "2026-08-04",
+      "poll_worker_verified": "2026-08-05"
     },
     {
       "name": "Okeechobee",
@@ -567,9 +614,10 @@
       "soe_phone": "863-763-4014",
       "soe_email": "Elections@voteokeechobee.gov",
       "soe_address": "307 NW 5th Ave, Okeechobee, FL 34972",
-      "poll_worker_url": null,
+      "poll_worker_url": "https://voteokeechobee.gov/election-information/election-worker-information/",
       "source": "https://dos.fl.gov/media/711276/qrycountyinfo_excel.xls",
-      "verified": "2026-08-04"
+      "verified": "2026-08-04",
+      "poll_worker_verified": "2026-08-05"
     },
     {
       "name": "Orange",
@@ -579,9 +627,10 @@
       "soe_phone": "407-836-2070",
       "soe_email": "voter@ocfelections.gov",
       "soe_address": "PO Box 562001, 119 West Kaley Street, Orlando, FL 32856",
-      "poll_worker_url": null,
+      "poll_worker_url": "https://voteorangefl.gov/become-a-poll-worker/",
       "source": "https://dos.fl.gov/media/711276/qrycountyinfo_excel.xls",
-      "verified": "2026-08-04"
+      "verified": "2026-08-04",
+      "poll_worker_verified": "2026-08-05"
     },
     {
       "name": "Osceola",
@@ -591,9 +640,10 @@
       "soe_phone": "407-742-6000",
       "soe_email": "soe@voteosceola.gov",
       "soe_address": "2509 E. Irlo Bronson Memorial Hwy, Kissimmee, FL 34744",
-      "poll_worker_url": null,
+      "poll_worker_url": "https://www.voteosceola.gov/en-us/election-worker-information/",
       "source": "https://dos.fl.gov/media/711276/qrycountyinfo_excel.xls",
-      "verified": "2026-08-04"
+      "verified": "2026-08-04",
+      "poll_worker_verified": "2026-08-05"
     },
     {
       "name": "Palm Beach",
@@ -603,9 +653,10 @@
       "soe_phone": "561-656-6200",
       "soe_email": "info@votepalmbeach.gov",
       "soe_address": "PO Box 22309, 4301 Cherry Road, West Palm Beach, FL 33416",
-      "poll_worker_url": null,
+      "poll_worker_url": "https://www.votepalmbeach.gov/200/Become-an-Election-Worker",
       "source": "https://dos.fl.gov/media/711276/qrycountyinfo_excel.xls",
-      "verified": "2026-08-04"
+      "verified": "2026-08-04",
+      "poll_worker_verified": "2026-08-05"
     },
     {
       "name": "Pasco",
@@ -615,9 +666,10 @@
       "soe_phone": "800-851-8754",
       "soe_email": "webcomment@pascovotes.gov",
       "soe_address": "PO Box 300, 14236 6th Street, Ste 200, Dade City, FL 33526",
-      "poll_worker_url": null,
+      "poll_worker_url": "https://www.pascovotes.gov/election_workers/index.php",
       "source": "https://dos.fl.gov/media/711276/qrycountyinfo_excel.xls",
-      "verified": "2026-08-04"
+      "verified": "2026-08-04",
+      "poll_worker_verified": "2026-08-05"
     },
     {
       "name": "Pinellas",
@@ -627,9 +679,10 @@
       "soe_phone": "727-464-8683",
       "soe_email": "Election@VotePinellas.gov",
       "soe_address": "13001 Starkey Road, Largo, FL 33773",
-      "poll_worker_url": null,
+      "poll_worker_url": "https://www.votepinellas.gov/230/Poll-Worker-Information",
       "source": "https://dos.fl.gov/media/711276/qrycountyinfo_excel.xls",
-      "verified": "2026-08-04"
+      "verified": "2026-08-04",
+      "poll_worker_verified": "2026-08-05"
     },
     {
       "name": "Polk",
@@ -639,9 +692,10 @@
       "soe_phone": "863-534-5888",
       "soe_email": "info@polkelections.gov",
       "soe_address": "PO Box 1460, 250 S. Broadway Avenue, Bartow, FL 33831",
-      "poll_worker_url": null,
+      "poll_worker_url": "https://www.polkelections.gov/167/Become-an-Election-Worker",
       "source": "https://dos.fl.gov/media/711276/qrycountyinfo_excel.xls",
-      "verified": "2026-08-04"
+      "verified": "2026-08-04",
+      "poll_worker_verified": "2026-08-05"
     },
     {
       "name": "Putnam",
@@ -651,9 +705,10 @@
       "soe_phone": "386-329-0224",
       "soe_email": "electionsoffice@putnam-fl.gov",
       "soe_address": "2509 Crill Ave, Ste 900, Palatka, FL 32177",
-      "poll_worker_url": null,
+      "poll_worker_url": "https://www.voteputnamflorida.gov/election_information/election_workers/index.php",
       "source": "https://dos.fl.gov/media/711276/qrycountyinfo_excel.xls",
-      "verified": "2026-08-04"
+      "verified": "2026-08-04",
+      "poll_worker_verified": "2026-08-05"
     },
     {
       "name": "Santa Rosa",
@@ -663,9 +718,10 @@
       "soe_phone": "850-983-1900",
       "soe_email": "villane@santarosa.fl.gov",
       "soe_address": "6495 Caroline Street, Ste F, Milton, FL 32570",
-      "poll_worker_url": null,
+      "poll_worker_url": "https://votesantarosa.gov/poll-worker-information/",
       "source": "https://dos.fl.gov/media/711276/qrycountyinfo_excel.xls",
-      "verified": "2026-08-04"
+      "verified": "2026-08-04",
+      "poll_worker_verified": "2026-08-05"
     },
     {
       "name": "Sarasota",
@@ -675,9 +731,10 @@
       "soe_phone": "941-861-8600",
       "soe_email": "rturner@sarasotavotes.gov",
       "soe_address": "PO Box 4194, 101 S. Washington Blvd., Sarasota, FL 34230",
-      "poll_worker_url": null,
+      "poll_worker_url": "https://www.sarasotavotes.gov/9/Poll-Workers",
       "source": "https://dos.fl.gov/media/711276/qrycountyinfo_excel.xls",
-      "verified": "2026-08-04"
+      "verified": "2026-08-04",
+      "poll_worker_verified": "2026-08-05"
     },
     {
       "name": "Seminole",
@@ -687,9 +744,10 @@
       "soe_phone": "407-585-8683",
       "soe_email": "Elections@VoteSeminole.gov",
       "soe_address": "PO Box 1479, 1500 E. Airport Blvd., Sanford, FL 32772",
-      "poll_worker_url": null,
+      "poll_worker_url": "https://voteseminole.gov/elections/become-an-election-worker/",
       "source": "https://dos.fl.gov/media/711276/qrycountyinfo_excel.xls",
-      "verified": "2026-08-04"
+      "verified": "2026-08-04",
+      "poll_worker_verified": "2026-08-05"
     },
     {
       "name": "St. Johns",
@@ -699,9 +757,10 @@
       "soe_phone": "904-823-2238",
       "soe_email": "elections@votesjc.gov",
       "soe_address": "4455 Avenue A, Ste 101, St. Augustine, FL 32095",
-      "poll_worker_url": null,
+      "poll_worker_url": "https://www.votesjc.gov/pollworkers",
       "source": "https://dos.fl.gov/media/711276/qrycountyinfo_excel.xls",
-      "verified": "2026-08-04"
+      "verified": "2026-08-04",
+      "poll_worker_verified": "2026-08-05"
     },
     {
       "name": "St. Lucie",
@@ -711,9 +770,10 @@
       "soe_phone": "772-462-1500",
       "soe_email": "elections@stlucievotes.gov",
       "soe_address": "4132 Okeechobee Rd., Fort Pierce, FL 34947",
-      "poll_worker_url": null,
+      "poll_worker_url": "https://www.stlucievotes.gov/election/poll_worker/index.php",
       "source": "https://dos.fl.gov/media/711276/qrycountyinfo_excel.xls",
-      "verified": "2026-08-04"
+      "verified": "2026-08-04",
+      "poll_worker_verified": "2026-08-05"
     },
     {
       "name": "Sumter",
@@ -723,9 +783,10 @@
       "soe_phone": "352-569-1540",
       "soe_email": "electioninfo@sumtercountyfl.gov",
       "soe_address": "7375 Powell Road, Ste 125, Wildwood, FL 34785",
-      "poll_worker_url": null,
+      "poll_worker_url": "https://elections.sumtercountyfl.gov/31/Election-Workers",
       "source": "https://dos.fl.gov/media/711276/qrycountyinfo_excel.xls",
-      "verified": "2026-08-04"
+      "verified": "2026-08-04",
+      "poll_worker_verified": "2026-08-05"
     },
     {
       "name": "Suwannee",
@@ -735,9 +796,10 @@
       "soe_phone": "386-362-2616",
       "soe_email": "suwanneesoe@suwanneevotes.com",
       "soe_address": "302 Pine Avenue, SW, Live Oak, FL 32064",
-      "poll_worker_url": null,
+      "poll_worker_url": "https://www.suwanneevotes.com/poll-worker-information/",
       "source": "https://dos.fl.gov/media/711276/qrycountyinfo_excel.xls",
-      "verified": "2026-08-04"
+      "verified": "2026-08-04",
+      "poll_worker_verified": "2026-08-05"
     },
     {
       "name": "Taylor",
@@ -747,9 +809,10 @@
       "soe_phone": "850-838-3515",
       "soe_email": "vote@taylorelections.com",
       "soe_address": "PO Box 1060, 433 U.S. 19 N., Perry, FL 32348",
-      "poll_worker_url": null,
+      "poll_worker_url": "https://www.taylorelectionsfl.gov/poll-worker-information/",
       "source": "https://dos.fl.gov/media/711276/qrycountyinfo_excel.xls",
-      "verified": "2026-08-04"
+      "verified": "2026-08-04",
+      "poll_worker_verified": "2026-08-05"
     },
     {
       "name": "Union",
@@ -759,9 +822,10 @@
       "soe_phone": "386-496-2236",
       "soe_email": "debbie.osborne@unionflvotes.com",
       "soe_address": "175 W. Main Street, Lake Butler, FL 32054",
-      "poll_worker_url": null,
+      "poll_worker_url": "https://unionflvotes.com/elections/poll-worker-information/",
       "source": "https://dos.fl.gov/media/711276/qrycountyinfo_excel.xls",
-      "verified": "2026-08-04"
+      "verified": "2026-08-04",
+      "poll_worker_verified": "2026-08-05"
     },
     {
       "name": "Volusia",
@@ -771,9 +835,10 @@
       "soe_phone": "386-736-5930",
       "soe_email": "elections@volusia.org",
       "soe_address": "1588 N Woodland Blvd., DeLand, FL 32720",
-      "poll_worker_url": null,
+      "poll_worker_url": "https://www.volusiaelections.gov/poll-workers/",
       "source": "https://dos.fl.gov/media/711276/qrycountyinfo_excel.xls",
-      "verified": "2026-08-04"
+      "verified": "2026-08-04",
+      "poll_worker_verified": "2026-08-05"
     },
     {
       "name": "Wakulla",
@@ -783,9 +848,10 @@
       "soe_phone": "850-926-7575",
       "soe_email": "JMorgan@WakullaVotes.gov",
       "soe_address": "PO Box 305, 3115-B Crawfordville Hwy, Crawfordville, FL 32326",
-      "poll_worker_url": null,
+      "poll_worker_url": "https://wakullavotes.gov/poll-workers/",
       "source": "https://dos.fl.gov/media/711276/qrycountyinfo_excel.xls",
-      "verified": "2026-08-04"
+      "verified": "2026-08-04",
+      "poll_worker_verified": "2026-08-05"
     },
     {
       "name": "Walton",
@@ -795,9 +861,10 @@
       "soe_phone": "850-892-8112",
       "soe_email": "Info@votewalton.gov",
       "soe_address": "571 US Hwy 90 E., Ste. 102, DeFuniak Springs, FL 32433",
-      "poll_worker_url": null,
+      "poll_worker_url": "https://votewalton.gov/election-workers/",
       "source": "https://dos.fl.gov/media/711276/qrycountyinfo_excel.xls",
-      "verified": "2026-08-04"
+      "verified": "2026-08-04",
+      "poll_worker_verified": "2026-08-05"
     },
     {
       "name": "Washington",
@@ -807,9 +874,10 @@
       "soe_phone": "850-638-6230",
       "soe_email": "votewashingtonfl@wcsoe.gov",
       "soe_address": "1424 Jackson Ave., Ste C, Chipley, FL 32428",
-      "poll_worker_url": null,
+      "poll_worker_url": "https://wcsoe.gov/poll-worker/",
       "source": "https://dos.fl.gov/media/711276/qrycountyinfo_excel.xls",
-      "verified": "2026-08-04"
+      "verified": "2026-08-04",
+      "poll_worker_verified": "2026-08-05"
     }
   ]
 }
