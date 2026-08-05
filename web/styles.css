@@ -146,3 +146,27 @@ textarea { resize: vertical; line-height: 1.5; }
 .btn-secondary:hover { background: var(--bg-soft); }
 #sharpen-block { margin: 1.5rem 0; padding: 1rem; border: 1px dashed var(--line); border-radius: var(--radius); }
 #sharpen-block p:last-child { margin-bottom: 0; }
+
+/* Circled "i" disclosure on the card headings. */
+.info-toggle {
+  width: 1.4em; height: 1.4em; padding: 0; margin-left: .4em;
+  font-size: .8em; font-weight: 700; line-height: 1;
+  font-family: Georgia, serif; font-style: italic;
+  color: var(--accent); background: transparent;
+  border: 1.5px solid var(--accent); border-radius: 50%;
+  cursor: pointer; vertical-align: middle;
+}
+.info-toggle:hover, .info-toggle:focus-visible { color: var(--bg); background: var(--accent); }
+.info-toggle[aria-expanded="true"] { color: var(--bg); background: var(--accent); }
+
+.info-panel {
+  margin: 0 0 1rem; padding: .9rem 1rem;
+  background: var(--bg); border: 1px solid var(--line);
+  border-left: 3px solid var(--accent); border-radius: var(--radius);
+  font-size: .95rem;
+}
+.info-panel p { margin: 0 0 .7rem; }
+.info-panel p:last-child { margin-bottom: 0; }
+.info-panel ul { margin: 0 0 .7rem; padding-left: 1.2rem; }
+.info-panel li { margin-bottom: .35rem; }
+.info-caveat { color: var(--ink-soft); font-size: .9rem; }

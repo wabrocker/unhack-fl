@@ -30,11 +30,41 @@
   <section class="cards" aria-label="Actions">
 
     <article class="card" id="card-pollworker">
-      <h3>Work the polls</h3>
+      <h3>Work the polls
+        <button type="button" class="info-toggle" aria-expanded="false"
+                aria-controls="info-pollworker"
+                aria-label="More about working the polls">i</button>
+      </h3>
+
+      <div class="info-panel" id="info-pollworker" hidden>
+        <p><strong>What the job actually is.</strong> Poll workers run the
+        polling place on election day: setting up equipment before doors
+        open, checking voters in, issuing ballots, helping people who have
+        questions or need assistance, and closing the site down at the end
+        of the night. Roles differ — a clerk runs the location, inspectors
+        handle check-in and ballots.</p>
+
+        <p><strong>It's a full day.</strong> You start before polls open
+        and finish after they close, so expect a long one rather than a
+        shift you can fit around other plans.</p>
+
+        <p><strong>Who can do it.</strong> Reported requirements are US
+        citizenship, Florida residency, and being at least 16 — 18 to serve
+        as an inspector. Training is required beforehand.</p>
+
+        <p><strong>Why it counts as common ground.</strong> Every county
+        needs workers and both parties need them staffed. It's the least
+        contested civic job in the state.</p>
+
+        <p class="info-caveat">Specifics vary by county and the details
+        above still need checking against current law. Your county's
+        elections office is the authority.</p>
+      </div>
+
       <p>
         Counties are chronically short of poll workers, both parties need
-        them, and the job is paid. Training is required before each
-        election.
+        them, and the work is paid. Training, sometimes also paid depending
+        on your county, is required before each election.
       </p>
       <p class="meta">Consensus action · individual · paid</p>
       <button type="button" data-action="pollworker" disabled>
@@ -43,11 +73,45 @@
     </article>
 
     <article class="card" id="card-records">
-      <h3>Ask a public question</h3>
+      <h3>Ask a public question
+        <button type="button" class="info-toggle" aria-expanded="false"
+                aria-controls="info-records"
+                aria-label="More about public records requests">i</button>
+      </h3>
+
+      <div class="info-panel" id="info-records" hidden>
+        <p><strong>What Chapter 119 is.</strong> Florida's public records
+        law — among the broadest in the country, and backed by a right of
+        access written into the state constitution (Art. I, §24). The
+        working assumption is that government records belong to the public
+        unless a specific exemption says otherwise.</p>
+
+        <p><strong>How fast they must answer.</strong> Chapter 119 sets no
+        express deadline. An agency gets a reasonable time to locate the
+        records, review them, and redact anything exempt — how long that is
+        depends on how big and scattered the request is.</p>
+
+        <p><strong>Questions people actually ask:</strong></p>
+        <ul>
+          <li>How much did the city spend on outside legal counsel in 2025,
+          and which firms were paid?</li>
+          <li>The current contract between the school district and its
+          transportation vendor.</li>
+          <li>Emails between the county commission and a named developer
+          about a specific project, over a specific few months.</li>
+          <li>Inspection reports for a particular building or facility.</li>
+        </ul>
+
+        <p><strong>What makes a request work.</strong> Name the records you
+        want, not the conclusion you're after — a date range and a
+        department turn a vague ask into one a clerk can actually search
+        for.</p>
+      </div>
+
       <p>
         Florida's public records law is unusually strong. The barrier is
         knowing the form — so tell us what you want to know, and we'll
-        draft a correctly-formed Chapter&nbsp;119 request you can send
+        build a correctly-formed Chapter&nbsp;119 request you can send
         yourself.
       </p>
       <p class="meta">Consensus action · individual · free</p>
@@ -70,14 +134,14 @@
       <p>
         <label for="agency">Which office holds the records?</label>
         <input id="agency" name="agency" type="text" required
-               autocomplete="off"
+               autocomplete="off" spellcheck="true"
                placeholder="e.g. the county school board, the city police department">
         <span class="hint" id="agency-hint"></span>
       </p>
 
       <p>
         <label for="want">What records do you want?</label>
-        <textarea id="want" name="want" rows="5" required
+        <textarea id="want" name="want" rows="5" required spellcheck="true"
           placeholder="In your own words. Be as specific as you can about what records, and roughly what dates. Example: how much the city spent on outside legal counsel in 2025, and which firms."></textarea>
         <span class="hint">
           This part has to be yours. We won't invent a request — we only

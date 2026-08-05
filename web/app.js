@@ -58,6 +58,17 @@ async function init() {
     b.addEventListener("click", () => onAction(b.dataset.action));
   }
   el.form?.addEventListener("submit", onRecordsSubmit);
+
+  // Circled-"i" disclosures on the card headings.
+  for (const btn of document.querySelectorAll(".info-toggle")) {
+    btn.addEventListener("click", () => {
+      const panel = document.getElementById(btn.getAttribute("aria-controls"));
+      if (!panel) return;
+      const open = btn.getAttribute("aria-expanded") === "true";
+      btn.setAttribute("aria-expanded", String(!open));
+      panel.hidden = open;
+    });
+  }
 }
 
 function selected() {
