@@ -1,0 +1,31 @@
+# Cache policy. Paired with the content-hashed asset URLs that build.sh
+# stamps into index.html.
+#
+# The rule: HTML is never cached, hashed assets are cached forever. A new
+# deploy changes the hash, so browsers and the CDN fetch the new file
+# because it is a different URL — no purge required.
+
+<IfModule mod_headers.c>
+  # index.html must always be revalidated, or nobody ever sees the new
+  # asset URLs and the hashing accomplishes nothing.
+  <FilesMatch "\.html$">
+    Header set Cache-Control "no-cache, must-revalidate"
+  </FilesMatch>
+
+  # Safe to cache hard: these URLs carry a hash of their own contents.
+  <FilesMatch "\.(js|css)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+
+  # County data is not hashed and does change — revalidate daily.
+  <FilesMatch "\.json$">
+    Header set Cache-Control "public, max-age=86400, must-revalidate"
+  </FilesMatch>
+</IfModule>
+
+# Never serve dotfiles, whatever ends up here.
+<FilesMatch "^\.">
+  Require all denied
+</FilesMatch>
+
+Options -Indexes
