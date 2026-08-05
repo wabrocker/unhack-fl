@@ -28,7 +28,7 @@
             aria-controls="info-mission"
             aria-label="What this project is for">i</button>
   </h1>
-  <p class="lede">
+  <p class="lede help-only">
     Two things a Floridian can actually do this week. Pick your county to
     start.
   </p>
@@ -39,10 +39,7 @@
       <span class="switch-track" aria-hidden="true"><span class="switch-thumb"></span></span>
       <span>Help mode</span>
     </label>
-    <span class="hint">
-      Explains what things mean as you go. New here? Leave it on. Used
-      this before? Turn it off for a shorter page.
-    </span>
+    <span class="hint help-only">Explain what things mean as you go.</span>
   </div>
 
   <div class="info-panel" id="info-mission" hidden role="region"
@@ -100,7 +97,7 @@
         them, and the work is paid. Training, sometimes also paid depending
         on your county, is required before each election.
       </p>
-      <p class="meta">Consensus action · individual · paid</p>
+      <p class="meta help-only">Consensus action · individual · paid</p>
       <button type="button" data-action="pollworker" disabled>
         Pick a county first
       </button>
@@ -119,7 +116,7 @@
         build a correctly-formed Chapter&nbsp;119 request you can send
         yourself.
       </p>
-      <p class="meta">Consensus action · individual · free</p>
+      <p class="meta help-only">Consensus action · individual · free</p>
       <button type="button" data-action="records" disabled>
         Pick a county first
       </button>
@@ -214,13 +211,13 @@
       to answer.</p>
     </div>
 
-    <p>
+    <p class="help-only">
       Florida's public records law is broad. The hard part is knowing the
       form — so you say what you want to know, and we put it in the shape
       an agency expects.
     </p>
 
-    <div id="topic-picker">
+    <div id="topic-picker" class="help-only">
       <p class="hint" id="topic-picker-label">
         Not sure what to ask for? Pick what you care about:
       </p>
@@ -276,7 +273,7 @@
         </div>
         <textarea id="want" name="want" rows="5" required spellcheck="true"
           placeholder="In your own words. Be as specific as you can about what records, and roughly what dates. Example: how much the city spent on outside legal counsel in 2025, and which firms."></textarea>
-        <span class="hint">
+        <span class="hint help-only">
           This part has to be yours. We won't invent a request — we only
           put what you write into the form an agency expects.
         </span>
@@ -292,7 +289,7 @@
         <label for="youremail">Your email</label>
         <input id="youremail" name="youremail" type="email" required
                autocomplete="email" placeholder="Where they should send the records">
-        <span class="hint">
+        <span class="hint help-only">
           Stays in your browser. We never receive it — the letter is built
           on this device.
         </span>
@@ -307,7 +304,7 @@
 
   <section id="output" hidden aria-live="polite"></section>
 
-  <section id="help-build" aria-labelledby="help-build-h">
+  <section id="help-build" class="help-only" aria-labelledby="help-build-h">
     <h2 id="help-build-h">
       <button type="button" id="help-build-toggle" aria-expanded="false"
               aria-controls="help-build-body">
@@ -377,12 +374,12 @@
 </main>
 
 <footer class="wrap">
-  <p>
+  <p class="help-only">
     Florida only, on purpose — records law, eligibility, and deadlines are
     state- and county-specific, and a national version would be vague or
     wrong.
   </p>
-  <p>
+  <p class="help-only">
     Every factual claim here links its source. Nothing is sent on your
     behalf: you review and send it yourself.
   </p>

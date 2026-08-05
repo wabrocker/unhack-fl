@@ -429,9 +429,9 @@ function renderPollWorker(c) {
     Elections — that office is who you apply to.</p>
     ${apply}
     ${contactBlock(c)}
-    <p class="note">Eligibility, training, and pay are set county by county
-    and change between elections. Treat the county page and the office
-    itself as authoritative over anything summarised here.</p>`;
+    <p class="note help-only">Eligibility, training, and pay are set county by
+    county and change between elections. Treat the county page and the
+    office itself as authoritative over anything summarised here.</p>`;
 }
 
 function onAction(kind) {
