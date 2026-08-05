@@ -23,7 +23,7 @@ What would genuinely help:
 - **Where the request should go.** If your office routinely receives
   misdirected requests, tell us and we'll fix the guidance.
 
-Open an issue, or email the address in the site footer. You don't need a
+Open an issue, or email bill@unhackdemocracy.us directly. You don't need a
 GitHub account — a plain email is fine, and you're welcome to be anonymous
 about which office you work for.
 
