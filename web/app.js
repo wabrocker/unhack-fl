@@ -289,6 +289,19 @@ function onTopicPick(topic) {
   const c = selected();
   if (!c) return;
 
+  const btn = el.topicButtons.querySelector(`[data-topic-slug="${topic.slug}"]`);
+  const alreadyActive = btn?.getAttribute("aria-pressed") === "true";
+
+  // Picking the same topic again is a toggle-off: hide the explanation,
+  // but leave the agency/want fields alone. The user may have already
+  // started editing them, and closing a popup shouldn't clobber that.
+  if (alreadyActive) {
+    btn.setAttribute("aria-pressed", "false");
+    el.topicResult.hidden = true;
+    el.topicResult.innerHTML = "";
+    return;
+  }
+
   for (const b of el.topicButtons.querySelectorAll(".topic-btn")) {
     b.setAttribute("aria-pressed", String(b.dataset.topicSlug === topic.slug));
   }
