@@ -97,7 +97,11 @@ async function init() {
       if (!open) {
         btn.setAttribute("aria-expanded", "true");
         panel.hidden = false;
-        panel.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        // Inline field help opens right next to its label; scrolling it
+        // would yank the form out from under the reader.
+        if (!btn.hasAttribute("data-noscroll")) {
+          panel.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        }
       }
     });
   }

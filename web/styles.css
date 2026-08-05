@@ -216,3 +216,17 @@ input[type="search"] {
   -webkit-appearance: none; appearance: none;
 }
 #filter-status { min-height: 1.2em; margin-top: .35rem; }
+
+/* Masthead mission panel and inline field help reuse .info-panel. */
+h1 .info-toggle { font-size: .5em; vertical-align: middle; }
+label .info-toggle { font-size: .85em; font-weight: 700; }
+h2 .info-toggle { font-size: .7em; }
+
+.info-inline {
+  margin: .5rem 0 .75rem;
+  background: var(--bg-soft);
+  font-size: .92rem;
+}
+.info-inline ul { margin: .4rem 0 .6rem; padding-left: 1.15rem; }
+.info-inline li { margin-bottom: .25rem; }
+.eg { border-left: 2px solid var(--line); padding-left: .7rem; margin: .4rem 0; }

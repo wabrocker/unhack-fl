@@ -9,11 +9,34 @@
 <body>
 
 <header class="wrap">
-  <h1>Unhack&nbsp;FL</h1>
+  <h1>Unhack&nbsp;FL
+    <button type="button" class="info-toggle" aria-expanded="false"
+            aria-controls="info-mission"
+            aria-label="What this project is for">i</button>
+  </h1>
   <p class="lede">
     Two things a Floridian can actually do this week. Pick your county to
     start.
   </p>
+
+  <div class="info-panel" id="info-mission" hidden role="region"
+       aria-label="What this project is for">
+    <h3 class="info-title">Of the people, by the people, for the people</h3>
+
+    <p>Every one of us is on several teams at once — a family, a job, a
+    faith, a neighborhood, a party. This project starts from the assumption
+    that you want your teams to do well, and that everyone else wants the
+    same for theirs.</p>
+
+    <p>So the work collected here is the kind that helps <em>every</em> team
+    at the same time: fair rules, honest records, decisions made in the
+    open. Nothing on this site asks you to change your politics. It asks
+    you to use rights you already have.</p>
+
+    <p><strong>Fairness, honesty, transparency.</strong> Those aren't a
+    side to be on. They're the field everyone plays on — and when they
+    hold, every team gets a fair game.</p>
+  </div>
 </header>
 
 <main class="wrap">
@@ -135,7 +158,36 @@
   </div>
 
   <section id="records-form" hidden aria-labelledby="records-form-h">
-    <h2 id="records-form-h">Draft a records request</h2>
+    <h2 id="records-form-h">Draft a records request
+      <button type="button" class="info-toggle" aria-expanded="false"
+              aria-controls="info-publicservants"
+              aria-label="Who this helps">i</button>
+    </h2>
+
+    <div class="info-panel" id="info-publicservants" hidden role="region"
+         aria-label="Who this helps">
+      <h3 class="info-title">This helps the people who answer it, too</h3>
+
+      <p>A records request lands on the desk of a public employee — a
+      clerk, a records custodian, an administrator. Around
+      <strong>23 million</strong> Americans work for federal, state and
+      local government, and almost none of them are politicians
+      (<a href="https://www.bls.gov/ces/" rel="noopener">BLS</a>: roughly
+      15.2M local, 5.5M state, 2.7M federal).</p>
+
+      <p>They are already of the people, by the people, and for the people.
+      <strong>The goal here is not to cut them back or replace them.</strong>
+      Their experience is the asset — decades of knowing how things
+      actually work — and we want it kept and put to better use.</p>
+
+      <p><strong>A clear request is a kindness.</strong> A vague one can
+      cost someone hours of guessing at what you meant and searching the
+      wrong systems. Naming the record, the office and the dates turns that
+      into a search they can run. That's the whole reason this page exists:
+      not to generate more mail, but to make the mail that gets sent easier
+      to answer.</p>
+    </div>
+
     <p>
       Florida's public records law is broad. The hard part is knowing the
       form — so you say what you want to know, and we put it in the shape
@@ -144,7 +196,26 @@
 
     <form id="records">
       <p>
-        <label for="agency">Which office holds the records?</label>
+        <label for="agency">Which office holds the records?
+          <button type="button" class="info-toggle" data-noscroll
+                  aria-expanded="false" aria-controls="info-agency"
+                  aria-label="Help choosing the office">i</button>
+        </label>
+        <div class="info-panel info-inline" id="info-agency" hidden>
+          <p>The office that <em>made or keeps</em> the record — not the
+          county in general.</p>
+          <ul>
+            <li>School spending or board minutes → the school board</li>
+            <li>Incident or arrest reports → the sheriff, or a city police
+            department</li>
+            <li>Council votes, contracts, agendas → the city or county
+            clerk</li>
+            <li>Permits and inspections → the building department</li>
+          </ul>
+          <p>Not sure? Send it to your best guess. Offices routinely
+          forward misdirected requests, and asking the wrong one costs you
+          time rather than the right to ask.</p>
+        </div>
         <input id="agency" name="agency" type="text" required
                autocomplete="off" spellcheck="true"
                placeholder="e.g. the county school board, the city police department">
@@ -152,7 +223,23 @@
       </p>
 
       <p>
-        <label for="want">What records do you want?</label>
+        <label for="want">What records do you want?
+          <button type="button" class="info-toggle" data-noscroll
+                  aria-expanded="false" aria-controls="info-want"
+                  aria-label="Help describing the records">i</button>
+        </label>
+        <div class="info-panel info-inline" id="info-want" hidden>
+          <p><strong>Name the record, not the conclusion.</strong> Ask for
+          the invoices, not for "evidence of waste" — a clerk can search
+          for invoices.</p>
+          <p><strong>Give a date range</strong>, even a rough one. It is
+          the single thing that most reduces the work on both ends.</p>
+          <p class="eg"><strong>Works:</strong> "Invoices from outside law
+          firms paid by the city between January 1 and December 31,
+          2025."</p>
+          <p class="eg"><strong>Too vague:</strong> "Everything about legal
+          spending."</p>
+        </div>
         <textarea id="want" name="want" rows="5" required spellcheck="true"
           placeholder="In your own words. Be as specific as you can about what records, and roughly what dates. Example: how much the city spent on outside legal counsel in 2025, and which firms."></textarea>
         <span class="hint">
