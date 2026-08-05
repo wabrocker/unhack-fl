@@ -8,6 +8,20 @@
 </head>
 <body>
 
+<script>
+// Runs before anything below paints, so a returning "help off" visitor
+// never sees a flash of the help icons before JS catches up. The real
+// source of truth is app.js — this only prevents the flash.
+(function () {
+  try {
+    var v = localStorage.getItem("unhackfl-help-mode");
+    document.documentElement.setAttribute("data-help-mode", v === "off" ? "off" : "on");
+  } catch (e) {
+    document.documentElement.setAttribute("data-help-mode", "on");
+  }
+})();
+</script>
+
 <header class="wrap">
   <h1>Unhack&nbsp;FL
     <button type="button" class="info-toggle" aria-expanded="false"
@@ -18,6 +32,18 @@
     Two things a Floridian can actually do this week. Pick your county to
     start.
   </p>
+
+  <div class="mode-switch">
+    <label for="help-mode-toggle">
+      <input type="checkbox" id="help-mode-toggle" checked>
+      <span class="switch-track" aria-hidden="true"><span class="switch-thumb"></span></span>
+      <span>Help mode</span>
+    </label>
+    <span class="hint">
+      Explains what things mean as you go. New here? Leave it on. Used
+      this before? Turn it off for a shorter page.
+    </span>
+  </div>
 
   <div class="info-panel" id="info-mission" hidden role="region"
        aria-label="What this project is for">

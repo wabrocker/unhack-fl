@@ -39,6 +39,44 @@ let topics = [];
 // rather than leaving another county's details showing.
 let shownAction = null;
 
+/**
+ * Help mode: one attribute on <html>, which styles.css keys every
+ * .info-toggle / .info-panel off of. This function is the only place
+ * that reads or writes it — the inline <script> at the top of <body>
+ * duplicates the read-only part, purely to avoid a flash of the help
+ * icons for a returning "off" visitor before this module loads.
+ */
+function initHelpMode() {
+  const KEY = "unhackfl-help-mode";
+  const checkbox = document.getElementById("help-mode-toggle");
+  if (!checkbox) return;
+
+  let stored = null;
+  try { stored = localStorage.getItem(KEY); } catch { /* ignore */ }
+  const on = stored !== "off"; // unset = first visit = help on by default
+
+  checkbox.checked = on;
+  document.documentElement.setAttribute("data-help-mode", on ? "on" : "off");
+
+  checkbox.addEventListener("change", () => {
+    const nowOn = checkbox.checked;
+    document.documentElement.setAttribute("data-help-mode", nowOn ? "on" : "off");
+    try { localStorage.setItem(KEY, nowOn ? "on" : "off"); } catch { /* ignore */ }
+
+    if (!nowOn) {
+      // CSS already hides these, but keep ARIA state truthful too — and
+      // this means they don't silently reappear pre-opened if help mode
+      // is switched back on later.
+      for (const btn of document.querySelectorAll(".info-toggle")) {
+        btn.setAttribute("aria-expanded", "false");
+      }
+      for (const panel of document.querySelectorAll(".info-panel")) {
+        panel.hidden = true;
+      }
+    }
+  });
+}
+
 async function init() {
   try {
     const res = await fetch("../data/fl-counties.json");
@@ -61,6 +99,7 @@ async function init() {
     topics = [];
   }
 
+  initHelpMode();
   renderCountyOptions(counties);
   renderTopicButtons();
 
