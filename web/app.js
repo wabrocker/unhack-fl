@@ -72,6 +72,20 @@ function onCountyChange() {
   }
 
   el.countyNote.hidden = !ready;
+
+  // The records form may already be open from an earlier county. Keep its
+  // hint in step, and drop a stale draft rather than leaving a letter
+  // addressed to the county the user just navigated away from.
+  if (!el.recordsForm.hidden) {
+    if (ready) {
+      setAgencyHint(c);
+    } else {
+      el.recordsForm.hidden = true;
+    }
+    el.output.hidden = true;
+    el.output.innerHTML = "";
+  }
+
   if (!ready) return;
 
   // Honest about missing data rather than inventing a county URL.
@@ -81,6 +95,13 @@ function onCountyChange() {
        office on file, so we won't guess at it.
        <a href="${OFFICIAL_SOE_DIRECTORY}" rel="noopener">Find it in the state directory</a>.
        </span>`;
+}
+
+/** Single place that writes the county hint, so it can't drift. */
+function setAgencyHint(c) {
+  el.agencyHint.textContent =
+    `In ${c.name} County. If the records are held by the elections office, ` +
+    `that's ${c.supervisor}.`;
 }
 
 /** Escape anything from data before it touches innerHTML. */
@@ -127,8 +148,7 @@ function onAction(kind) {
   if (kind === "records") {
     el.output.hidden = true;
     el.recordsForm.hidden = false;
-    el.agencyHint.textContent =
-      `In ${c.name} County. If the records are held by the elections office, that's ${c.supervisor}.`;
+    setAgencyHint(c);
     el.recordsForm.scrollIntoView({ behavior: "smooth", block: "start" });
     el.agency.focus();
     return;

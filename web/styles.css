@@ -3,6 +3,11 @@
    lot. No framework, no build step. */
 
 :root {
+  /* Tells the browser we handle both, so it renders form controls and
+     scrollbars to match instead of forcing its own dark treatment over
+     our light palette. */
+  color-scheme: light dark;
+
   --ink: #14181d;
   --ink-soft: #4a5560;
   --line: #d8dee5;
@@ -15,13 +20,13 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --ink: #e8edf2;
-    --ink-soft: #a3b0bd;
-    --line: #2b333c;
+    --ink: #f0f4f8;
+    --ink-soft: #b9c6d2;   /* raised for contrast on the dark surface */
+    --line: #333c46;
     --bg: #12161a;
     --bg-soft: #1a2027;
-    --accent: #6fb3cc;
-    --warn: #e0b062;
+    --accent: #8ecae6;     /* brighter: the old accent failed on dark */
+    --warn: #e8b866;
   }
 }
 
@@ -96,19 +101,37 @@ footer a { color: var(--accent); }
   overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap;
 }
 
-.contact { display: grid; grid-template-columns: max-content 1fr; gap: .35rem .9rem; margin: 1rem 0; }
-.contact dt { color: var(--ink-soft); font-size: .9rem; }
-.contact dd { margin: 0; overflow-wrap: anywhere; }
+.contact { display: grid; grid-template-columns: max-content 1fr; gap: .45rem .9rem; margin: 1rem 0; }
+/* Labels stay quieter than values, but must still clear contrast on the
+   dark surface — the old --ink-soft was too dim here. */
+.contact dt { color: var(--ink-soft); font-size: .9rem; font-weight: 600; }
+.contact dd { margin: 0; color: var(--ink); overflow-wrap: anywhere; }
 .contact a { color: var(--accent); }
 #output { margin-top: 2rem; border-top: 1px solid var(--line); padding-top: 1rem; }
 
 form p { margin: 0 0 1.2rem; }
 label { display: block; font-weight: 600; margin-bottom: .35rem; }
-input[type="text"], textarea {
-  width: 100%; padding: .7rem .8rem; font: inherit;
-  color: var(--ink); background: var(--bg-soft);
-  border: 1px solid var(--line); border-radius: var(--radius);
+/* Every text-entry control, not just type="text" — the email field was
+   falling through to browser defaults, which is why its placeholder sat
+   outside the box. */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="url"],
+input:not([type]),
+textarea {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  padding: .7rem .8rem;
+  font: inherit;
+  color: var(--ink);
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
 }
+
+::placeholder { color: var(--ink-soft); opacity: 1; }
 textarea { resize: vertical; line-height: 1.5; }
 .hint { display: block; margin-top: .4rem; color: var(--ink-soft); font-size: .88rem; }
 #draft { margin-top: .5rem; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .95rem; }
