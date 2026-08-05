@@ -1,0 +1,51 @@
+{
+  "_meta": {
+    "description": "Starting points for common records-request topics, for people who know what they care about but not what to ask for.",
+    "two_layers": "Every topic has generic_guidance and generic_want_template, which are true in general across Florida counties and never name a specific office. A topic MAY also have county_overrides — individually researched and sourced facts about one county's actual office and program names. The UI prefers a county_override when one exists for the selected county; otherwise it falls back to the generic template. This mirrors data/fl-counties.json: verified specifics or nothing, never a guess.",
+    "how_to_add_a_county_override": "See CONTRIBUTING.md. Every override needs agency, want, source (one or more URLs), and verified (date). No override may be added without a real source to check against.",
+    "unpopulated_note": "Most topic x county combinations have no override yet. That is expected, not a bug — coverage grows as people research and verify their own county, the same way poll_worker_url did."
+  },
+  "topics": [
+    {
+      "slug": "environment",
+      "label": "Environment & conservation",
+      "generic_guidance": "Land conservation and natural-resource spending is usually tracked by an environmental or natural resources department. Ask for spending and parcels or projects funded under any conservation land program, land-acquisition bond, or natural areas fund, over a specific date range.",
+      "generic_want_template": "Records showing spending under the county's environmental land conservation or natural areas program(s), and a list of parcels or projects funded, for [DATE RANGE].",
+      "county_overrides": [
+        {
+          "county_slug": "palm-beach",
+          "agency": "Palm Beach County Environmental Resources Management (ERM)",
+          "want": "Records showing spending from the county's Natural Areas Fund and any related environmentally sensitive lands or land conservation bond funds, and a list of parcels acquired or under management as county natural areas, for [DATE RANGE].",
+          "notes": "No single branded program name found. Funding flows through the Natural Areas Fund plus two historical bonds: the 1991 Environmentally Sensitive Lands Bond and the 1999 Land Acquisition for Conservation Purposes Referendum. Individual protected sites each have their own management plan.",
+          "source": [
+            "https://discover.pbc.gov/erm/Pages/PBC-Environment-Natural-Resources-Legislative-Priorities.aspx",
+            "https://discover.pbcgov.org/pzb/planning/PCPDF/2020/jan/III-A-2_20-A2-NaturalAreas-Gloss-Maps.pdf",
+            "https://www.pbcgov.com/pubInf/Agenda/20230711/6E4.pdf"
+          ],
+          "verified": "2026-08-05"
+        }
+      ]
+    },
+    {
+      "slug": "spending",
+      "label": "Government spending & contracts",
+      "generic_guidance": "Budgets are usually posted online, but who was actually paid for what often isn't. Ask for invoices, contracts, or payment records for a specific vendor, service, or department — the more specific the category, the easier it is to search for. Which office holds this varies more than most records: sometimes a Clerk of Court, sometimes a Finance or Comptroller's office.",
+      "generic_want_template": "Invoices, contracts, or payment records for [VENDOR, SERVICE, OR DEPARTMENT], covering [DATE RANGE].",
+      "county_overrides": []
+    },
+    {
+      "slug": "meetings",
+      "label": "Government meeting records",
+      "generic_guidance": "Florida's Sunshine Law (Ch. 286, Fla. Stat.) requires most government meetings to be open and minuted. If minutes, a recording, or backup materials from a specific meeting aren't posted online, you can request them directly. Usually held by a Clerk of the Board or County Clerk.",
+      "generic_want_template": "Minutes, recordings, or backup materials from the [BOARD OR COMMISSION] meeting on [DATE].",
+      "county_overrides": []
+    },
+    {
+      "slug": "infrastructure",
+      "label": "Roads & infrastructure",
+      "generic_guidance": "Repaving schedules, traffic studies, and infrastructure spending are usually handled by a Public Works or Engineering department. Ask about a specific road, project, or planning study rather than \"all road records\" — a named project is what turns this into a search someone can actually run.",
+      "generic_want_template": "Records showing the maintenance schedule, traffic study, or spending for [ROAD OR PROJECT NAME], covering [DATE RANGE].",
+      "county_overrides": []
+    }
+  ]
+}

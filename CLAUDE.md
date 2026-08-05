@@ -41,6 +41,12 @@ the assisted-not-authored rule there are binding on code, not just prose.
   that way until something genuinely requires otherwise.
 - Data in `data/*.json`, each record carrying its `source` and
   `verified` date. Unsourced fields stay `null`.
+- `topic-starters.json` specifically: never add a `county_override`
+  without a real, checkable source URL. An unsourced office name is a
+  fabricated fact wearing a helpful UI, and it fails the same way a
+  constructed poll-worker URL would — confidently, and to a real person.
+  The generic-guidance fallback with a blank office field is correct and
+  sufficient when nothing is verified.
 - Secrets in `.env`, gitignored. Never commit a key; never log request or
   response bodies.
 - Plain, jargon-free copy. The reader is a citizen, not a lawyer.

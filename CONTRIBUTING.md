@@ -31,7 +31,29 @@ We are not trying to reduce, replace, or automate away public employees.
 The premise is the opposite: your experience is the asset, and better
 inbound requests let more of your time go to the work only you can do.
 
-## 2. Corrections to county data
+## 2. Verified topic starters
+
+The "not sure what to ask for" picker in the records-request form shows a
+generic template for every topic, and a specific verified office name
+when we have one for your county. Most counties don't have one yet for
+most topics — that's expected, and it's the easiest way to contribute.
+
+If you've found the real office and program for a topic in your county —
+say, who handles environmental land conservation, or public meeting
+minutes — open an issue or a PR with:
+
+- the county and topic
+- the office name
+- a suggested `want` description, in the same shape as the existing
+  examples in `data/topic-starters.json`
+- **a source URL** — the county's own page, ideally. We don't add an
+  override without one; see `data/README.md`.
+
+This is genuinely one of the highest-value contributions available. It
+directly determines whether the next person from your county gets a real
+answer or a generic template.
+
+## 3. Corrections to county data
 
 Everything factual comes from `data/fl-counties.json`, and every record
 carries where it came from and when it was checked. County offices move,
@@ -44,14 +66,14 @@ important of which is: **we never construct a URL from a pattern.** If we
 can't source it, the field stays `null` and the interface says nothing
 rather than guessing.
 
-## 3. Testing in the real world
+## 4. Testing in the real world
 
 Did you use this to send an actual request? We'd like to know what
 happened — how long the reply took, whether the office understood it,
 whether anything in the letter caused friction. That feedback is worth
 more than any amount of internal review.
 
-## 4. Code
+## 5. Code
 
 Plain HTML, CSS and JavaScript in `web/`, one dependency-free PHP file in
 `api/`. No build step, no framework, no `node_modules`. Please keep it

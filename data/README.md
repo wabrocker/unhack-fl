@@ -43,6 +43,30 @@ A spot check of 12 random county sites found no dead links (9 × 200/202;
 3 × 403, which is bot-blocking of bare `curl`, not a broken site). Re-verify before each election cycle: offices move,
 and Florida election statutes have changed repeatedly in recent years.
 
+## `topic-starters.json`
+
+Starting points for people who know what they care about but not what to
+ask for — surfaced as a "not sure what to ask" picker inside the records
+form. Two layers, same discipline as `fl-counties.json`:
+
+- **`generic_guidance` / `generic_want_template`** — true in general
+  across Florida counties, never names a specific office. Always shown.
+- **`county_overrides`** — individually researched, sourced facts about
+  one county's actual office and program. Shown instead of the generic
+  layer when one exists for the selected county.
+
+**Never add a `county_override` without a real source.** Each one needs
+`county_slug` (matching `fl-counties.json`), `agency`, `want`, `source`
+(one or more URLs), and `verified` (date checked). If you can't verify an
+office name, don't add the override — the generic layer with a blank
+office field is the honest fallback, same as `poll_worker_url: null`.
+
+Populated 2026-08-05: one override (Palm Beach × Environment &
+conservation), researched via web search and cited to PBC ERM's own
+pages. Everything else is generic-layer only — real coverage grows the
+way `poll_worker_url` did, one verified entry at a time. See
+CONTRIBUTING.md.
+
 ## Statutes
 
 Cite chapter and section, link the official text at

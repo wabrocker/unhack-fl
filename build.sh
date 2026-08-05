@@ -20,7 +20,7 @@ mkdir -p dist/data dist/api
 
 cp web/index.html web/styles.css web/app.js dist/
 cp web/.htaccess dist/.htaccess
-cp data/fl-counties.json dist/data/
+cp data/*.json dist/data/   # copies every data file, not just the ones known when this line was written
 cp api/index.php api/.htaccess dist/api/
 
 # Short content hash per asset — changes only when the file changes.

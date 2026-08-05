@@ -242,3 +242,10 @@ h2 .info-toggle { font-size: .7em; }
 .help-item h3 { font-size: .98rem; margin: 0 0 .4rem; }
 .help-item p { margin: 0; font-size: .93rem; }
 .help-item a { color: var(--accent); }
+
+/* Topic starter picker inside the records form. */
+#topic-picker { margin: 0 0 1.5rem; }
+#topic-buttons { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .5rem; }
+.topic-btn { font-size: .92rem; padding: .5rem .85rem; }
+.topic-btn[aria-pressed="true"] { background: var(--accent); color: var(--bg); }
+#topic-result { margin-top: .75rem; }

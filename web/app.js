@@ -27,10 +27,13 @@ const el = {
   want: document.getElementById("want"),
   submit: document.getElementById("records-submit"),
   status: document.getElementById("records-status"),
+  topicButtons: document.getElementById("topic-buttons"),
+  topicResult: document.getElementById("topic-result"),
   buttons: () => document.querySelectorAll("button[data-action]"),
 };
 
 let counties = [];
+let topics = [];
 
 // Which panel is currently on screen, so a county change can refresh it
 // rather than leaving another county's details showing.
@@ -48,7 +51,18 @@ async function init() {
     return;
   }
 
+  // Topic starters are a nice-to-have layered on top of the core flow —
+  // if this fails to load, the form still works with a blank "want" field.
+  try {
+    const res = await fetch("../data/topic-starters.json");
+    const data = await res.json();
+    topics = data.topics ?? [];
+  } catch {
+    topics = [];
+  }
+
   renderCountyOptions(counties);
+  renderTopicButtons();
 
   el.county.addEventListener("change", onCountyChange);
   el.filter?.addEventListener("input", onFilter);
@@ -184,6 +198,7 @@ function onCountyChange() {
     el.output.hidden = true;
     el.output.innerHTML = "";
     shownAction = null;
+    resetTopicPicker();
     return;
   }
 
@@ -197,6 +212,9 @@ function onCountyChange() {
     setAgencyHint(c);
     el.output.hidden = true;
     el.output.innerHTML = "";
+    // A topic pick from the previous county would otherwise leave a stale
+    // "verified for X County" note attached to fields now describing Y.
+    resetTopicPicker();
   }
 
   // Honest about missing data rather than inventing a county URL.
@@ -213,6 +231,89 @@ function setAgencyHint(c) {
   el.agencyHint.textContent =
     `In ${c.name} County. If the records are held by the elections office, ` +
     `that's ${c.supervisor}.`;
+}
+
+/**
+ * Topic starters: a middle step between "I don't know what to ask for"
+ * and the blank agency/want fields. Two layers, matching the fl-counties
+ * pattern of verified-fact-or-nothing:
+ *
+ *   - generic_guidance / generic_want_template: true in general across
+ *     Florida counties, never names a specific office. Always available.
+ *   - county_overrides: individually researched and sourced facts about
+ *     one county's actual office and program. Used when one exists for
+ *     the selected county; otherwise we fall back to the generic layer
+ *     rather than guessing at a name.
+ *
+ * Populating the fields is not the same as authoring the request: the
+ * agency is a real, sourced fact when we have one, and the want field is
+ * always a template with bracketed placeholders the user must still fill
+ * in with their own specifics. Both stay fully editable, same as if the
+ * user had typed them.
+ */
+function renderTopicButtons() {
+  el.topicButtons.replaceChildren();
+  for (const topic of topics) {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "btn-secondary topic-btn";
+    btn.dataset.topicSlug = topic.slug;
+    btn.setAttribute("aria-pressed", "false");
+    btn.textContent = topic.label;
+    btn.addEventListener("click", () => onTopicPick(topic));
+    el.topicButtons.append(btn);
+  }
+}
+
+function resetTopicPicker() {
+  el.topicResult.hidden = true;
+  el.topicResult.innerHTML = "";
+  for (const b of el.topicButtons.querySelectorAll(".topic-btn")) {
+    b.setAttribute("aria-pressed", "false");
+  }
+}
+
+function onTopicPick(topic) {
+  const c = selected();
+  if (!c) return;
+
+  for (const b of el.topicButtons.querySelectorAll(".topic-btn")) {
+    b.setAttribute("aria-pressed", String(b.dataset.topicSlug === topic.slug));
+  }
+
+  const override = (topic.county_overrides || [])
+    .find((o) => o.county_slug === c.slug);
+
+  if (override) {
+    el.agency.value = override.agency;
+    el.want.value = override.want;
+    const sources = (override.source || [])
+      .map((u, i) => `<a href="${esc(u)}" rel="noopener">source ${i + 1}</a>`)
+      .join(", ");
+    el.topicResult.innerHTML = `
+      <p><strong>Verified for ${esc(c.name)} County.</strong> Office and
+      program name below are researched, not guessed — checked
+      ${esc(override.verified)}${sources ? ` (${sources})` : ""}.</p>
+      ${override.notes ? `<p>${esc(override.notes)}</p>` : ""}
+      <p>Both fields are filled in below. Read them, and edit anything
+      that isn't quite your question before continuing.</p>`;
+  } else {
+    el.agency.value = "";
+    el.want.value = topic.generic_want_template;
+    el.topicResult.innerHTML = `
+      <p>${esc(topic.generic_guidance)}</p>
+      <p class="info-caveat">We haven't researched
+      ${esc(c.name)} County's specific office for this topic yet, so the
+      office field is left blank rather than guessed — the "Which office"
+      help above has examples. The description below is a starting
+      template: replace the bracketed parts with your own specifics.
+      If you find the right office, consider
+      <a href="https://github.com/wabrocker/unhack-fl/blob/main/CONTRIBUTING.md"
+         rel="noopener">contributing it back</a> for the next person.</p>`;
+  }
+
+  el.topicResult.hidden = false;
+  el.agency.focus();
 }
 
 /** Escape anything from data before it touches innerHTML. */
