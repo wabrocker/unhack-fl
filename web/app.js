@@ -176,10 +176,10 @@ function renderPollWorker(c) {
        <p class="note">Found on the county's own site${
          c.poll_worker_verified ? `, checked ${esc(c.poll_worker_verified)}` : ""
        }.</p>`
-    : `<p class="unsourced">We couldn't find a poll-worker page on
-       ${esc(c.name)} County's site, so we won't guess at one — contact the
-       office below and ask. Some counties take applications by phone or in
-       person rather than publishing a form.</p>`;
+    // Nothing found: show nothing. The heading, the office contacts, and
+    // the county website link below already give a next step — an apology
+    // for a link we don't have would only add noise.
+    : "";
 
   el.output.hidden = false;
   el.output.innerHTML = `
