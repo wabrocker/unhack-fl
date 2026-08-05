@@ -57,11 +57,20 @@ async function init() {
     if (e.key !== "Enter") return;
     e.preventDefault();
     const opts = [...el.county.options].filter((o) => o.value);
-    if (opts.length === 1) {
-      el.county.value = opts[0].value;
-      onCountyChange();
-      el.county.focus();
-    }
+    if (opts.length !== 1) return;
+
+    el.county.value = opts[0].value;
+
+    // Enter is a decision, so the filter has done its job — clear it and
+    // restore the full list. Picking from the dropdown deliberately does
+    // NOT do this: the narrowed list stays put so a mis-click is one click
+    // to correct rather than a re-type.
+    el.filter.value = "";
+    renderCountyOptions(counties);
+    el.filterStatus.textContent = "";
+
+    onCountyChange();
+    el.county.focus();
   });
   for (const b of el.buttons()) {
     b.addEventListener("click", () => onAction(b.dataset.action));
