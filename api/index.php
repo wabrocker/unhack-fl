@@ -12,7 +12,7 @@
 declare(strict_types=1);
 
 const MODEL          = 'claude-sonnet-5';
-const MAX_TOKENS     = 1200;
+const MAX_TOKENS     = 600;   // one paragraph, not a letter
 const RATE_LIMIT     = 8;      // requests per window, per IP
 const RATE_WINDOW    = 600;    // seconds
 const MAX_FIELD_LEN  = 2000;
@@ -38,7 +38,8 @@ function fail(int $code, string $msg): never {
  *   <docroot>/.env                      — web-served; .htaccess blocks it
  *   <docroot>/api/.env                  — likewise, fallback only
  */
-function env_key(): string {
+function env_key(?string &$why = null): string {
+    $found = false;
     foreach ([
         __DIR__ . '/../../../../.env',
         __DIR__ . '/../../../.env',
@@ -47,14 +48,27 @@ function env_key(): string {
         __DIR__ . '/.env',
     ] as $p) {
         if (is_readable($p)) {
+            $found = true;
             foreach (file($p, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES) as $line) {
-                if ($line[0] === '#') continue;
+                if ($line === '' || $line[0] === '#') continue;
                 [$k, $v] = array_pad(explode('=', $line, 2), 2, '');
-                if (trim($k) === 'ANTHROPIC_API_KEY') return trim($v, " \t\"'");
+                if (trim($k) === 'ANTHROPIC_API_KEY') {
+                    $v = trim($v, " \t\"'");
+                    if ($v !== '') return $v;
+                }
             }
         }
     }
-    return getenv('ANTHROPIC_API_KEY') ?: '';
+    if ($key = getenv('ANTHROPIC_API_KEY')) return $key;
+
+    // Distinguish the two failures — they were previously identical, which
+    // cost real debugging time on the first deploy.
+    $why = $found
+        ? 'A .env was found but it has no usable ANTHROPIC_API_KEY= line. '
+        . 'The file must read: ANTHROPIC_API_KEY=sk-ant-...'
+        : 'No .env found. Expected one above the web root, e.g. '
+        . '/home/USER/domains/SITE/.env';
+    return '';
 }
 
 /** Crude but adequate per-IP limiter. Stores counts, never request content. */
@@ -85,36 +99,46 @@ function field(array $in, string $name, bool $required = true): string {
 /* ---------- Actions. The server owns every prompt. ---------- */
 
 /**
- * Draft a Chapter 119 public records request.
- * The user supplies what they want to know; we supply the form only.
+ * Sharpen ONLY the "records requested" paragraph.
+ *
+ * The letter itself is built in the browser from a fixed template — this
+ * touches one paragraph and nothing else. Keeping the scope this narrow is
+ * what makes the feature genuinely optional: without it the user still has
+ * a complete, sendable request.
  */
-function build_records_request(array $in): array {
+function build_sharpen_description(array $in): array {
     $county = field($in, 'county');
     $agency = field($in, 'agency');
     $want   = field($in, 'want');   // the user's own words — the substance
 
     $system = <<<SYS
-    You help Florida residents write public records requests under Chapter
-    119, Florida Statutes.
+    You rewrite one paragraph: the description of records sought in a
+    Florida public records request under Chapter 119.
+
+    Your only job is to phrase the SAME request the way an agency's records
+    custodian indexes and searches for records — naming record types, date
+    ranges, departments, and formats where the user has implied them.
 
     Hard rules:
-    - The user supplies the substance. You supply structure and clarity
-      ONLY. Never invent, expand, or editorialize what they want to know.
-    - If what they've told you is too vague to identify records, do not
-      guess. Return a short list of clarifying questions instead.
-    - Never state a legal deadline, fee, or exemption as fact. Ch. 119 sets
-      no express response deadline; agencies get a reasonable time to
-      retrieve, review, and redact. Say only that.
-    - Plain language. The reader is a citizen, not a lawyer.
-    - Output the letter only, ready to paste. No preamble, no commentary.
-    - Do not include a signature block beyond a "[Your name]" placeholder.
+    - NEVER add, remove, narrow, or broaden what is being asked for. If the
+      user didn't say it, it does not appear.
+    - Do not invent date ranges, department names, or record types. If the
+      user was vague about one, leave it general rather than guessing.
+    - If the request is too vague to identify any record at all, do not
+      guess. Return two or three short clarifying questions instead, and
+      nothing else.
+    - No legal advice, no statutory citations, no deadlines, no fee claims.
+      Those live in the surrounding letter already.
+    - Plain language. The reader is a records clerk, not a lawyer.
+    - Output the paragraph ONLY. No preamble, no heading, no commentary,
+      no salutation, no signature.
     SYS;
 
     $user = <<<USR
     County: {$county}
     Agency or office: {$agency}
 
-    What I want to know, in my words:
+    The records I want, in my own words:
     {$want}
     USR;
 
@@ -160,8 +184,8 @@ $in = json_decode($raw, true);
 if (!is_array($in)) fail(400, 'Expected JSON.');
 
 $actions = [
-    'records_request' => 'build_records_request',
-    'explain'         => 'build_explain',
+    'sharpen_description' => 'build_sharpen_description',
+    'explain'             => 'build_explain',
 ];
 $action = (string) ($in['action'] ?? '');
 if (!isset($actions[$action])) fail(400, 'Unknown action.');
@@ -170,8 +194,11 @@ if (!isset($actions[$action])) fail(400, 'Unknown action.');
 // being masked by a server-config error.
 [$system, $user] = $actions[$action]($in);
 
-$key = env_key();
-if ($key === '') fail(500, 'Server is not configured.');
+$key = env_key($why);
+if ($key === '') {
+    error_log('unhack-fl config: ' . ($why ?? 'unknown'));
+    fail(500, 'Server is not configured.');   // generic to the public
+}
 
 rate_limit();
 

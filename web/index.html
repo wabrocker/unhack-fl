@@ -76,18 +76,33 @@
       </p>
 
       <p>
-        <label for="want">What do you want to know?</label>
+        <label for="want">What records do you want?</label>
         <textarea id="want" name="want" rows="5" required
           placeholder="In your own words. Be as specific as you can about what records, and roughly what dates. Example: how much the city spent on outside legal counsel in 2025, and which firms."></textarea>
         <span class="hint">
-          This part has to be yours. We won't invent a request, and if
-          what you write is too vague to identify records we'll ask you
-          questions instead of guessing.
+          This part has to be yours. We won't invent a request — we only
+          put what you write into the form an agency expects.
         </span>
       </p>
 
       <p>
-        <button type="submit" id="records-submit">Draft it</button>
+        <label for="yourname">Your name</label>
+        <input id="yourname" name="yourname" type="text" required
+               autocomplete="name" placeholder="How you want to sign it">
+      </p>
+
+      <p>
+        <label for="youremail">Your email</label>
+        <input id="youremail" name="youremail" type="email" required
+               autocomplete="email" placeholder="Where they should send the records">
+        <span class="hint">
+          Stays in your browser. We never receive it — the letter is built
+          on this device.
+        </span>
+      </p>
+
+      <p>
+        <button type="submit" id="records-submit">Write my request</button>
         <span class="hint" id="records-status" role="status"></span>
       </p>
     </form>

@@ -138,42 +138,124 @@ function onAction(kind) {
   el.output.scrollIntoView({ behavior: "smooth", block: "nearest" });
 }
 
-async function onRecordsSubmit(event) {
+/**
+ * Build the letter here, in the browser. No network, no API key, no cost,
+ * and nothing to hallucinate — the only free text is what the user wrote.
+ * The AI step below is an optional improvement to one paragraph, never a
+ * prerequisite for getting a usable request.
+ */
+function buildLetter({ agency, want, name, email, county }) {
+  const today = new Date().toLocaleDateString("en-US", {
+    year: "numeric", month: "long", day: "numeric",
+  });
+
+  return `${today}
+
+To: ${agency}
+${county} County, Florida
+
+Re: Public records request under Chapter 119, Florida Statutes
+
+Dear Records Custodian,
+
+Under Chapter 119, Florida Statutes, and Article I, Section 24 of the
+Florida Constitution, I am requesting copies of the following public
+records:
+
+${want}
+
+A few notes to make this easier to fulfill:
+
+- If any part of these records is exempt from disclosure, please provide
+  the remainder and identify the exemption relied on for each withheld
+  portion.
+- Electronic copies are fine, and preferred — PDF or the records' native
+  format, sent to the email address below.
+- If fulfilling this request will involve a charge, please contact me with
+  an estimate before doing the work, rather than proceeding.
+
+I understand Chapter 119 does not set a specific deadline, and that you
+are entitled to a reasonable time to locate the records, review them, and
+redact anything exempt. A brief acknowledgment that you have received this
+request would be appreciated.
+
+Thank you for your time.
+
+${name}
+${email}`;
+}
+
+function currentInputs() {
+  const c = selected();
+  return {
+    county: c ? c.name : "",
+    agency: el.agency.value.trim(),
+    want: el.want.value.trim(),
+    name: document.getElementById("yourname").value.trim(),
+    email: document.getElementById("youremail").value.trim(),
+  };
+}
+
+function onRecordsSubmit(event) {
   event.preventDefault();
   const c = selected();
   if (!c) return;
 
-  const agency = el.agency.value.trim();
-  const want = el.want.value.trim();
-  if (!agency || !want) return;
+  const inputs = currentInputs();
+  if (!inputs.agency || !inputs.want || !inputs.name || !inputs.email) return;
 
-  el.submit.disabled = true;
-  el.status.textContent = "Drafting…";
-  el.output.hidden = true;
+  showDraft(c, buildLetter(inputs), inputs);
+}
+
+/**
+ * Optional: ask the server to make the *records description* more
+ * specific. Only that paragraph — the rest of the letter stays
+ * deterministic. Silently disables itself if the endpoint isn't
+ * configured, so the tool works fine with no API account at all.
+ */
+async function onSharpen(c, inputs) {
+  const btn = document.getElementById("sharpen");
+  const status = document.getElementById("sharpen-status");
+  btn.disabled = true;
+  status.textContent = "Working…";
 
   try {
     const res = await fetch(API_BASE, {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify({
-        action: "records_request",
-        county: c.name,
-        agency,
-        want,
+        action: "sharpen_description",
+        county: inputs.county,
+        agency: inputs.agency,
+        want: inputs.want,
       }),
     });
     const data = await res.json().catch(() => ({}));
 
-    if (!res.ok || !data.ok) {
-      showError(data.error || "Something went wrong. Try again in a moment.");
+    if (!data.ok) {
+      // Unconfigured or out of credit: hide the option for this session
+      // rather than nagging. The template already did the real work.
+      sessionStorage.setItem("sharpenOff", "1");
+      btn.remove();
+      status.textContent = "";
+      const note = document.getElementById("sharpen-note");
+      if (note) {
+        note.textContent =
+          "The optional rewrite isn't available right now. Your request above is complete and ready to send.";
+      }
       return;
     }
-    showDraft(c, data.text);
+
+    document.getElementById("draft").value = buildLetter({
+      ...inputs,
+      want: data.text.trim(),
+    });
+    status.textContent = "Rewritten — read it before sending.";
   } catch {
-    showError("Could not reach the service. Check your connection and retry.");
+    status.textContent = "Couldn't reach the rewriter. Your request is still fine.";
   } finally {
-    el.submit.disabled = false;
-    el.status.textContent = "";
+    btn.disabled = false;
+    setTimeout(() => (status.textContent = ""), 6000);
   }
 }
 
@@ -183,20 +265,41 @@ function showError(message) {
   el.output.scrollIntoView({ behavior: "smooth", block: "nearest" });
 }
 
-function showDraft(c, text) {
+function showDraft(c, text, inputs) {
+  const sharpenOff = sessionStorage.getItem("sharpenOff") === "1";
+
   el.output.hidden = false;
   el.output.innerHTML = `
-    <h2>Your draft</h2>
+    <h2>Your request</h2>
     <p>
-      This is a starting point, not a finished letter. Read it, change
-      anything that isn't how you'd put it, then send it yourself — we
-      don't send anything on your behalf.
+      Ready to send. Read it, change anything that isn't how you'd put it,
+      then send it yourself — we don't send anything on your behalf.
     </p>
-    <textarea id="draft" rows="18" spellcheck="true"></textarea>
+    <textarea id="draft" rows="22" spellcheck="true"></textarea>
     <p>
       <button type="button" id="copy">Copy</button>
+      ${c.soe_email
+        ? `<a class="btn-secondary" id="mailto" href="#">Open in email</a>`
+        : ""}
       <span class="hint" id="copy-status" role="status"></span>
     </p>
+
+    <div id="sharpen-block">
+      ${sharpenOff ? "" : `
+      <p>
+        <button type="button" id="sharpen" class="btn-secondary">
+          Make the records description more specific
+        </button>
+        <span class="hint" id="sharpen-status" role="status"></span>
+      </p>`}
+      <p class="hint" id="sharpen-note">
+        Optional. This rewrites only the paragraph describing what you
+        want, to phrase it the way agencies index records — it never adds
+        or changes what you're asking for. The letter above is already
+        complete without it.
+      </p>
+    </div>
+
     <p class="note">
       Chapter 119 sets no express deadline; the agency gets a reasonable
       time to retrieve, review, and redact. Send it to
@@ -205,8 +308,18 @@ function showDraft(c, text) {
         : "the office that holds the records."}
     </p>`;
 
-  // Set as value, never innerHTML — model output is never parsed as markup.
+  // Set as value, never innerHTML — text is never parsed as markup.
   document.getElementById("draft").value = text;
+
+  document.getElementById("sharpen")
+    ?.addEventListener("click", () => onSharpen(c, inputs));
+
+  document.getElementById("mailto")?.addEventListener("click", (e) => {
+    e.preventDefault();
+    const body = encodeURIComponent(document.getElementById("draft").value);
+    const subj = encodeURIComponent("Public records request (Ch. 119, Fla. Stat.)");
+    window.location.href = `mailto:${c.soe_email}?subject=${subj}&body=${body}`;
+  });
 
   document.getElementById("copy").addEventListener("click", async () => {
     const status = document.getElementById("copy-status");

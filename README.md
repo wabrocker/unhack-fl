@@ -29,6 +29,21 @@ need workers, it's paid, and the ask is bounded.
    never editorializes. Statutes and county pages are cited so the user
    can always check.
 
+## It works without AI
+
+Everything essential runs in the browser with no API key, no account, and
+no cost: the county data, the elections-office contacts, and the records
+request itself — which is built from a fixed template on your device. The
+form never leaves your browser.
+
+AI is one optional button that rewrites a single paragraph, the description
+of records sought, into the phrasing agencies index by. If no key is
+configured or the service is unavailable, that button quietly disappears
+and everything else works exactly as before.
+
+That ordering is deliberate. A civic tool that stops working when a billing
+account lapses isn't a civic tool.
+
 ## The AI rule: assisted, not authored
 
 The citizen supplies the substance; the AI supplies structure, facts, and
@@ -55,7 +70,9 @@ Concretely:
 
 ## Status
 
-Scaffold. Nothing works yet.
+The county lookup, elections-office contacts, and records-request builder
+work. The optional AI rewrite needs an Anthropic API key with credits;
+without one it hides itself.
 
 ## Layout
 
