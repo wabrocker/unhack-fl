@@ -205,3 +205,14 @@ textarea { resize: vertical; line-height: 1.5; }
 
 .apply { margin: 1rem 0 .25rem; }
 .apply .btn-secondary { font-weight: 600; }
+
+/* Filter box above the county select. The native <select> stays — on a
+   phone it opens the OS picker, which beats any custom listbox. */
+#county-filter { margin-bottom: .5rem; }
+input[type="search"] {
+  display: block; width: 100%; padding: .7rem .8rem; font: inherit;
+  color: var(--ink); background: var(--bg-soft);
+  border: 1px solid var(--line); border-radius: var(--radius);
+  -webkit-appearance: none; appearance: none;
+}
+#filter-status { min-height: 1.2em; margin-top: .35rem; }

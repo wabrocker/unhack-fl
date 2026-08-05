@@ -20,10 +20,20 @@
 
   <section aria-labelledby="county-h">
     <h2 id="county-h">Your county</h2>
+
+    <label class="visually-hidden" for="county-filter">
+      Type to narrow the county list
+    </label>
+    <input type="search" id="county-filter" autocomplete="off"
+           spellcheck="false" aria-controls="county"
+           placeholder="Type to find yours — vol, st johns, miami…">
+
     <label class="visually-hidden" for="county">County</label>
     <select id="county" data-testid="county">
       <option value="">Select a county…</option>
     </select>
+
+    <p class="hint" id="filter-status" role="status" aria-live="polite"></p>
     <p class="note" id="county-note" hidden></p>
   </section>
 

@@ -16,6 +16,8 @@ const API_BASE = "../api/";
 
 const el = {
   county: document.getElementById("county"),
+  filter: document.getElementById("county-filter"),
+  filterStatus: document.getElementById("filter-status"),
   countyNote: document.getElementById("county-note"),
   output: document.getElementById("output"),
   recordsForm: document.getElementById("records-form"),
@@ -46,14 +48,21 @@ async function init() {
     return;
   }
 
-  for (const c of counties) {
-    const opt = document.createElement("option");
-    opt.value = c.slug;
-    opt.textContent = `${c.name} County`;
-    el.county.append(opt);
-  }
+  renderCountyOptions(counties);
 
   el.county.addEventListener("change", onCountyChange);
+  el.filter?.addEventListener("input", onFilter);
+  el.filter?.addEventListener("keydown", (e) => {
+    // Enter picks the county outright when the filter has narrowed to one.
+    if (e.key !== "Enter") return;
+    e.preventDefault();
+    const opts = [...el.county.options].filter((o) => o.value);
+    if (opts.length === 1) {
+      el.county.value = opts[0].value;
+      onCountyChange();
+      el.county.focus();
+    }
+  });
   for (const b of el.buttons()) {
     b.addEventListener("click", () => onAction(b.dataset.action));
   }
@@ -83,6 +92,60 @@ async function init() {
       }
     });
   }
+}
+
+/**
+ * Normalise for matching: "St. Johns", "st johns" and "saint johns" should
+ * all find the same county, and "miami dade" should find Miami-Dade.
+ */
+function norm(s) {
+  return String(s)
+    .toLowerCase()
+    .replace(/\bsaint\b/g, "st")
+    // Drop punctuation AND spaces, so "miami dade", "miami-dade",
+    // "de soto" and "st johns" all match their county.
+    .replace(/[^a-z0-9]/g, "");
+}
+
+function renderCountyOptions(list) {
+  const keep = el.county.value;
+  el.county.replaceChildren();
+
+  const placeholder = document.createElement("option");
+  placeholder.value = "";
+  placeholder.textContent = list.length
+    ? "Select a county…"
+    : "No county matches that";
+  el.county.append(placeholder);
+
+  for (const c of list) {
+    const opt = document.createElement("option");
+    opt.value = c.slug;
+    opt.textContent = `${c.name} County`;
+    el.county.append(opt);
+  }
+
+  // Preserve the current choice if it survived the filter.
+  el.county.value = list.some((c) => c.slug === keep) ? keep : "";
+}
+
+function onFilter() {
+  const q = norm(el.filter.value);
+  const list = q ? counties.filter((c) => norm(c.name).includes(q)) : counties;
+  const before = el.county.value;
+
+  renderCountyOptions(list);
+
+  el.filterStatus.textContent = !q
+    ? ""
+    : list.length === 0
+      ? "No county matches that."
+      : list.length === 1
+        ? `${list[0].name} County — press Enter to choose it.`
+        : `${list.length} counties match.`;
+
+  // Filtering away the chosen county must tear down its panels too.
+  if (before && el.county.value !== before) onCountyChange();
 }
 
 function selected() {
