@@ -95,3 +95,37 @@ The proxy caps output tokens and rate-limits to 8 requests per IP per 10
 minutes. Watch usage in the Anthropic console for the first week and lower
 `RATE_LIMIT` if anything looks off — a public endpoint is a standing
 invitation.
+
+## Rotating the API key
+
+Keys were set to a 30-day expiry on 2026-08-05 (~2026-09-04). When one
+expires, the "sharpen" button fails **silently** — no error banner, no
+alert, `env_key()` just can't authenticate and the button quietly hides
+itself again, exactly as it does with no key configured at all. Nothing
+tells you it happened; check the console or test the endpoint.
+
+1. **console.anthropic.com → API keys** — create the replacement before
+   the old one lapses, so there's no gap. **Leave auto-reload off** on the
+   billing page: with it off, the credit balance is a hard ceiling on a
+   public endpoint — if something goes wrong, the button stops working
+   instead of billing without limit. Also set a monthly spend cap and a
+   usage alert as backstops.
+2. SSH in and edit the file in place — never paste a real key into chat,
+   here or anywhere:
+   ```bash
+   ssh -p 65002 u773936078@YOUR_SSH_HOST
+   nano ~/domains/unhackdemocracy.us/.env
+   ```
+   Replace the `ANTHROPIC_API_KEY=` line, save (`Ctrl+O`, Enter, `Ctrl+X`).
+3. Verify without ever printing the key — check status only:
+   ```bash
+   curl -s -X POST https://fl.unhackdemocracy.us/api/ \
+     -H 'content-type: application/json' \
+     -d '{"action":"explain","passage":"Chapter 119 sets no deadline.","question":"how fast?"}'
+   ```
+   Expect `{"ok":true,...}`.
+4. Delete the old key from the console once the new one is confirmed
+   working, so only one live key exists at a time.
+
+Consider a calendar reminder at rotation time — a silent failure mode is
+the kind that goes unnoticed for weeks.
