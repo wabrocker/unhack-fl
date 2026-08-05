@@ -59,14 +59,28 @@ async function init() {
   }
   el.form?.addEventListener("submit", onRecordsSubmit);
 
-  // Circled-"i" disclosures on the card headings.
-  for (const btn of document.querySelectorAll(".info-toggle")) {
+  // Circled-"i" disclosures. The panels live below the card grid, not
+  // inside the cards — otherwise opening one stretches its grid row and
+  // shoves the neighbouring card's button down.
+  const toggles = [...document.querySelectorAll(".info-toggle")];
+  for (const btn of toggles) {
     btn.addEventListener("click", () => {
       const panel = document.getElementById(btn.getAttribute("aria-controls"));
       if (!panel) return;
       const open = btn.getAttribute("aria-expanded") === "true";
-      btn.setAttribute("aria-expanded", String(!open));
-      panel.hidden = open;
+
+      // Only one open at a time — two long panels stacked is a wall of text.
+      for (const other of toggles) {
+        other.setAttribute("aria-expanded", "false");
+        const op = document.getElementById(other.getAttribute("aria-controls"));
+        if (op) op.hidden = true;
+      }
+
+      if (!open) {
+        btn.setAttribute("aria-expanded", "true");
+        panel.hidden = false;
+        panel.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      }
     });
   }
 }

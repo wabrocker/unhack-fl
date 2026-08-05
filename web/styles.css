@@ -170,3 +170,9 @@ textarea { resize: vertical; line-height: 1.5; }
 .info-panel ul { margin: 0 0 .7rem; padding-left: 1.2rem; }
 .info-panel li { margin-bottom: .35rem; }
 .info-caveat { color: var(--ink-soft); font-size: .9rem; }
+
+/* Info panels sit below the card grid, full width. Keeping them out of
+   the grid is what stops an open panel from stretching its row and
+   dragging the neighbouring card's button down with it. */
+.info-panel { max-width: 44rem; margin: 0 auto 1rem; }
+.info-title { margin: 0 0 .7rem; font-size: 1rem; }
