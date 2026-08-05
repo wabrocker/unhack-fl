@@ -20,6 +20,20 @@ the assisted-not-authored rule there are binding on code, not just prose.
   3PVRO under Florida law (SB 7050), with per-application penalties. Out
   of scope by design, not oversight.
 - **Florida only.** Outside FL, decline rather than guess.
+- **The records flow stays anonymous.** Never add identity verification,
+  account gating, or address checks to it. Chapter 119 lets anyone ask
+  without saying who they are or why; gating it behind our own checks
+  would make this tool more restrictive than the statute it exists to
+  help people use, and would fall hardest on people with the least stable
+  housing. The tool also cannot spam anyone — it drafts, the user sends —
+  so there is no volume problem to solve by collecting identities.
+  Accounts belong to future "join the team" features, where the user opts
+  in for something they get back.
+- **Never claim to have verified what we haven't.** The letter footer
+  describes the request's *form*, which the reader can check by reading
+  it. It must never imply the sender was vetted. A trust badge that means
+  "someone used our web form" is itself a hack of a trust signal, and the
+  first people to exploit it would be the ones we exist to oppose.
 
 ## Conventions
 

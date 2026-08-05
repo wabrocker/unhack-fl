@@ -334,7 +334,14 @@ request would be appreciated.
 Thank you for your time.
 
 ${name}
-${email}`;
+${email}
+
+---
+Formatted with Unhack FL (fl.unhackdemocracy.us), a free tool that puts
+public records requests into the form agencies can act on: a named
+custodian, specific records, a date range, exemption citations, and a cost
+estimate before charges. That describes this request, not the requester —
+no identity check was performed, and Chapter 119 does not require one.`;
 }
 
 function currentInputs() {
@@ -469,7 +476,12 @@ function showDraft(c, text, inputs) {
   document.getElementById("mailto")?.addEventListener("click", (e) => {
     e.preventDefault();
     const body = encodeURIComponent(document.getElementById("draft").value);
-    const subj = encodeURIComponent("Public records request (Ch. 119, Fla. Stat.)");
+    const office = (inputs?.agency || "").trim();
+    const subj = encodeURIComponent(
+      office
+        ? `Public records request — ${office} (Ch. 119, Fla. Stat.)`
+        : "Public records request (Ch. 119, Fla. Stat.)"
+    );
     window.location.href = `mailto:${c.soe_email}?subject=${subj}&body=${body}`;
   });
 
