@@ -82,24 +82,34 @@ button {
   border-radius: var(--radius);
   cursor: pointer;
 }
-/* Disabled buttons drop the accent entirely rather than fading it. A
-   washed-out blue still reads as "clickable, just dim", and hover or focus
-   landing on one of a pair made the two look like different controls. */
+/* Disabled buttons drop the accent entirely rather than fading it — a
+   washed-out blue still reads as "clickable, just dim".
+
+   Match on :disabled, not [disabled]. The buttons are toggled in JS with
+   `b.disabled = ...`, which sets the DOM property; the attribute selector
+   depends on that being reflected back into markup, and Firefox rendered
+   one of a pair with the enabled style because of it. :disabled matches
+   the state itself. The .card prefix raises specificity above
+   `.card button` so the accent can't win on source order. */
+.card button:disabled,
+button:disabled,
 button[disabled] {
   opacity: 1;
   color: var(--ink-soft);
   background: var(--bg);
   border: 1px solid var(--line);
   cursor: not-allowed;
+  filter: none;
 }
-button[disabled]:hover,
-button[disabled]:focus {
+.card button:disabled:hover,
+button:disabled:hover,
+button:disabled:focus {
   filter: none;
   background: var(--bg);
   color: var(--ink-soft);
 }
 
-button:not([disabled]):hover { filter: brightness(1.1); }
+button:not(:disabled):hover { filter: brightness(1.1); }
 
 /* Used wherever a fact is missing rather than guessed. */
 .unsourced {
