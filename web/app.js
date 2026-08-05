@@ -30,6 +30,10 @@ const el = {
 
 let counties = [];
 
+// Which panel is currently on screen, so a county change can refresh it
+// rather than leaving another county's details showing.
+let shownAction = null;
+
 async function init() {
   try {
     const res = await fetch("../data/fl-counties.json");
@@ -73,20 +77,26 @@ function onCountyChange() {
 
   el.countyNote.hidden = !ready;
 
-  // The records form may already be open from an earlier county. Keep its
-  // hint in step, and drop a stale draft rather than leaving a letter
-  // addressed to the county the user just navigated away from.
-  if (!el.recordsForm.hidden) {
-    if (ready) {
-      setAgencyHint(c);
-    } else {
-      el.recordsForm.hidden = true;
-    }
+  if (!ready) {
+    // Back to "Select a county…" — tear everything down.
+    el.recordsForm.hidden = true;
+    el.output.hidden = true;
+    el.output.innerHTML = "";
+    shownAction = null;
+    return;
+  }
+
+  // A panel from the previous county may still be on screen.
+  if (shownAction === "pollworker") {
+    // Pure display of county data — just re-render for the new county.
+    renderPollWorker(c);
+  } else if (!el.recordsForm.hidden) {
+    // Keep the hint in step, and drop any draft rather than leaving a
+    // letter addressed to the county the user just navigated away from.
+    setAgencyHint(c);
     el.output.hidden = true;
     el.output.innerHTML = "";
   }
-
-  if (!ready) return;
 
   // Honest about missing data rather than inventing a county URL.
   el.countyNote.innerHTML = c.soe_url
@@ -128,25 +138,29 @@ function contactBlock(c) {
       checked ${esc(c.verified)}.</p>`;
 }
 
+/** Renders the poll-worker panel for a county. Safe to call repeatedly. */
+function renderPollWorker(c) {
+  el.output.hidden = false;
+  el.output.innerHTML = `
+    <h2>Working the polls in ${esc(c.name)} County</h2>
+    <p>Poll workers are hired and trained by your county Supervisor of
+    Elections — that office is who you apply to.</p>
+    ${contactBlock(c)}
+    <p class="unsourced">Statewide requirements (eligibility, mandatory
+    pre-election training, county-set pay) still need verifying against
+    current law before we state them here. Ask the office above, or see
+    their site — each county publishes its own poll-worker page.</p>`;
+}
+
 function onAction(kind) {
   const c = selected();
   if (!c) return;
 
-  el.output.hidden = false;
-  el.output.innerHTML =
-    kind === "pollworker"
-      ? `<h2>Working the polls in ${esc(c.name)} County</h2>
-         <p>Poll workers are hired and trained by your county Supervisor of
-         Elections — that office is who you apply to.</p>
-         ${contactBlock(c)}
-         <p class="unsourced">Statewide requirements (eligibility, mandatory
-         pre-election training, county-set pay) still need verifying against
-         current law before we state them here. Ask the office above, or see
-         their site — each county publishes its own poll-worker page.</p>`
-      : "";
+  shownAction = kind;
 
   if (kind === "records") {
     el.output.hidden = true;
+    el.output.innerHTML = "";
     el.recordsForm.hidden = false;
     setAgencyHint(c);
     el.recordsForm.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -155,6 +169,7 @@ function onAction(kind) {
   }
 
   el.recordsForm.hidden = true;
+  renderPollWorker(c);
   el.output.scrollIntoView({ behavior: "smooth", block: "nearest" });
 }
 
