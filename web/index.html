@@ -15,9 +15,9 @@
 (function () {
   try {
     var v = localStorage.getItem("unhackfl-help-mode");
-    document.documentElement.setAttribute("data-help-mode", v === "off" ? "off" : "on");
+    document.documentElement.setAttribute("data-help-mode", v === "on" ? "on" : "off");
   } catch (e) {
-    document.documentElement.setAttribute("data-help-mode", "on");
+    document.documentElement.setAttribute("data-help-mode", "off");
   }
 })();
 </script>
@@ -35,11 +35,11 @@
 
   <div class="mode-switch">
     <label for="help-mode-toggle">
-      <input type="checkbox" id="help-mode-toggle" checked>
+      <input type="checkbox" id="help-mode-toggle">
       <span class="switch-track" aria-hidden="true"><span class="switch-thumb"></span></span>
       <span>Help mode</span>
     </label>
-    <span class="hint help-only">Explain what things mean as you go.</span>
+    <span class="hint">Explain what things mean as you go.</span>
   </div>
 
   <div class="info-panel" id="info-mission" hidden role="region"
@@ -97,9 +97,11 @@
         them, and the work is paid. Training, sometimes also paid depending
         on your county, is required before each election.
       </p>
-      <p class="meta help-only">Consensus action · individual · paid</p>
-      <button type="button" data-action="pollworker" disabled>
-        Pick a county first
+      <p class="meta help-only">Cross-partisan · one person can do it · paid</p>
+      <button type="button" data-action="pollworker" aria-expanded="false"
+              aria-controls="output" disabled>
+        <span class="btn-label">Pick a county first</span>
+        <span class="chevron" aria-hidden="true"></span>
       </button>
     </article>
 
@@ -116,9 +118,11 @@
         build a correctly-formed Chapter&nbsp;119 request you can send
         yourself.
       </p>
-      <p class="meta help-only">Consensus action · individual · free</p>
-      <button type="button" data-action="records" disabled>
-        Pick a county first
+      <p class="meta help-only">Cross-partisan · one person can do it · free</p>
+      <button type="button" data-action="records" aria-expanded="false"
+              aria-controls="records-form" disabled>
+        <span class="btn-label">Pick a county first</span>
+        <span class="chevron" aria-hidden="true"></span>
       </button>
     </article>
 

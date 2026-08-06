@@ -72,6 +72,7 @@ select {
 }
 .card p { margin: 0 0 .5rem; }
 .card button { margin-top: auto; }
+button[data-action] { display: inline-flex; align-items: center; justify-content: center; gap: .4em; }
 
 button {
   font: inherit;
@@ -265,7 +266,7 @@ h2 .info-toggle { font-size: .7em; }
   border-right: 2px solid currentColor; border-bottom: 2px solid currentColor;
   transform: rotate(45deg); transition: transform .15s ease;
 }
-#help-build-toggle[aria-expanded="true"] .chevron { transform: rotate(-135deg); }
+button[aria-expanded="true"] .chevron { transform: rotate(-135deg); }
 #help-build-body { margin-top: 1rem; }
 
 /* Help mode: one attribute on <html>, everything else obeys it.
@@ -304,3 +305,9 @@ h2 .info-toggle { font-size: .7em; }
 .mode-switch input:checked + .switch-track .switch-thumb { transform: translateX(1.1rem); }
 .mode-switch input:focus-visible + .switch-track { outline: 2px solid var(--accent); outline-offset: 2px; }
 .mode-switch .hint { margin: 0; }
+
+/* The header→main seam stacks header's bottom padding + main's top
+   padding + h2's own top margin, so it reads bigger than the gaps
+   between other sections. Zero just this heading's own margin to bring
+   it back in line — .wrap's padding alone is enough here. */
+#county-h { margin-top: 0; }

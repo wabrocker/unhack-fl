@@ -35,9 +35,10 @@ const el = {
 let counties = [];
 let topics = [];
 
-// Which panel is currently on screen, so a county change can refresh it
-// rather than leaving another county's details showing.
-let shownAction = null;
+// #output is shared between poll-worker results and the records draft/
+// error, so a county change (or the pollworker toggle) needs to know
+// which one currently owns its content before deciding what to do with it.
+let outputOwner = null; // null | "pollworker" | "records"
 
 /**
  * Help mode: one attribute on <html>, which styles.css keys every
@@ -53,7 +54,7 @@ function initHelpMode() {
 
   let stored = null;
   try { stored = localStorage.getItem(KEY); } catch { /* ignore */ }
-  const on = stored !== "off"; // unset = first visit = help on by default
+  const on = stored === "on"; // unset = first visit = help off by default
 
   checkbox.checked = on;
   document.documentElement.setAttribute("data-help-mode", on ? "on" : "off");
@@ -236,9 +237,11 @@ function onCountyChange() {
 
   for (const b of el.buttons()) {
     b.disabled = !ready;
-    if (ready) b.textContent = b.dataset.action === "records"
-      ? "Draft a records request"
-      : "See how to apply";
+    if (ready) {
+      b.querySelector(".btn-label").textContent = b.dataset.action === "records"
+        ? "Draft a records request"
+        : "See how to apply";
+    }
   }
 
   el.countyNote.hidden = !ready;
@@ -248,21 +251,29 @@ function onCountyChange() {
     el.recordsForm.hidden = true;
     el.output.hidden = true;
     el.output.innerHTML = "";
-    shownAction = null;
+    outputOwner = null;
+    for (const b of el.buttons()) b.setAttribute("aria-expanded", "false");
     resetTopicPicker();
     return;
   }
 
-  // A panel from the previous county may still be on screen.
-  if (shownAction === "pollworker") {
+  // The two sections toggle independently now, so each is refreshed on
+  // its own terms rather than one shared "which panel is open" flag.
+  if (!el.output.hidden && outputOwner === "pollworker") {
     // Pure display of county data — just re-render for the new county.
     renderPollWorker(c);
-  } else if (!el.recordsForm.hidden) {
-    // Keep the hint in step, and drop any draft rather than leaving a
-    // letter addressed to the county the user just navigated away from.
-    setAgencyHint(c);
+  } else if (!el.output.hidden && outputOwner === "records") {
+    // Drop the draft rather than leaving a letter addressed to the
+    // county the user just navigated away from. The records FORM (if
+    // open) stays open — only the result of the old county is stale.
     el.output.hidden = true;
     el.output.innerHTML = "";
+    outputOwner = null;
+  }
+
+  if (!el.recordsForm.hidden) {
+    // Keep the hint in step for the new county.
+    setAgencyHint(c);
     // A topic pick from the previous county would otherwise leave a stale
     // "verified for X County" note attached to fields now describing Y.
     resetTopicPicker();
@@ -404,6 +415,21 @@ function contactBlock(c) {
       checked ${esc(c.verified)}.</p>`;
 }
 
+/**
+ * Whichever flow writes into #output next owns it. If the OTHER flow's
+ * toggle button currently claims to be "open", that claim just went
+ * stale — its content is about to be overwritten — so close it. This is
+ * one-directional: the records button's aria-expanded tracks the FORM's
+ * visibility, not #output, so opening pollworker never needs to touch it.
+ */
+function claimOutput(owner) {
+  if (outputOwner !== owner) {
+    const other = [...el.buttons()].find((b) => b.dataset.action === "pollworker");
+    if (owner === "records" && other) other.setAttribute("aria-expanded", "false");
+  }
+  outputOwner = owner;
+}
+
 /** Renders the poll-worker panel for a county. Safe to call repeatedly. */
 function renderPollWorker(c) {
   // The county's own poll-worker page, when one was found on their site —
@@ -422,6 +448,7 @@ function renderPollWorker(c) {
     // for a link we don't have would only add noise.
     : "";
 
+  claimOutput("pollworker");
   el.output.hidden = false;
   el.output.innerHTML = `
     <h2>Working the polls in ${esc(c.name)} County</h2>
@@ -434,15 +461,28 @@ function renderPollWorker(c) {
     office itself as authoritative over anything summarised here.</p>`;
 }
 
+/**
+ * Each action button independently toggles its own section — picking one
+ * doesn't touch the other. "Independent" has one real limit: poll-worker
+ * results and the records draft/error share the single #output element,
+ * so the pollworker toggle can only own #output when nothing else does;
+ * see outputOwner.
+ */
 function onAction(kind) {
   const c = selected();
   if (!c) return;
 
-  shownAction = kind;
+  const btn = [...el.buttons()].find((b) => b.dataset.action === kind);
+  if (!btn) return;
+  const isOpen = btn.getAttribute("aria-expanded") === "true";
 
   if (kind === "records") {
-    el.output.hidden = true;
-    el.output.innerHTML = "";
+    if (isOpen) {
+      btn.setAttribute("aria-expanded", "false");
+      el.recordsForm.hidden = true;
+      return;
+    }
+    btn.setAttribute("aria-expanded", "true");
     el.recordsForm.hidden = false;
     setAgencyHint(c);
     el.recordsForm.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -450,8 +490,14 @@ function onAction(kind) {
     return;
   }
 
-  el.recordsForm.hidden = true;
-  renderPollWorker(c);
+  // pollworker
+  if (isOpen) {
+    btn.setAttribute("aria-expanded", "false");
+    el.output.hidden = true;
+    return;
+  }
+  btn.setAttribute("aria-expanded", "true");
+  renderPollWorker(c); // sets outputOwner = "pollworker" and unhides #output
   el.output.scrollIntoView({ behavior: "smooth", block: "nearest" });
 }
 
@@ -584,6 +630,7 @@ async function onSharpen(c, inputs) {
 }
 
 function showError(message) {
+  claimOutput("records");
   el.output.hidden = false;
   el.output.innerHTML = `<p class="unsourced">${esc(message)}</p>`;
   el.output.scrollIntoView({ behavior: "smooth", block: "nearest" });
@@ -592,6 +639,7 @@ function showError(message) {
 function showDraft(c, text, inputs) {
   const sharpenOff = sessionStorage.getItem("sharpenOff") === "1";
 
+  claimOutput("records");
   el.output.hidden = false;
   el.output.innerHTML = `
     <h2>Your request</h2>
