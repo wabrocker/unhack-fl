@@ -34,6 +34,7 @@ const el = {
 
 let counties = [];
 let topics = [];
+let sheriffs = [];
 
 // #output is shared between poll-worker results and the records draft/
 // error, so a county change (or the pollworker toggle) needs to know
@@ -98,6 +99,16 @@ async function init() {
     topics = data.topics ?? [];
   } catch {
     topics = [];
+  }
+
+  // A second bulk-verified office, alongside elections. Optional — if it
+  // fails to load, the mailto flow just falls back to "we don't know".
+  try {
+    const res = await fetch("../data/sheriffs.json");
+    const data = await res.json();
+    sheriffs = data.sheriffs ?? [];
+  } catch {
+    sheriffs = [];
   }
 
   initHelpMode();
@@ -637,28 +648,45 @@ function showError(message) {
 }
 
 /**
- * We only have ONE verified office email per county: the Supervisor of
- * Elections, sourced in bulk from the state's own spreadsheet — the same
- * way poll_worker_url was populated. The "which office" field is free
- * text with no email attached, so offering that one email as a one-click
- * send target for an arbitrary typed-in agency would be exactly the kind
- * of guess this project exists to refuse. Only offer it when the typed
- * agency plausibly IS the elections office; otherwise say we don't know.
+ * We only have a handful of VERIFIED office emails per county — offices
+ * where a state agency itself publishes a bulk, structured directory, the
+ * same way poll_worker_url was populated. Right now that's two: the
+ * Supervisor of Elections (Dept. of State) and the Sheriff (FDLE). The
+ * "which office" field is free text with no email attached, so offering
+ * one of these as a one-click send target for an arbitrary typed-in
+ * agency would be exactly the kind of guess this project exists to
+ * refuse. Only match when the typed agency plausibly names one of the
+ * offices we actually have a sourced email for.
+ *
+ * Most Florida offices (property appraisers, tax collectors, individual
+ * departments) have NO equivalent bulk state directory — see
+ * data/README.md. Those stay unmatched here on purpose, not by oversight.
  */
-function looksLikeElectionsOffice(agencyText, c) {
+function findVerifiedEmail(agencyText, c) {
   const a = (agencyText || "").toLowerCase();
-  if (!a) return false;
-  if (a.includes("supervisor of elections")) return true;
-  if (a.includes("elections office") || a.includes("board of elections")) return true;
-  if (c.supervisor && a.includes(c.supervisor.toLowerCase())) return true;
-  return false;
+  if (!a) return null;
+
+  if (a.includes("supervisor of elections") ||
+      a.includes("elections office") || a.includes("board of elections") ||
+      (c.supervisor && a.includes(c.supervisor.toLowerCase()))) {
+    if (c.soe_email) return { email: c.soe_email, label: "the elections office" };
+  }
+
+  const sh = sheriffs.find((s) => s.county_slug === c.slug);
+  if (sh && sh.email && (
+        a.includes("sheriff") ||
+        (sh.sheriff && a.includes(sh.sheriff.toLowerCase()))
+      )) {
+    return { email: sh.email, label: "the sheriff's office" };
+  }
+
+  return null;
 }
 
 function showDraft(c, text, inputs) {
   const sharpenOff = sessionStorage.getItem("sharpenOff") === "1";
-  const knownEmail = c.soe_email && looksLikeElectionsOffice(inputs?.agency, c)
-    ? c.soe_email
-    : null;
+  const verified = findVerifiedEmail(inputs?.agency, c);
+  const knownEmail = verified?.email ?? null;
 
   claimOutput("records");
   el.output.hidden = false;
@@ -697,10 +725,18 @@ function showDraft(c, text, inputs) {
       Chapter 119 sets no express deadline; the agency gets a reasonable
       time to retrieve, review, and redact. Send it to
       ${knownEmail
-        ? `${esc(c.name)} County's elections office: <a href="mailto:${esc(knownEmail)}">${esc(knownEmail)}</a>.`
+        ? `${esc(c.name)} County's ${esc(verified.label)}: <a href="mailto:${esc(knownEmail)}">${esc(knownEmail)}</a>.`
         : `<span class="unsourced">We don't have a verified email for
-           "${esc(inputs?.agency || "the office you named")}" — check their
-           website or call to confirm where records requests go.</span>`}
+           "${esc(inputs?.agency || "the office you named")}" — most Florida
+           offices don't publish one in bulk the way elections and sheriffs
+           do. A few ways to find the right address:
+           <ul>
+             <li>Search "${esc(c.name)} County Florida ${esc(inputs?.agency || "")} public records"</li>
+             <li>Check the office's own website for a records or FOIA contact</li>
+             <li>Call the county's main line and ask to be routed to public records for this office</li>
+           </ul>
+           A phone call also works — Chapter 119 doesn't require the request to be emailed.
+           </span>`}
     </p>`;
 
   // Set as value, never innerHTML — text is never parsed as markup.

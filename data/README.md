@@ -67,6 +67,41 @@ pages. Everything else is generic-layer only — real coverage grows the
 way `poll_worker_url` did, one verified entry at a time. See
 CONTRIBUTING.md.
 
+## `sheriffs.json`
+
+Sourced 2026-08-06 from FDLE's own **Sheriff's Office Directory** PDF
+(fdle.state.fl.us) — a state agency, not an association site, publishing
+name/phone/email for all 67 counties in one document. Same trust level as
+`fl-counties.json`'s `soe_email`: it's the office's one official published
+contact, not necessarily a dedicated records/FOIA inbox.
+
+Parsing note: 3 counties publish under a name without the word "County"
+(Miami-Dade, Pasco, Volusia), and Duval County's office is legally the
+"Jacksonville Sheriff's Office" due to consolidated city-county
+government. All mapped back to standard county names in the data.
+
+The FDLE PDF itself is dated 2025-09-02 — about a year old at import.
+Re-verify before relying on it for anything time-sensitive; sheriffs are
+elected and turn over.
+
+## Why elections and sheriffs, and not other offices
+
+Both have a bulk, state-published, structured directory because both are
+constitutional officers — exactly one per county, uniform structure,
+which is what makes a single statewide source possible at all.
+
+Checked and found **no equivalent** for:
+- **Clerks of Court** — the Dept. of State publishes address+phone for
+  66/67 counties, but no bulk emails. Real, but not enough to power a
+  mailto — would need a per-county crawl, same shape as
+  `poll_worker_url`.
+- **Property Appraisers** / **Tax Collectors** — the Dept. of Revenue only
+  links out to each county's own site. No bulk source found at all.
+
+Any of these could get the `poll_worker_url` treatment (crawl each
+county's own site, verify each link resolves, `null` where nothing is
+found) if someone wants to take it on — see CONTRIBUTING.md.
+
 ## Statutes
 
 Cite chapter and section, link the official text at

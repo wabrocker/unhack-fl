@@ -1,0 +1,481 @@
+{
+  "_meta": {
+    "description": "Florida county sheriffs — the sheriff's own name, phone, and email, published by a state agency (not the elections one).",
+    "source": "https://www.fdle.state.fl.us/cjstc/documents/agency-addresses/sheriff-s-office-directory.aspx",
+    "source_note": "Florida Department of Law Enforcement (FDLE), Criminal Justice Standards and Training Commission. The PDF itself is dated September 2, 2025 — about a year old as of this import; re-check before relying on it for anything time-sensitive.",
+    "verified": "2026-08-06",
+    "caveat": "This is the SHERIFF'S OWN listed email, not necessarily a dedicated records/FOIA custodian address. It is the office's one official published contact, same trust level as soe_email, but a records request sent there may still get forwarded internally before it reaches whoever actually processes it.",
+    "naming_note": "Three offices publish under a name that doesn't literally include \"County\" (Miami-Dade, Pasco, Volusia), and Duval County's is legally the \"Jacksonville Sheriff's Office\" due to consolidated city-county government — mapped back to county names here."
+  },
+  "sheriffs": [
+    {
+      "county_slug": "alachua",
+      "county": "Alachua",
+      "sheriff": "Chad D. Scott",
+      "email": "cscott@alachuasheriff.org",
+      "phone": "(352) 367-4021"
+    },
+    {
+      "county_slug": "baker",
+      "county": "Baker",
+      "sheriff": "Scotty Rhoden",
+      "email": "Srhoden@bakerso.com",
+      "phone": "(904) 259-2231"
+    },
+    {
+      "county_slug": "bay",
+      "county": "Bay",
+      "sheriff": "Tommy Ford",
+      "email": "tommy.ford@bayso.org",
+      "phone": "(850) 747-4700"
+    },
+    {
+      "county_slug": "bradford",
+      "county": "Bradford",
+      "sheriff": "Gordon Smith",
+      "email": "Gordon_Smith@bradfordsheriff.org",
+      "phone": "(904) 966-2276"
+    },
+    {
+      "county_slug": "brevard",
+      "county": "Brevard",
+      "sheriff": "Wayne Ivey",
+      "email": "Wayne.Ivey@bcso.us",
+      "phone": "(321) 264-5201"
+    },
+    {
+      "county_slug": "broward",
+      "county": "Broward",
+      "sheriff": "Gregory Tony",
+      "email": "Gregory_Tony@sheriff.org",
+      "phone": "(954) 831-8901"
+    },
+    {
+      "county_slug": "calhoun",
+      "county": "Calhoun",
+      "sheriff": "Michael Bryant",
+      "email": "mbryant@calhouncountyflsheriff.gov",
+      "phone": "(850) 674-5049"
+    },
+    {
+      "county_slug": "charlotte",
+      "county": "Charlotte",
+      "sheriff": "William \"Bill\" Prummell, Jr.",
+      "email": "Sheriff@ccsofl.net",
+      "phone": "(941) 575-5211"
+    },
+    {
+      "county_slug": "citrus",
+      "county": "Citrus",
+      "sheriff": "David E. Vincent",
+      "email": "dvincent@sheriffcitrus.org",
+      "phone": "(352) 726-4488"
+    },
+    {
+      "county_slug": "clay",
+      "county": "Clay",
+      "sheriff": "Michelle Cook",
+      "email": "mcook@claysheriff.com",
+      "phone": "(904) 284-7575"
+    },
+    {
+      "county_slug": "collier",
+      "county": "Collier",
+      "sheriff": "Kevin J. Rambosk",
+      "email": "sheriff@colliersheriff.org",
+      "phone": "(239) 252-0555"
+    },
+    {
+      "county_slug": "columbia",
+      "county": "Columbia",
+      "sheriff": "Wallace Kitchings",
+      "email": "wallace.kitchings@columbiasheriff.org",
+      "phone": "(386) 752-9212"
+    },
+    {
+      "county_slug": "desoto",
+      "county": "DeSoto",
+      "sheriff": "James Potter",
+      "email": "SheriffPotter@desotosheriff.org",
+      "phone": "(863) 993-4700"
+    },
+    {
+      "county_slug": "dixie",
+      "county": "Dixie",
+      "sheriff": "Darby Butler",
+      "email": "darbybutler@dixiecountysheriff.com",
+      "phone": "(352) 498-1220"
+    },
+    {
+      "county_slug": "duval",
+      "county": "Duval",
+      "sheriff": "T.K. Waters",
+      "email": "PIO@jaxsheriff.org",
+      "phone": "(904) 630-2120"
+    },
+    {
+      "county_slug": "escambia",
+      "county": "Escambia",
+      "sheriff": "Chip Simmons",
+      "email": "Sheriff@escambiaso.com",
+      "phone": "(850) 436-9630"
+    },
+    {
+      "county_slug": "flagler",
+      "county": "Flagler",
+      "sheriff": "Rick Staly",
+      "email": "RStaly@flaglersheriff.com",
+      "phone": "(386) 437-4116"
+    },
+    {
+      "county_slug": "franklin",
+      "county": "Franklin",
+      "sheriff": "A.J. Smith",
+      "email": "sheriffsmith@franklinsheriff.com",
+      "phone": "(850) 670-8519"
+    },
+    {
+      "county_slug": "gadsden",
+      "county": "Gadsden",
+      "sheriff": "Morris A. Young",
+      "email": "mayoung@tds.net",
+      "phone": "(850) 627-9233"
+    },
+    {
+      "county_slug": "gilchrist",
+      "county": "Gilchrist",
+      "sheriff": "Robert D. Schultz",
+      "email": "BSchultz@gcso.us",
+      "phone": "(352) 463-3410"
+    },
+    {
+      "county_slug": "glades",
+      "county": "Glades",
+      "sheriff": "David Hardin",
+      "email": "dhardin@gladessheriff.org",
+      "phone": "(863) 946-1600"
+    },
+    {
+      "county_slug": "gulf",
+      "county": "Gulf",
+      "sheriff": "Mike Harrison",
+      "email": "mharrison@gcso.fl.gov",
+      "phone": "(850) 227-1115"
+    },
+    {
+      "county_slug": "hamilton",
+      "county": "Hamilton",
+      "sheriff": "Brian S. Creech",
+      "email": "bcreech@hamiltonflsheriff.gov",
+      "phone": "(386) 792-2004"
+    },
+    {
+      "county_slug": "hardee",
+      "county": "Hardee",
+      "sheriff": "Vent Crawford",
+      "email": "vcrawford@hardeeso.com",
+      "phone": "(863) 773-0304"
+    },
+    {
+      "county_slug": "hendry",
+      "county": "Hendry",
+      "sheriff": "Stephen H. Whidden",
+      "email": "SWhidden@hendrysheriff.org",
+      "phone": "(863) 674-4060"
+    },
+    {
+      "county_slug": "hernando",
+      "county": "Hernando",
+      "sheriff": "Al Nienhuis",
+      "email": "ANienhuis@hernandosheriff.org",
+      "phone": "(352) 754-6830"
+    },
+    {
+      "county_slug": "highlands",
+      "county": "Highlands",
+      "sheriff": "Paul Blackman",
+      "email": "PBlackman@highlandssheriff.org",
+      "phone": "(863) 402-7200"
+    },
+    {
+      "county_slug": "hillsborough",
+      "county": "Hillsborough",
+      "sheriff": "Chad Chronister",
+      "email": "cchronis@hcso.tampa.fl.us",
+      "phone": "(813) 247-8000"
+    },
+    {
+      "county_slug": "holmes",
+      "county": "Holmes",
+      "sheriff": "John Tate",
+      "email": "sheriff@holmesso.org",
+      "phone": "(850) 547-4421"
+    },
+    {
+      "county_slug": "indian-river",
+      "county": "Indian River",
+      "sheriff": "Eric Flowers",
+      "email": "eflowers@ircsheriff.org",
+      "phone": "(772) 569-6700"
+    },
+    {
+      "county_slug": "jackson",
+      "county": "Jackson",
+      "sheriff": "Donald L. Edenfield",
+      "email": "sheriff.edenfield@jacksonso.com",
+      "phone": "(850) 482-9624"
+    },
+    {
+      "county_slug": "jefferson",
+      "county": "Jefferson",
+      "sheriff": "Alfred \"Mac\" McNeill",
+      "email": "mac.mcneill@jcso-fl.org",
+      "phone": "(850) 997-2523"
+    },
+    {
+      "county_slug": "lafayette",
+      "county": "Lafayette",
+      "sheriff": "Brian N. Lamb",
+      "email": "blamb@lafayetteso.org",
+      "phone": "(386) 294-1222"
+    },
+    {
+      "county_slug": "lake",
+      "county": "Lake",
+      "sheriff": "Peyton C. Grinnell",
+      "email": "Peyton.Grinnell@lcso.org",
+      "phone": "(352) 343-9500"
+    },
+    {
+      "county_slug": "lee",
+      "county": "Lee",
+      "sheriff": "Carmine Marceno",
+      "email": "Cmarceno@sheriffleefl.org",
+      "phone": "(239) 477-1000"
+    },
+    {
+      "county_slug": "leon",
+      "county": "Leon",
+      "sheriff": "Walt McNeil",
+      "email": "McNeilW@leoncountyfl.gov",
+      "phone": "(850) 606-3345"
+    },
+    {
+      "county_slug": "levy",
+      "county": "Levy",
+      "sheriff": "Bobby McCallum",
+      "email": "BMccallum@levyso.com",
+      "phone": "(352) 486-5111"
+    },
+    {
+      "county_slug": "liberty",
+      "county": "Liberty",
+      "sheriff": "Robert \"Dusty\" Arnold",
+      "email": "darnold@libertycountysheriff.org",
+      "phone": "(850) 643-2235"
+    },
+    {
+      "county_slug": "madison",
+      "county": "Madison",
+      "sheriff": "David Harper",
+      "email": "Sheriff@mcso-fl.org",
+      "phone": "(850) 973-4151"
+    },
+    {
+      "county_slug": "manatee",
+      "county": "Manatee",
+      "sheriff": "Rick Wells",
+      "email": "Rick.Wells@manateesheriff.com",
+      "phone": "(941) 747-3011 Ext.2222"
+    },
+    {
+      "county_slug": "marion",
+      "county": "Marion",
+      "sheriff": "William \"Billy\" Woods",
+      "email": "wwoods@marionso.com",
+      "phone": "(352) 732-8181"
+    },
+    {
+      "county_slug": "martin",
+      "county": "Martin",
+      "sheriff": "John M. Budensiek",
+      "email": "jmbudensiek@mcsofl.org",
+      "phone": "(772) 220-7024"
+    },
+    {
+      "county_slug": "miami-dade",
+      "county": "Miami-Dade",
+      "sheriff": "Rosie Cordero-Stutz",
+      "email": "officeofthesheriff@mdso.com",
+      "phone": "(305) 471-3518"
+    },
+    {
+      "county_slug": "monroe",
+      "county": "Monroe",
+      "sheriff": "Richard Ramsay",
+      "email": "RRamsay@keysso.net",
+      "phone": "(305) 292-7001"
+    },
+    {
+      "county_slug": "nassau",
+      "county": "Nassau",
+      "sheriff": "Bill Leeper",
+      "email": "Bleeper@nassauso.com",
+      "phone": "(904) 225-0331"
+    },
+    {
+      "county_slug": "okaloosa",
+      "county": "Okaloosa",
+      "sheriff": "Eric Aden",
+      "email": "sheriff@sheriff-okaloosa.org",
+      "phone": "(850) 651-7410"
+    },
+    {
+      "county_slug": "okeechobee",
+      "county": "Okeechobee",
+      "sheriff": "Noel E. Stephen",
+      "email": "Nstephen@okeesheriff.com",
+      "phone": "(863) 763-3117"
+    },
+    {
+      "county_slug": "orange",
+      "county": "Orange",
+      "sheriff": "John Mina",
+      "email": "John.Mina@ocsofl.com",
+      "phone": "(407) 254-7000"
+    },
+    {
+      "county_slug": "osceola",
+      "county": "Osceola",
+      "sheriff": "Christopher A. Blackmon",
+      "email": "chris.blackmon@osceolasheriff.org",
+      "phone": "(407) 348-1100"
+    },
+    {
+      "county_slug": "palm-beach",
+      "county": "Palm Beach",
+      "sheriff": "Ric L. Bradshaw",
+      "email": "Sheriff@pbso.org",
+      "phone": "(561) 688-3000"
+    },
+    {
+      "county_slug": "pasco",
+      "county": "Pasco",
+      "sheriff": "Chris Nocco",
+      "email": "Cnocco@pascosheriff.org",
+      "phone": "(727) 847-5878"
+    },
+    {
+      "county_slug": "pinellas",
+      "county": "Pinellas",
+      "sheriff": "Bob Gualtieri",
+      "email": "RGualtieri@pcsonet.com",
+      "phone": "(727) 582-6201"
+    },
+    {
+      "county_slug": "polk",
+      "county": "Polk",
+      "sheriff": "Grady C. Judd, Jr.",
+      "email": "Webmaster@polksheriff.org",
+      "phone": "(863) 298-6200"
+    },
+    {
+      "county_slug": "putnam",
+      "county": "Putnam",
+      "sheriff": "Homer \"Gator\" DeLoach, III",
+      "email": "HDeloach@putnamsheriff.org",
+      "phone": "(386) 329-0800"
+    },
+    {
+      "county_slug": "santa-rosa",
+      "county": "Santa Rosa",
+      "sheriff": "Bob Johnson",
+      "email": "RJohnson@srso.net",
+      "phone": "(850) 983-1100"
+    },
+    {
+      "county_slug": "sarasota",
+      "county": "Sarasota",
+      "sheriff": "Kurt A. Hoffman",
+      "email": "Oralia.Rushing@SarasotaSheriff.org",
+      "phone": "(941) 861-5800"
+    },
+    {
+      "county_slug": "seminole",
+      "county": "Seminole",
+      "sheriff": "Dennis M. Lemma",
+      "email": "DennisLemma@seminolesheriff.org",
+      "phone": "(407) 665-6600"
+    },
+    {
+      "county_slug": "st-johns",
+      "county": "St. Johns",
+      "sheriff": "Robert A. Hardwick",
+      "email": "Rhardwick@sjso.org",
+      "phone": "(904) 810-6601"
+    },
+    {
+      "county_slug": "st-lucie",
+      "county": "St. Lucie",
+      "sheriff": "Richard R. Del Toro, Jr.",
+      "email": "rdeltoro@stluciesheriff.com",
+      "phone": "(772) 462-7300"
+    },
+    {
+      "county_slug": "sumter",
+      "county": "Sumter",
+      "sheriff": "Patrick \"Pat\" Breedon",
+      "email": "sumtersheriff@sumterso.org",
+      "phone": "(352) 569-1600"
+    },
+    {
+      "county_slug": "suwannee",
+      "county": "Suwannee",
+      "sheriff": "Sam St. John",
+      "email": "Sam.stjohn@suwanneesheriff.com",
+      "phone": "(386) 362-3443"
+    },
+    {
+      "county_slug": "taylor",
+      "county": "Taylor",
+      "sheriff": "Wayne Padgett",
+      "email": "Sheriff.padgett@taylorsheriff.org",
+      "phone": "(850) 584-4225"
+    },
+    {
+      "county_slug": "union",
+      "county": "Union",
+      "sheriff": "Brad Whitehead",
+      "email": "Sheriff@unionsheriff.us",
+      "phone": "(386) 496-2501"
+    },
+    {
+      "county_slug": "volusia",
+      "county": "Volusia",
+      "sheriff": "Michael Chitwood",
+      "email": "Mchitwood@vcso.us",
+      "phone": "(386) 736-5961"
+    },
+    {
+      "county_slug": "wakulla",
+      "county": "Wakulla",
+      "sheriff": "Jared Miller",
+      "email": "Jmiller@wcso.org",
+      "phone": "(850) 745-7100"
+    },
+    {
+      "county_slug": "walton",
+      "county": "Walton",
+      "sheriff": "Michael A. Adkinson, Jr.",
+      "email": "SheriffAdkinson@waltonso.org",
+      "phone": "(850) 892-8186"
+    },
+    {
+      "county_slug": "washington",
+      "county": "Washington",
+      "sheriff": "Kevin Crews",
+      "email": "SheriffCrews@wcso.us",
+      "phone": "(850) 638-6111"
+    }
+  ]
+}

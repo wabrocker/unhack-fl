@@ -47,6 +47,13 @@ the assisted-not-authored rule there are binding on code, not just prose.
   constructed poll-worker URL would — confidently, and to a real person.
   The generic-guidance fallback with a blank office field is correct and
   sufficient when nothing is verified.
+- **The one-click "Open in email" button only appears when the typed
+  agency matches an office we have a bulk-verified email for** (currently
+  elections and sheriff — see `findVerifiedEmail()` in app.js and
+  `data/README.md`). Never widen this by guessing at other offices'
+  emails, and never add a new office to it without the same bulk,
+  state-sourced discipline used for the first two. A wrong one-click send
+  target is worse than no button.
 - Secrets in `.env`, gitignored. Never commit a key; never log request or
   response bodies.
 - Plain, jargon-free copy. The reader is a citizen, not a lawyer.
