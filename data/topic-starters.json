@@ -46,6 +46,684 @@
       "generic_guidance": "Repaving schedules, traffic studies, and infrastructure spending are usually handled by a Public Works or Engineering department. Ask about a specific road, project, or planning study rather than \"all road records\" — a named project is what turns this into a search someone can actually run.",
       "generic_want_template": "Records showing the maintenance schedule, traffic study, or spending for [ROAD OR PROJECT NAME], covering [DATE RANGE].",
       "county_overrides": []
+    },
+    {
+      "slug": "public-safety",
+      "label": "Public safety",
+      "generic_guidance": "Sheriff's offices hold records like incident reports, policies, budgets, and statistics. Florida's sheriffs are elected constitutional officers — one per county — so every county below has a verified office name and contact. Cities that run their own police department separately from the county sheriff aren't covered here; name the department yourself if that's who holds the record.",
+      "generic_want_template": "Records related to [a specific incident, policy, budget line, or statistic — name it], covering [DATE RANGE].",
+      "county_overrides": [
+        {
+          "county_slug": "alachua",
+          "agency": "Alachua County Sheriff's Office",
+          "want": "Records related to [a specific incident, policy, budget line, or statistic — name it], covering [DATE RANGE].",
+          "notes": "Office name and contact verified from FDLE's statewide directory, not hand-researched per county like other topics here — see data/README.md.",
+          "source": [
+            "https://www.fdle.state.fl.us/cjstc/documents/agency-addresses/sheriff-s-office-directory.aspx"
+          ],
+          "verified": "2026-08-06"
+        },
+        {
+          "county_slug": "baker",
+          "agency": "Baker County Sheriff's Office",
+          "want": "Records related to [a specific incident, policy, budget line, or statistic — name it], covering [DATE RANGE].",
+          "notes": "Office name and contact verified from FDLE's statewide directory, not hand-researched per county like other topics here — see data/README.md.",
+          "source": [
+            "https://www.fdle.state.fl.us/cjstc/documents/agency-addresses/sheriff-s-office-directory.aspx"
+          ],
+          "verified": "2026-08-06"
+        },
+        {
+          "county_slug": "bay",
+          "agency": "Bay County Sheriff's Office",
+          "want": "Records related to [a specific incident, policy, budget line, or statistic — name it], covering [DATE RANGE].",
+          "notes": "Office name and contact verified from FDLE's statewide directory, not hand-researched per county like other topics here — see data/README.md.",
+          "source": [
+            "https://www.fdle.state.fl.us/cjstc/documents/agency-addresses/sheriff-s-office-directory.aspx"
+          ],
+          "verified": "2026-08-06"
+        },
+        {
+          "county_slug": "bradford",
+          "agency": "Bradford County Sheriff's Office",
+          "want": "Records related to [a specific incident, policy, budget line, or statistic — name it], covering [DATE RANGE].",
+          "notes": "Office name and contact verified from FDLE's statewide directory, not hand-researched per county like other topics here — see data/README.md.",
+          "source": [
+            "https://www.fdle.state.fl.us/cjstc/documents/agency-addresses/sheriff-s-office-directory.aspx"
+          ],
+          "verified": "2026-08-06"
+        },
+        {
+          "county_slug": "brevard",
+          "agency": "Brevard County Sheriff's Office",
+          "want": "Records related to [a specific incident, policy, budget line, or statistic — name it], covering [DATE RANGE].",
+          "notes": "Office name and contact verified from FDLE's statewide directory, not hand-researched per county like other topics here — see data/README.md.",
+          "source": [
+            "https://www.fdle.state.fl.us/cjstc/documents/agency-addresses/sheriff-s-office-directory.aspx"
+          ],
+          "verified": "2026-08-06"
+        },
+        {
+          "county_slug": "broward",
+          "agency": "Broward County Sheriff's Office",
+          "want": "Records related to [a specific incident, policy, budget line, or statistic — name it], covering [DATE RANGE].",
+          "notes": "Office name and contact verified from FDLE's statewide directory, not hand-researched per county like other topics here — see data/README.md.",
+          "source": [
+            "https://www.fdle.state.fl.us/cjstc/documents/agency-addresses/sheriff-s-office-directory.aspx"
+          ],
+          "verified": "2026-08-06"
+        },
+        {
+          "county_slug": "calhoun",
+          "agency": "Calhoun County Sheriff's Office",
+          "want": "Records related to [a specific incident, policy, budget line, or statistic — name it], covering [DATE RANGE].",
+          "notes": "Office name and contact verified from FDLE's statewide directory, not hand-researched per county like other topics here — see data/README.md.",
+          "source": [
+            "https://www.fdle.state.fl.us/cjstc/documents/agency-addresses/sheriff-s-office-directory.aspx"
+          ],
+          "verified": "2026-08-06"
+        },
+        {
+          "county_slug": "charlotte",
+          "agency": "Charlotte County Sheriff's Office",
+          "want": "Records related to [a specific incident, policy, budget line, or statistic — name it], covering [DATE RANGE].",
+          "notes": "Office name and contact verified from FDLE's statewide directory, not hand-researched per county like other topics here — see data/README.md.",
+          "source": [
+            "https://www.fdle.state.fl.us/cjstc/documents/agency-addresses/sheriff-s-office-directory.aspx"
+          ],
+          "verified": "2026-08-06"
+        },
+        {
+          "county_slug": "citrus",
+          "agency": "Citrus County Sheriff's Office",
+          "want": "Records related to [a specific incident, policy, budget line, or statistic — name it], covering [DATE RANGE].",
+          "notes": "Office name and contact verified from FDLE's statewide directory, not hand-researched per county like other topics here — see data/README.md.",
+          "source": [
+            "https://www.fdle.state.fl.us/cjstc/documents/agency-addresses/sheriff-s-office-directory.aspx"
+          ],
+          "verified": "2026-08-06"
+        },
+        {
+          "county_slug": "clay",
+          "agency": "Clay County Sheriff's Office",
+          "want": "Records related to [a specific incident, policy, budget line, or statistic — name it], covering [DATE RANGE].",
+          "notes": "Office name and contact verified from FDLE's statewide directory, not hand-researched per county like other topics here — see data/README.md.",
+          "source": [
+            "https://www.fdle.state.fl.us/cjstc/documents/agency-addresses/sheriff-s-office-directory.aspx"
+          ],
+          "verified": "2026-08-06"
+        },
+        {
+          "county_slug": "collier",
+          "agency": "Collier County Sheriff's Office",
+          "want": "Records related to [a specific incident, policy, budget line, or statistic — name it], covering [DATE RANGE].",
+          "notes": "Office name and contact verified from FDLE's statewide directory, not hand-researched per county like other topics here — see data/README.md.",
+          "source": [
+            "https://www.fdle.state.fl.us/cjstc/documents/agency-addresses/sheriff-s-office-directory.aspx"
+          ],
+          "verified": "2026-08-06"
+        },
+        {
+          "county_slug": "columbia",
+          "agency": "Columbia County Sheriff's Office",
+          "want": "Records related to [a specific incident, policy, budget line, or statistic — name it], covering [DATE RANGE].",
+          "notes": "Office name and contact verified from FDLE's statewide directory, not hand-researched per county like other topics here — see data/README.md.",
+          "source": [
+            "https://www.fdle.state.fl.us/cjstc/documents/agency-addresses/sheriff-s-office-directory.aspx"
+          ],
+          "verified": "2026-08-06"
+        },
+        {
+          "county_slug": "desoto",
+          "agency": "DeSoto County Sheriff's Office",
+          "want": "Records related to [a specific incident, policy, budget line, or statistic — name it], covering [DATE RANGE].",
+          "notes": "Office name and contact verified from FDLE's statewide directory, not hand-researched per county like other topics here — see data/README.md.",
+          "source": [
+            "https://www.fdle.state.fl.us/cjstc/documents/agency-addresses/sheriff-s-office-directory.aspx"
+          ],
+          "verified": "2026-08-06"
+        },
+        {
+          "county_slug": "dixie",
+          "agency": "Dixie County Sheriff's Office",
+          "want": "Records related to [a specific incident, policy, budget line, or statistic — name it], covering [DATE RANGE].",
+          "notes": "Office name and contact verified from FDLE's statewide directory, not hand-researched per county like other topics here — see data/README.md.",
+          "source": [
+            "https://www.fdle.state.fl.us/cjstc/documents/agency-addresses/sheriff-s-office-directory.aspx"
+          ],
+          "verified": "2026-08-06"
+        },
+        {
+          "county_slug": "duval",
+          "agency": "Jacksonville Sheriff's Office",
+          "want": "Records related to [a specific incident, policy, budget line, or statistic — name it], covering [DATE RANGE].",
+          "notes": "Office name and contact verified from FDLE's statewide directory, not hand-researched per county like other topics here — see data/README.md.",
+          "source": [
+            "https://www.fdle.state.fl.us/cjstc/documents/agency-addresses/sheriff-s-office-directory.aspx"
+          ],
+          "verified": "2026-08-06"
+        },
+        {
+          "county_slug": "escambia",
+          "agency": "Escambia County Sheriff's Office",
+          "want": "Records related to [a specific incident, policy, budget line, or statistic — name it], covering [DATE RANGE].",
+          "notes": "Office name and contact verified from FDLE's statewide directory, not hand-researched per county like other topics here — see data/README.md.",
+          "source": [
+            "https://www.fdle.state.fl.us/cjstc/documents/agency-addresses/sheriff-s-office-directory.aspx"
+          ],
+          "verified": "2026-08-06"
+        },
+        {
+          "county_slug": "flagler",
+          "agency": "Flagler County Sheriff's Office",
+          "want": "Records related to [a specific incident, policy, budget line, or statistic — name it], covering [DATE RANGE].",
+          "notes": "Office name and contact verified from FDLE's statewide directory, not hand-researched per county like other topics here — see data/README.md.",
+          "source": [
+            "https://www.fdle.state.fl.us/cjstc/documents/agency-addresses/sheriff-s-office-directory.aspx"
+          ],
+          "verified": "2026-08-06"
+        },
+        {
+          "county_slug": "franklin",
+          "agency": "Franklin County Sheriff's Office",
+          "want": "Records related to [a specific incident, policy, budget line, or statistic — name it], covering [DATE RANGE].",
+          "notes": "Office name and contact verified from FDLE's statewide directory, not hand-researched per county like other topics here — see data/README.md.",
+          "source": [
+            "https://www.fdle.state.fl.us/cjstc/documents/agency-addresses/sheriff-s-office-directory.aspx"
+          ],
+          "verified": "2026-08-06"
+        },
+        {
+          "county_slug": "gadsden",
+          "agency": "Gadsden County Sheriff's Office",
+          "want": "Records related to [a specific incident, policy, budget line, or statistic — name it], covering [DATE RANGE].",
+          "notes": "Office name and contact verified from FDLE's statewide directory, not hand-researched per county like other topics here — see data/README.md.",
+          "source": [
+            "https://www.fdle.state.fl.us/cjstc/documents/agency-addresses/sheriff-s-office-directory.aspx"
+          ],
+          "verified": "2026-08-06"
+        },
+        {
+          "county_slug": "gilchrist",
+          "agency": "Gilchrist County Sheriff's Office",
+          "want": "Records related to [a specific incident, policy, budget line, or statistic — name it], covering [DATE RANGE].",
+          "notes": "Office name and contact verified from FDLE's statewide directory, not hand-researched per county like other topics here — see data/README.md.",
+          "source": [
+            "https://www.fdle.state.fl.us/cjstc/documents/agency-addresses/sheriff-s-office-directory.aspx"
+          ],
+          "verified": "2026-08-06"
+        },
+        {
+          "county_slug": "glades",
+          "agency": "Glades County Sheriff's Office",
+          "want": "Records related to [a specific incident, policy, budget line, or statistic — name it], covering [DATE RANGE].",
+          "notes": "Office name and contact verified from FDLE's statewide directory, not hand-researched per county like other topics here — see data/README.md.",
+          "source": [
+            "https://www.fdle.state.fl.us/cjstc/documents/agency-addresses/sheriff-s-office-directory.aspx"
+          ],
+          "verified": "2026-08-06"
+        },
+        {
+          "county_slug": "gulf",
+          "agency": "Gulf County Sheriff's Office",
+          "want": "Records related to [a specific incident, policy, budget line, or statistic — name it], covering [DATE RANGE].",
+          "notes": "Office name and contact verified from FDLE's statewide directory, not hand-researched per county like other topics here — see data/README.md.",
+          "source": [
+            "https://www.fdle.state.fl.us/cjstc/documents/agency-addresses/sheriff-s-office-directory.aspx"
+          ],
+          "verified": "2026-08-06"
+        },
+        {
+          "county_slug": "hamilton",
+          "agency": "Hamilton County Sheriff's Office",
+          "want": "Records related to [a specific incident, policy, budget line, or statistic — name it], covering [DATE RANGE].",
+          "notes": "Office name and contact verified from FDLE's statewide directory, not hand-researched per county like other topics here — see data/README.md.",
+          "source": [
+            "https://www.fdle.state.fl.us/cjstc/documents/agency-addresses/sheriff-s-office-directory.aspx"
+          ],
+          "verified": "2026-08-06"
+        },
+        {
+          "county_slug": "hardee",
+          "agency": "Hardee County Sheriff's Office",
+          "want": "Records related to [a specific incident, policy, budget line, or statistic — name it], covering [DATE RANGE].",
+          "notes": "Office name and contact verified from FDLE's statewide directory, not hand-researched per county like other topics here — see data/README.md.",
+          "source": [
+            "https://www.fdle.state.fl.us/cjstc/documents/agency-addresses/sheriff-s-office-directory.aspx"
+          ],
+          "verified": "2026-08-06"
+        },
+        {
+          "county_slug": "hendry",
+          "agency": "Hendry County Sheriff's Office",
+          "want": "Records related to [a specific incident, policy, budget line, or statistic — name it], covering [DATE RANGE].",
+          "notes": "Office name and contact verified from FDLE's statewide directory, not hand-researched per county like other topics here — see data/README.md.",
+          "source": [
+            "https://www.fdle.state.fl.us/cjstc/documents/agency-addresses/sheriff-s-office-directory.aspx"
+          ],
+          "verified": "2026-08-06"
+        },
+        {
+          "county_slug": "hernando",
+          "agency": "Hernando County Sheriff's Office",
+          "want": "Records related to [a specific incident, policy, budget line, or statistic — name it], covering [DATE RANGE].",
+          "notes": "Office name and contact verified from FDLE's statewide directory, not hand-researched per county like other topics here — see data/README.md.",
+          "source": [
+            "https://www.fdle.state.fl.us/cjstc/documents/agency-addresses/sheriff-s-office-directory.aspx"
+          ],
+          "verified": "2026-08-06"
+        },
+        {
+          "county_slug": "highlands",
+          "agency": "Highlands County Sheriff's Office",
+          "want": "Records related to [a specific incident, policy, budget line, or statistic — name it], covering [DATE RANGE].",
+          "notes": "Office name and contact verified from FDLE's statewide directory, not hand-researched per county like other topics here — see data/README.md.",
+          "source": [
+            "https://www.fdle.state.fl.us/cjstc/documents/agency-addresses/sheriff-s-office-directory.aspx"
+          ],
+          "verified": "2026-08-06"
+        },
+        {
+          "county_slug": "hillsborough",
+          "agency": "Hillsborough County Sheriff's Office",
+          "want": "Records related to [a specific incident, policy, budget line, or statistic — name it], covering [DATE RANGE].",
+          "notes": "Office name and contact verified from FDLE's statewide directory, not hand-researched per county like other topics here — see data/README.md.",
+          "source": [
+            "https://www.fdle.state.fl.us/cjstc/documents/agency-addresses/sheriff-s-office-directory.aspx"
+          ],
+          "verified": "2026-08-06"
+        },
+        {
+          "county_slug": "holmes",
+          "agency": "Holmes County Sheriff's Office",
+          "want": "Records related to [a specific incident, policy, budget line, or statistic — name it], covering [DATE RANGE].",
+          "notes": "Office name and contact verified from FDLE's statewide directory, not hand-researched per county like other topics here — see data/README.md.",
+          "source": [
+            "https://www.fdle.state.fl.us/cjstc/documents/agency-addresses/sheriff-s-office-directory.aspx"
+          ],
+          "verified": "2026-08-06"
+        },
+        {
+          "county_slug": "indian-river",
+          "agency": "Indian River County Sheriff's Office",
+          "want": "Records related to [a specific incident, policy, budget line, or statistic — name it], covering [DATE RANGE].",
+          "notes": "Office name and contact verified from FDLE's statewide directory, not hand-researched per county like other topics here — see data/README.md.",
+          "source": [
+            "https://www.fdle.state.fl.us/cjstc/documents/agency-addresses/sheriff-s-office-directory.aspx"
+          ],
+          "verified": "2026-08-06"
+        },
+        {
+          "county_slug": "jackson",
+          "agency": "Jackson County Sheriff's Office",
+          "want": "Records related to [a specific incident, policy, budget line, or statistic — name it], covering [DATE RANGE].",
+          "notes": "Office name and contact verified from FDLE's statewide directory, not hand-researched per county like other topics here — see data/README.md.",
+          "source": [
+            "https://www.fdle.state.fl.us/cjstc/documents/agency-addresses/sheriff-s-office-directory.aspx"
+          ],
+          "verified": "2026-08-06"
+        },
+        {
+          "county_slug": "jefferson",
+          "agency": "Jefferson County Sheriff's Office",
+          "want": "Records related to [a specific incident, policy, budget line, or statistic — name it], covering [DATE RANGE].",
+          "notes": "Office name and contact verified from FDLE's statewide directory, not hand-researched per county like other topics here — see data/README.md.",
+          "source": [
+            "https://www.fdle.state.fl.us/cjstc/documents/agency-addresses/sheriff-s-office-directory.aspx"
+          ],
+          "verified": "2026-08-06"
+        },
+        {
+          "county_slug": "lafayette",
+          "agency": "Lafayette County Sheriff's Office",
+          "want": "Records related to [a specific incident, policy, budget line, or statistic — name it], covering [DATE RANGE].",
+          "notes": "Office name and contact verified from FDLE's statewide directory, not hand-researched per county like other topics here — see data/README.md.",
+          "source": [
+            "https://www.fdle.state.fl.us/cjstc/documents/agency-addresses/sheriff-s-office-directory.aspx"
+          ],
+          "verified": "2026-08-06"
+        },
+        {
+          "county_slug": "lake",
+          "agency": "Lake County Sheriff's Office",
+          "want": "Records related to [a specific incident, policy, budget line, or statistic — name it], covering [DATE RANGE].",
+          "notes": "Office name and contact verified from FDLE's statewide directory, not hand-researched per county like other topics here — see data/README.md.",
+          "source": [
+            "https://www.fdle.state.fl.us/cjstc/documents/agency-addresses/sheriff-s-office-directory.aspx"
+          ],
+          "verified": "2026-08-06"
+        },
+        {
+          "county_slug": "lee",
+          "agency": "Lee County Sheriff's Office",
+          "want": "Records related to [a specific incident, policy, budget line, or statistic — name it], covering [DATE RANGE].",
+          "notes": "Office name and contact verified from FDLE's statewide directory, not hand-researched per county like other topics here — see data/README.md.",
+          "source": [
+            "https://www.fdle.state.fl.us/cjstc/documents/agency-addresses/sheriff-s-office-directory.aspx"
+          ],
+          "verified": "2026-08-06"
+        },
+        {
+          "county_slug": "leon",
+          "agency": "Leon County Sheriff's Office",
+          "want": "Records related to [a specific incident, policy, budget line, or statistic — name it], covering [DATE RANGE].",
+          "notes": "Office name and contact verified from FDLE's statewide directory, not hand-researched per county like other topics here — see data/README.md.",
+          "source": [
+            "https://www.fdle.state.fl.us/cjstc/documents/agency-addresses/sheriff-s-office-directory.aspx"
+          ],
+          "verified": "2026-08-06"
+        },
+        {
+          "county_slug": "levy",
+          "agency": "Levy County Sheriff's Office",
+          "want": "Records related to [a specific incident, policy, budget line, or statistic — name it], covering [DATE RANGE].",
+          "notes": "Office name and contact verified from FDLE's statewide directory, not hand-researched per county like other topics here — see data/README.md.",
+          "source": [
+            "https://www.fdle.state.fl.us/cjstc/documents/agency-addresses/sheriff-s-office-directory.aspx"
+          ],
+          "verified": "2026-08-06"
+        },
+        {
+          "county_slug": "liberty",
+          "agency": "Liberty County Sheriff's Office",
+          "want": "Records related to [a specific incident, policy, budget line, or statistic — name it], covering [DATE RANGE].",
+          "notes": "Office name and contact verified from FDLE's statewide directory, not hand-researched per county like other topics here — see data/README.md.",
+          "source": [
+            "https://www.fdle.state.fl.us/cjstc/documents/agency-addresses/sheriff-s-office-directory.aspx"
+          ],
+          "verified": "2026-08-06"
+        },
+        {
+          "county_slug": "madison",
+          "agency": "Madison County Sheriff's Office",
+          "want": "Records related to [a specific incident, policy, budget line, or statistic — name it], covering [DATE RANGE].",
+          "notes": "Office name and contact verified from FDLE's statewide directory, not hand-researched per county like other topics here — see data/README.md.",
+          "source": [
+            "https://www.fdle.state.fl.us/cjstc/documents/agency-addresses/sheriff-s-office-directory.aspx"
+          ],
+          "verified": "2026-08-06"
+        },
+        {
+          "county_slug": "manatee",
+          "agency": "Manatee County Sheriff's Office",
+          "want": "Records related to [a specific incident, policy, budget line, or statistic — name it], covering [DATE RANGE].",
+          "notes": "Office name and contact verified from FDLE's statewide directory, not hand-researched per county like other topics here — see data/README.md.",
+          "source": [
+            "https://www.fdle.state.fl.us/cjstc/documents/agency-addresses/sheriff-s-office-directory.aspx"
+          ],
+          "verified": "2026-08-06"
+        },
+        {
+          "county_slug": "marion",
+          "agency": "Marion County Sheriff's Office",
+          "want": "Records related to [a specific incident, policy, budget line, or statistic — name it], covering [DATE RANGE].",
+          "notes": "Office name and contact verified from FDLE's statewide directory, not hand-researched per county like other topics here — see data/README.md.",
+          "source": [
+            "https://www.fdle.state.fl.us/cjstc/documents/agency-addresses/sheriff-s-office-directory.aspx"
+          ],
+          "verified": "2026-08-06"
+        },
+        {
+          "county_slug": "martin",
+          "agency": "Martin County Sheriff's Office",
+          "want": "Records related to [a specific incident, policy, budget line, or statistic — name it], covering [DATE RANGE].",
+          "notes": "Office name and contact verified from FDLE's statewide directory, not hand-researched per county like other topics here — see data/README.md.",
+          "source": [
+            "https://www.fdle.state.fl.us/cjstc/documents/agency-addresses/sheriff-s-office-directory.aspx"
+          ],
+          "verified": "2026-08-06"
+        },
+        {
+          "county_slug": "miami-dade",
+          "agency": "Miami-Dade Sheriff's Office",
+          "want": "Records related to [a specific incident, policy, budget line, or statistic — name it], covering [DATE RANGE].",
+          "notes": "Office name and contact verified from FDLE's statewide directory, not hand-researched per county like other topics here — see data/README.md.",
+          "source": [
+            "https://www.fdle.state.fl.us/cjstc/documents/agency-addresses/sheriff-s-office-directory.aspx"
+          ],
+          "verified": "2026-08-06"
+        },
+        {
+          "county_slug": "monroe",
+          "agency": "Monroe County Sheriff's Office",
+          "want": "Records related to [a specific incident, policy, budget line, or statistic — name it], covering [DATE RANGE].",
+          "notes": "Office name and contact verified from FDLE's statewide directory, not hand-researched per county like other topics here — see data/README.md.",
+          "source": [
+            "https://www.fdle.state.fl.us/cjstc/documents/agency-addresses/sheriff-s-office-directory.aspx"
+          ],
+          "verified": "2026-08-06"
+        },
+        {
+          "county_slug": "nassau",
+          "agency": "Nassau County Sheriff's Office",
+          "want": "Records related to [a specific incident, policy, budget line, or statistic — name it], covering [DATE RANGE].",
+          "notes": "Office name and contact verified from FDLE's statewide directory, not hand-researched per county like other topics here — see data/README.md.",
+          "source": [
+            "https://www.fdle.state.fl.us/cjstc/documents/agency-addresses/sheriff-s-office-directory.aspx"
+          ],
+          "verified": "2026-08-06"
+        },
+        {
+          "county_slug": "okaloosa",
+          "agency": "Okaloosa County Sheriff's Office",
+          "want": "Records related to [a specific incident, policy, budget line, or statistic — name it], covering [DATE RANGE].",
+          "notes": "Office name and contact verified from FDLE's statewide directory, not hand-researched per county like other topics here — see data/README.md.",
+          "source": [
+            "https://www.fdle.state.fl.us/cjstc/documents/agency-addresses/sheriff-s-office-directory.aspx"
+          ],
+          "verified": "2026-08-06"
+        },
+        {
+          "county_slug": "okeechobee",
+          "agency": "Okeechobee County Sheriff's Office",
+          "want": "Records related to [a specific incident, policy, budget line, or statistic — name it], covering [DATE RANGE].",
+          "notes": "Office name and contact verified from FDLE's statewide directory, not hand-researched per county like other topics here — see data/README.md.",
+          "source": [
+            "https://www.fdle.state.fl.us/cjstc/documents/agency-addresses/sheriff-s-office-directory.aspx"
+          ],
+          "verified": "2026-08-06"
+        },
+        {
+          "county_slug": "orange",
+          "agency": "Orange County Sheriff's Office",
+          "want": "Records related to [a specific incident, policy, budget line, or statistic — name it], covering [DATE RANGE].",
+          "notes": "Office name and contact verified from FDLE's statewide directory, not hand-researched per county like other topics here — see data/README.md.",
+          "source": [
+            "https://www.fdle.state.fl.us/cjstc/documents/agency-addresses/sheriff-s-office-directory.aspx"
+          ],
+          "verified": "2026-08-06"
+        },
+        {
+          "county_slug": "osceola",
+          "agency": "Osceola County Sheriff's Office",
+          "want": "Records related to [a specific incident, policy, budget line, or statistic — name it], covering [DATE RANGE].",
+          "notes": "Office name and contact verified from FDLE's statewide directory, not hand-researched per county like other topics here — see data/README.md.",
+          "source": [
+            "https://www.fdle.state.fl.us/cjstc/documents/agency-addresses/sheriff-s-office-directory.aspx"
+          ],
+          "verified": "2026-08-06"
+        },
+        {
+          "county_slug": "palm-beach",
+          "agency": "Palm Beach County Sheriff's Office",
+          "want": "Records related to [a specific incident, policy, budget line, or statistic — name it], covering [DATE RANGE].",
+          "notes": "Office name and contact verified from FDLE's statewide directory, not hand-researched per county like other topics here — see data/README.md.",
+          "source": [
+            "https://www.fdle.state.fl.us/cjstc/documents/agency-addresses/sheriff-s-office-directory.aspx"
+          ],
+          "verified": "2026-08-06"
+        },
+        {
+          "county_slug": "pasco",
+          "agency": "Pasco Sheriff's Office",
+          "want": "Records related to [a specific incident, policy, budget line, or statistic — name it], covering [DATE RANGE].",
+          "notes": "Office name and contact verified from FDLE's statewide directory, not hand-researched per county like other topics here — see data/README.md.",
+          "source": [
+            "https://www.fdle.state.fl.us/cjstc/documents/agency-addresses/sheriff-s-office-directory.aspx"
+          ],
+          "verified": "2026-08-06"
+        },
+        {
+          "county_slug": "pinellas",
+          "agency": "Pinellas County Sheriff's Office",
+          "want": "Records related to [a specific incident, policy, budget line, or statistic — name it], covering [DATE RANGE].",
+          "notes": "Office name and contact verified from FDLE's statewide directory, not hand-researched per county like other topics here — see data/README.md.",
+          "source": [
+            "https://www.fdle.state.fl.us/cjstc/documents/agency-addresses/sheriff-s-office-directory.aspx"
+          ],
+          "verified": "2026-08-06"
+        },
+        {
+          "county_slug": "polk",
+          "agency": "Polk County Sheriff's Office",
+          "want": "Records related to [a specific incident, policy, budget line, or statistic — name it], covering [DATE RANGE].",
+          "notes": "Office name and contact verified from FDLE's statewide directory, not hand-researched per county like other topics here — see data/README.md.",
+          "source": [
+            "https://www.fdle.state.fl.us/cjstc/documents/agency-addresses/sheriff-s-office-directory.aspx"
+          ],
+          "verified": "2026-08-06"
+        },
+        {
+          "county_slug": "putnam",
+          "agency": "Putnam County Sheriff's Office",
+          "want": "Records related to [a specific incident, policy, budget line, or statistic — name it], covering [DATE RANGE].",
+          "notes": "Office name and contact verified from FDLE's statewide directory, not hand-researched per county like other topics here — see data/README.md.",
+          "source": [
+            "https://www.fdle.state.fl.us/cjstc/documents/agency-addresses/sheriff-s-office-directory.aspx"
+          ],
+          "verified": "2026-08-06"
+        },
+        {
+          "county_slug": "santa-rosa",
+          "agency": "Santa Rosa County Sheriff's Office",
+          "want": "Records related to [a specific incident, policy, budget line, or statistic — name it], covering [DATE RANGE].",
+          "notes": "Office name and contact verified from FDLE's statewide directory, not hand-researched per county like other topics here — see data/README.md.",
+          "source": [
+            "https://www.fdle.state.fl.us/cjstc/documents/agency-addresses/sheriff-s-office-directory.aspx"
+          ],
+          "verified": "2026-08-06"
+        },
+        {
+          "county_slug": "sarasota",
+          "agency": "Sarasota County Sheriff's Office",
+          "want": "Records related to [a specific incident, policy, budget line, or statistic — name it], covering [DATE RANGE].",
+          "notes": "Office name and contact verified from FDLE's statewide directory, not hand-researched per county like other topics here — see data/README.md.",
+          "source": [
+            "https://www.fdle.state.fl.us/cjstc/documents/agency-addresses/sheriff-s-office-directory.aspx"
+          ],
+          "verified": "2026-08-06"
+        },
+        {
+          "county_slug": "seminole",
+          "agency": "Seminole County Sheriff's Office",
+          "want": "Records related to [a specific incident, policy, budget line, or statistic — name it], covering [DATE RANGE].",
+          "notes": "Office name and contact verified from FDLE's statewide directory, not hand-researched per county like other topics here — see data/README.md.",
+          "source": [
+            "https://www.fdle.state.fl.us/cjstc/documents/agency-addresses/sheriff-s-office-directory.aspx"
+          ],
+          "verified": "2026-08-06"
+        },
+        {
+          "county_slug": "st-johns",
+          "agency": "St. Johns County Sheriff's Office",
+          "want": "Records related to [a specific incident, policy, budget line, or statistic — name it], covering [DATE RANGE].",
+          "notes": "Office name and contact verified from FDLE's statewide directory, not hand-researched per county like other topics here — see data/README.md.",
+          "source": [
+            "https://www.fdle.state.fl.us/cjstc/documents/agency-addresses/sheriff-s-office-directory.aspx"
+          ],
+          "verified": "2026-08-06"
+        },
+        {
+          "county_slug": "st-lucie",
+          "agency": "St. Lucie County Sheriff's Office",
+          "want": "Records related to [a specific incident, policy, budget line, or statistic — name it], covering [DATE RANGE].",
+          "notes": "Office name and contact verified from FDLE's statewide directory, not hand-researched per county like other topics here — see data/README.md.",
+          "source": [
+            "https://www.fdle.state.fl.us/cjstc/documents/agency-addresses/sheriff-s-office-directory.aspx"
+          ],
+          "verified": "2026-08-06"
+        },
+        {
+          "county_slug": "sumter",
+          "agency": "Sumter County Sheriff's Office",
+          "want": "Records related to [a specific incident, policy, budget line, or statistic — name it], covering [DATE RANGE].",
+          "notes": "Office name and contact verified from FDLE's statewide directory, not hand-researched per county like other topics here — see data/README.md.",
+          "source": [
+            "https://www.fdle.state.fl.us/cjstc/documents/agency-addresses/sheriff-s-office-directory.aspx"
+          ],
+          "verified": "2026-08-06"
+        },
+        {
+          "county_slug": "suwannee",
+          "agency": "Suwannee County Sheriff's Office",
+          "want": "Records related to [a specific incident, policy, budget line, or statistic — name it], covering [DATE RANGE].",
+          "notes": "Office name and contact verified from FDLE's statewide directory, not hand-researched per county like other topics here — see data/README.md.",
+          "source": [
+            "https://www.fdle.state.fl.us/cjstc/documents/agency-addresses/sheriff-s-office-directory.aspx"
+          ],
+          "verified": "2026-08-06"
+        },
+        {
+          "county_slug": "taylor",
+          "agency": "Taylor County Sheriff's Office",
+          "want": "Records related to [a specific incident, policy, budget line, or statistic — name it], covering [DATE RANGE].",
+          "notes": "Office name and contact verified from FDLE's statewide directory, not hand-researched per county like other topics here — see data/README.md.",
+          "source": [
+            "https://www.fdle.state.fl.us/cjstc/documents/agency-addresses/sheriff-s-office-directory.aspx"
+          ],
+          "verified": "2026-08-06"
+        },
+        {
+          "county_slug": "union",
+          "agency": "Union County Sheriff's Office",
+          "want": "Records related to [a specific incident, policy, budget line, or statistic — name it], covering [DATE RANGE].",
+          "notes": "Office name and contact verified from FDLE's statewide directory, not hand-researched per county like other topics here — see data/README.md.",
+          "source": [
+            "https://www.fdle.state.fl.us/cjstc/documents/agency-addresses/sheriff-s-office-directory.aspx"
+          ],
+          "verified": "2026-08-06"
+        },
+        {
+          "county_slug": "volusia",
+          "agency": "Volusia Sheriff's Office",
+          "want": "Records related to [a specific incident, policy, budget line, or statistic — name it], covering [DATE RANGE].",
+          "notes": "Office name and contact verified from FDLE's statewide directory, not hand-researched per county like other topics here — see data/README.md.",
+          "source": [
+            "https://www.fdle.state.fl.us/cjstc/documents/agency-addresses/sheriff-s-office-directory.aspx"
+          ],
+          "verified": "2026-08-06"
+        },
+        {
+          "county_slug": "wakulla",
+          "agency": "Wakulla County Sheriff's Office",
+          "want": "Records related to [a specific incident, policy, budget line, or statistic — name it], covering [DATE RANGE].",
+          "notes": "Office name and contact verified from FDLE's statewide directory, not hand-researched per county like other topics here — see data/README.md.",
+          "source": [
+            "https://www.fdle.state.fl.us/cjstc/documents/agency-addresses/sheriff-s-office-directory.aspx"
+          ],
+          "verified": "2026-08-06"
+        },
+        {
+          "county_slug": "walton",
+          "agency": "Walton County Sheriff's Office",
+          "want": "Records related to [a specific incident, policy, budget line, or statistic — name it], covering [DATE RANGE].",
+          "notes": "Office name and contact verified from FDLE's statewide directory, not hand-researched per county like other topics here — see data/README.md.",
+          "source": [
+            "https://www.fdle.state.fl.us/cjstc/documents/agency-addresses/sheriff-s-office-directory.aspx"
+          ],
+          "verified": "2026-08-06"
+        },
+        {
+          "county_slug": "washington",
+          "agency": "Washington County Sheriff's Office",
+          "want": "Records related to [a specific incident, policy, budget line, or statistic — name it], covering [DATE RANGE].",
+          "notes": "Office name and contact verified from FDLE's statewide directory, not hand-researched per county like other topics here — see data/README.md.",
+          "source": [
+            "https://www.fdle.state.fl.us/cjstc/documents/agency-addresses/sheriff-s-office-directory.aspx"
+          ],
+          "verified": "2026-08-06"
+        }
+      ]
     }
   ]
 }
