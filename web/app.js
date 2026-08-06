@@ -636,8 +636,29 @@ function showError(message) {
   el.output.scrollIntoView({ behavior: "smooth", block: "nearest" });
 }
 
+/**
+ * We only have ONE verified office email per county: the Supervisor of
+ * Elections, sourced in bulk from the state's own spreadsheet — the same
+ * way poll_worker_url was populated. The "which office" field is free
+ * text with no email attached, so offering that one email as a one-click
+ * send target for an arbitrary typed-in agency would be exactly the kind
+ * of guess this project exists to refuse. Only offer it when the typed
+ * agency plausibly IS the elections office; otherwise say we don't know.
+ */
+function looksLikeElectionsOffice(agencyText, c) {
+  const a = (agencyText || "").toLowerCase();
+  if (!a) return false;
+  if (a.includes("supervisor of elections")) return true;
+  if (a.includes("elections office") || a.includes("board of elections")) return true;
+  if (c.supervisor && a.includes(c.supervisor.toLowerCase())) return true;
+  return false;
+}
+
 function showDraft(c, text, inputs) {
   const sharpenOff = sessionStorage.getItem("sharpenOff") === "1";
+  const knownEmail = c.soe_email && looksLikeElectionsOffice(inputs?.agency, c)
+    ? c.soe_email
+    : null;
 
   claimOutput("records");
   el.output.hidden = false;
@@ -650,7 +671,7 @@ function showDraft(c, text, inputs) {
     <textarea id="draft" rows="22" spellcheck="true"></textarea>
     <p>
       <button type="button" id="copy">Copy</button>
-      ${c.soe_email
+      ${knownEmail
         ? `<a class="btn-secondary" id="mailto" href="#">Open in email</a>`
         : ""}
       <span class="hint" id="copy-status" role="status"></span>
@@ -675,9 +696,11 @@ function showDraft(c, text, inputs) {
     <p class="note">
       Chapter 119 sets no express deadline; the agency gets a reasonable
       time to retrieve, review, and redact. Send it to
-      ${c.soe_email
-        ? `the office that holds the records — for elections records in ${esc(c.name)} County that's <a href="mailto:${esc(c.soe_email)}">${esc(c.soe_email)}</a>.`
-        : "the office that holds the records."}
+      ${knownEmail
+        ? `${esc(c.name)} County's elections office: <a href="mailto:${esc(knownEmail)}">${esc(knownEmail)}</a>.`
+        : `<span class="unsourced">We don't have a verified email for
+           "${esc(inputs?.agency || "the office you named")}" — check their
+           website or call to confirm where records requests go.</span>`}
     </p>`;
 
   // Set as value, never innerHTML — text is never parsed as markup.
@@ -695,7 +718,7 @@ function showDraft(c, text, inputs) {
         ? `Public records request — ${office} (Ch. 119, Fla. Stat.)`
         : "Public records request (Ch. 119, Fla. Stat.)"
     );
-    window.location.href = `mailto:${c.soe_email}?subject=${subj}&body=${body}`;
+    window.location.href = `mailto:${knownEmail}?subject=${subj}&body=${body}`;
   });
 
   document.getElementById("copy").addEventListener("click", async () => {
