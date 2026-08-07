@@ -300,7 +300,7 @@ function onCountyChange() {
 function setAgencyHint(c) {
   el.agencyHint.textContent =
     `In ${c.name} County. If the records are held by the elections office, ` +
-    `that's ${c.supervisor}.`;
+    `that's the ${c.supervisor}.`;
 }
 
 /**
@@ -577,10 +577,29 @@ function onRecordsSubmit(event) {
  * specific. Only that paragraph — the rest of the letter stays
  * deterministic. Silently disables itself if the endpoint isn't
  * configured, so the tool works fine with no API account at all.
+ *
+ * Once a rewrite comes back, the button becomes an Undo/Redo toggle
+ * between the original wording and the rewritten one — both versions
+ * are kept on the button's dataset, so flipping back and forth never
+ * calls the rewriter again.
  */
 async function onSharpen(c, inputs) {
   const btn = document.getElementById("sharpen");
   const status = document.getElementById("sharpen-status");
+
+  if (btn.dataset.sharpened) {
+    const showingSharpened = btn.dataset.showing === "sharpened";
+    const want = showingSharpened ? inputs.want : btn.dataset.sharpened;
+    document.getElementById("draft").value = buildLetter({ ...inputs, want });
+    btn.dataset.showing = showingSharpened ? "original" : "sharpened";
+    btn.textContent = showingSharpened ? "Redo the rewrite" : "Undo the rewrite";
+    status.textContent = showingSharpened
+      ? "Showing your original wording."
+      : "Showing the rewritten wording.";
+    setTimeout(() => (status.textContent = ""), 4000);
+    return;
+  }
+
   btn.disabled = true;
   status.textContent = "Working…";
 
@@ -611,9 +630,13 @@ async function onSharpen(c, inputs) {
       return;
     }
 
+    btn.dataset.sharpened = data.text.trim();
+    btn.dataset.showing = "sharpened";
+    btn.textContent = "Undo the rewrite";
+
     document.getElementById("draft").value = buildLetter({
       ...inputs,
-      want: data.text.trim(),
+      want: btn.dataset.sharpened,
     });
     status.textContent = "Rewritten — read it before sending.";
   } catch {

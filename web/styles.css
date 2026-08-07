@@ -223,6 +223,9 @@ input[type="search"] {
 h1 .info-toggle { font-size: .5em; vertical-align: middle; }
 label .info-toggle { font-size: .85em; font-weight: 700; }
 h2 .info-toggle { font-size: .7em; }
+/* vertical-align: middle centers against the x-height, which sits below
+   numerals like "119" — nudge up so it reads centered on digits too. */
+p > .info-toggle { position: relative; top: -.15em; }
 
 .info-inline {
   margin: .5rem 0 .75rem;
