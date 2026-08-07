@@ -48,6 +48,9 @@ minutes — open an issue or a PR with:
   examples in `data/topic-starters.json`
 - **a source URL** — the county's own page, ideally. We don't add an
   override without one; see `data/README.md`.
+- optionally, a `request_url` — a direct link to the office's own online
+  records-request form, if it has one. Only add it if you actually loaded
+  the form and confirmed it works.
 
 This is genuinely one of the highest-value contributions available. It
 directly determines whether the next person from your county gets a real

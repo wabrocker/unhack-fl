@@ -379,7 +379,13 @@ function onTopicPick(topic) {
       ${esc(override.verified)}${sources ? ` (${sources})` : ""}.</p>
       ${override.notes ? `<p>${esc(override.notes)}</p>` : ""}
       <p>Both fields are filled in below. Read them, and edit anything
-      that isn't quite your question before continuing.</p>`;
+      that isn't quite your question before continuing.</p>
+      ${override.request_url ? `
+      <p>This office also takes requests through its own online form:
+      <a href="${esc(override.request_url)}" rel="noopener">${esc(override.request_url)}</a>.
+      Either path works — the form only covers what its fields ask for,
+      while the letter below can be more precise about scope and gives
+      you a copy in your own words.</p>` : ""}`;
   } else {
     el.agency.value = "";
     el.want.value = topic.generic_want_template;

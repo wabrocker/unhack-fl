@@ -61,11 +61,20 @@ form. Two layers, same discipline as `fl-counties.json`:
 office name, don't add the override — the generic layer with a blank
 office field is the honest fallback, same as `poll_worker_url: null`.
 
+An override may also carry `request_url` — a direct link to the office's
+own online public-records submission form, only when one was found and
+loaded to confirm it's live. Same discipline as everything else here: no
+`request_url` without confirming the page actually works, and it never
+replaces the letter-drafting flow — it's offered as an additional option,
+since the county's own form only covers what its fields ask for while a
+letter can be more precise about scope.
+
 Populated 2026-08-05: one override (Palm Beach × Environment &
 conservation), researched via web search and cited to PBC ERM's own
-pages. Everything else is generic-layer only — real coverage grows the
-way `poll_worker_url` did, one verified entry at a time. See
-CONTRIBUTING.md.
+pages. `request_url` added 2026-08-06 after Bill found and confirmed
+PBC's own request form (`pbc.gov/eprr/erm`), pre-scoped to ERM. Everything
+else is generic-layer only — real coverage grows the way `poll_worker_url`
+did, one verified entry at a time. See CONTRIBUTING.md.
 
 ## `sheriffs.json`
 

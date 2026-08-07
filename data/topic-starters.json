@@ -2,7 +2,7 @@
   "_meta": {
     "description": "Starting points for common records-request topics, for people who know what they care about but not what to ask for.",
     "two_layers": "Every topic has generic_guidance and generic_want_template, which are true in general across Florida counties and never name a specific office. A topic MAY also have county_overrides — individually researched and sourced facts about one county's actual office and program names. The UI prefers a county_override when one exists for the selected county; otherwise it falls back to the generic template. This mirrors data/fl-counties.json: verified specifics or nothing, never a guess.",
-    "how_to_add_a_county_override": "See CONTRIBUTING.md. Every override needs agency, want, source (one or more URLs), and verified (date). No override may be added without a real source to check against.",
+    "how_to_add_a_county_override": "See CONTRIBUTING.md. Every override needs agency, want, source (one or more URLs), and verified (date). request_url is optional: a direct link to the office's own online public-records submission form, when one exists and was confirmed live. No override may be added without a real source to check against.",
     "unpopulated_note": "Most topic x county combinations have no override yet. That is expected, not a bug — coverage grows as people research and verify their own county, the same way poll_worker_url did."
   },
   "topics": [
@@ -17,12 +17,15 @@
           "agency": "Palm Beach County Environmental Resources Management (ERM)",
           "want": "Records showing spending from the county's Natural Areas Fund and any related environmentally sensitive lands or land conservation bond funds, and a list of parcels acquired or under management as county natural areas, for [DATE RANGE].",
           "notes": "No single branded program name found. Funding flows through the Natural Areas Fund plus two historical bonds: the 1991 Environmentally Sensitive Lands Bond and the 1999 Land Acquisition for Conservation Purposes Referendum. Individual protected sites each have their own management plan.",
+          "request_url": "https://pbc.gov/eprr/erm",
+          "request_url_notes": "The county's own online public-records portal, pre-scoped to ERM. Loaded directly and confirmed live 2026-08-06.",
           "source": [
             "https://discover.pbc.gov/erm/Pages/PBC-Environment-Natural-Resources-Legislative-Priorities.aspx",
             "https://discover.pbcgov.org/pzb/planning/PCPDF/2020/jan/III-A-2_20-A2-NaturalAreas-Gloss-Maps.pdf",
-            "https://www.pbcgov.com/pubInf/Agenda/20230711/6E4.pdf"
+            "https://www.pbcgov.com/pubInf/Agenda/20230711/6E4.pdf",
+            "https://pbc.gov/eprr/erm"
           ],
-          "verified": "2026-08-05"
+          "verified": "2026-08-06"
         }
       ]
     },
