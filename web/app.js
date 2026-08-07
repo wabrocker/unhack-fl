@@ -36,6 +36,11 @@ let counties = [];
 let topics = [];
 let sheriffs = [];
 
+// Set when a topic-picker override carries a request_url, so the letter
+// output can offer it too. Cleared on county/topic change or if the user
+// edits the office field, since at that point it may no longer apply.
+let activeRequestUrl = null;
+
 // #output is shared between poll-worker results and the records draft/
 // error, so a county change (or the pollworker toggle) needs to know
 // which one currently owns its content before deciding what to do with it.
@@ -141,6 +146,13 @@ async function init() {
     b.addEventListener("click", () => onAction(b.dataset.action));
   }
   el.form?.addEventListener("submit", onRecordsSubmit);
+
+  // A topic pick's request_url is only trustworthy for the office it was
+  // verified against — if the user changes the office field by hand, the
+  // link may no longer be the right one, so stop offering it.
+  el.agency?.addEventListener("input", () => {
+    activeRequestUrl = null;
+  });
 
   // "Help build this" is a whole section, not a contextual aside, so it
   // gets its own toggle rather than joining the info-toggle group below —
@@ -338,6 +350,7 @@ function renderTopicButtons() {
 function resetTopicPicker() {
   el.topicResult.hidden = true;
   el.topicResult.innerHTML = "";
+  activeRequestUrl = null;
   for (const b of el.topicButtons.querySelectorAll(".topic-btn")) {
     b.setAttribute("aria-pressed", "false");
   }
@@ -357,6 +370,7 @@ function onTopicPick(topic) {
     btn.setAttribute("aria-pressed", "false");
     el.topicResult.hidden = true;
     el.topicResult.innerHTML = "";
+    activeRequestUrl = null;
     return;
   }
 
@@ -370,6 +384,7 @@ function onTopicPick(topic) {
   if (override) {
     el.agency.value = override.agency;
     el.want.value = override.want;
+    activeRequestUrl = override.request_url ?? null;
     const sources = (override.source || [])
       .map((u, i) => `<a href="${esc(u)}" rel="noopener">source ${i + 1}</a>`)
       .join(", ");
@@ -389,6 +404,7 @@ function onTopicPick(topic) {
   } else {
     el.agency.value = "";
     el.want.value = topic.generic_want_template;
+    activeRequestUrl = null;
     el.topicResult.innerHTML = `
       <p>${esc(topic.generic_guidance)}</p>
       <p class="info-caveat">We haven't researched
@@ -575,7 +591,7 @@ function onRecordsSubmit(event) {
   const inputs = currentInputs();
   if (!inputs.agency || !inputs.want || !inputs.name || !inputs.email) return;
 
-  showDraft(c, buildLetter(inputs), inputs);
+  showDraft(c, buildLetter(inputs), inputs, activeRequestUrl);
 }
 
 /**
@@ -696,7 +712,7 @@ function findVerifiedEmail(agencyText, c) {
   return null;
 }
 
-function showDraft(c, text, inputs) {
+function showDraft(c, text, inputs, requestUrl) {
   const sharpenOff = sessionStorage.getItem("sharpenOff") === "1";
   const verified = findVerifiedEmail(inputs?.agency, c);
   const knownEmail = verified?.email ?? null;
@@ -740,7 +756,12 @@ function showDraft(c, text, inputs) {
         ? ` Send it to ${esc(c.name)} County's ${esc(verified.label)}: <a href="mailto:${esc(knownEmail)}">${esc(knownEmail)}</a>.`
         : ""}
     </div>
-    ${knownEmail ? "" : `
+    ${knownEmail ? "" : requestUrl ? `
+    <div class="info-panel info-inline">
+      We don't have a verified email for "${esc(inputs?.agency || "the office you named")}", but this office takes requests through its own online form:
+      <a href="${esc(requestUrl)}" rel="noopener">${esc(requestUrl)}</a>.
+      That's probably your fastest path — copy the letter above into it, or send the letter yourself if you'd rather.
+    </div>` : `
     <div class="unsourced">
       We don't have a verified email for "${esc(inputs?.agency || "the office you named")}" — most Florida offices don't publish one in bulk the way elections and sheriffs do. A few ways to find the right address:
       <ul>
