@@ -17,9 +17,13 @@
     Header set Cache-Control "public, max-age=31536000, immutable"
   </FilesMatch>
 
-  # County data is not hashed and does change — revalidate daily.
+  # County data is not hashed and does change. A day-long max-age meant a
+  # deploy could sit invisible at the CDN edge for up to 24h with no way
+  # to force it short of a manual purge — hit exactly that 2026-08-06
+  # shipping the ERM request_url. Five minutes bounds that window without
+  # losing meaningful caching benefit for a low-traffic site.
   <FilesMatch "\.json$">
-    Header set Cache-Control "public, max-age=86400, must-revalidate"
+    Header set Cache-Control "public, max-age=300, must-revalidate"
   </FilesMatch>
 </IfModule>
 
