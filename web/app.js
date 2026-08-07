@@ -292,7 +292,7 @@ function onCountyChange() {
 
   // Honest about missing data rather than inventing a county URL.
   el.countyNote.innerHTML = c.soe_url
-    ? `Elections office: <a href="${esc(c.soe_url)}" rel="noopener">${esc(c.name)} County Supervisor of Elections</a>`
+    ? `Elections office: <a href="${esc(c.soe_url)}" rel="noopener">${esc(c.name)} County Supervisor of Elections, ${esc(c.supervisor)}</a>`
     : `<div class="unsourced">We don't have ${esc(c.name)} County's elections office on file, so we won't guess at it. <a href="${OFFICIAL_SOE_DIRECTORY}" rel="noopener">Find it in the state directory</a>.</div>`;
 }
 
