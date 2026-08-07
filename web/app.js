@@ -36,11 +36,6 @@ let counties = [];
 let topics = [];
 let sheriffs = [];
 
-// Set when a topic-picker override carries a request_url, so the letter
-// output can offer it too. Cleared on county/topic change or if the user
-// edits the office field, since at that point it may no longer apply.
-let activeRequestUrl = null;
-
 // #output is shared between poll-worker results and the records draft/
 // error, so a county change (or the pollworker toggle) needs to know
 // which one currently owns its content before deciding what to do with it.
@@ -146,13 +141,6 @@ async function init() {
     b.addEventListener("click", () => onAction(b.dataset.action));
   }
   el.form?.addEventListener("submit", onRecordsSubmit);
-
-  // A topic pick's request_url is only trustworthy for the office it was
-  // verified against — if the user changes the office field by hand, the
-  // link may no longer be the right one, so stop offering it.
-  el.agency?.addEventListener("input", () => {
-    activeRequestUrl = null;
-  });
 
   // "Help build this" is a whole section, not a contextual aside, so it
   // gets its own toggle rather than joining the info-toggle group below —
@@ -350,7 +338,6 @@ function renderTopicButtons() {
 function resetTopicPicker() {
   el.topicResult.hidden = true;
   el.topicResult.innerHTML = "";
-  activeRequestUrl = null;
   for (const b of el.topicButtons.querySelectorAll(".topic-btn")) {
     b.setAttribute("aria-pressed", "false");
   }
@@ -370,7 +357,6 @@ function onTopicPick(topic) {
     btn.setAttribute("aria-pressed", "false");
     el.topicResult.hidden = true;
     el.topicResult.innerHTML = "";
-    activeRequestUrl = null;
     return;
   }
 
@@ -384,7 +370,6 @@ function onTopicPick(topic) {
   if (override) {
     el.agency.value = override.agency;
     el.want.value = override.want;
-    activeRequestUrl = override.request_url ?? null;
     const sources = (override.source || [])
       .map((u, i) => `<a href="${esc(u)}" rel="noopener">source ${i + 1}</a>`)
       .join(", ");
@@ -404,7 +389,6 @@ function onTopicPick(topic) {
   } else {
     el.agency.value = "";
     el.want.value = topic.generic_want_template;
-    activeRequestUrl = null;
     el.topicResult.innerHTML = `
       <p>${esc(topic.generic_guidance)}</p>
       <p class="info-caveat">We haven't researched
@@ -591,7 +575,7 @@ function onRecordsSubmit(event) {
   const inputs = currentInputs();
   if (!inputs.agency || !inputs.want || !inputs.name || !inputs.email) return;
 
-  showDraft(c, buildLetter(inputs), inputs, activeRequestUrl);
+  showDraft(c, buildLetter(inputs), inputs, findRequestUrl(inputs.agency, c));
 }
 
 /**
@@ -709,6 +693,30 @@ function findVerifiedEmail(agencyText, c) {
     return { email: sh.email, label: "the sheriff's office" };
   }
 
+  return null;
+}
+
+/**
+ * Matched at submit time against the same office text the user actually
+ * typed or accepted, not tracked as interaction history — a stateful
+ * "did the topic picker set this" flag turned out fragile: some browsers
+ * fire an input event on their own (autofill re-selecting the same value
+ * being one case), silently invalidating it without the field's contents
+ * actually changing. Matching on the final text avoids that class of bug
+ * entirely, the same way findVerifiedEmail already does for known emails.
+ */
+function findRequestUrl(agencyText, c) {
+  const a = (agencyText || "").trim().toLowerCase();
+  if (!a) return null;
+
+  for (const topic of topics) {
+    for (const o of topic.county_overrides || []) {
+      if (o.county_slug === c.slug && o.request_url &&
+          o.agency.trim().toLowerCase() === a) {
+        return o.request_url;
+      }
+    }
+  }
   return null;
 }
 
