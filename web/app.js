@@ -764,12 +764,18 @@ function showDraft(c, text, inputs, requestUrl) {
         ? ` Send it to ${esc(c.name)} County's ${esc(verified.label)}: <a href="mailto:${esc(knownEmail)}">${esc(knownEmail)}</a>.`
         : ""}
     </div>
-    ${knownEmail ? "" : requestUrl ? `
+    ${requestUrl ? `
     <div class="info-panel info-inline">
-      We don't have a verified email for "${esc(inputs?.agency || "the office you named")}", but this office takes requests through its own online form:
-      <a href="${esc(requestUrl)}" rel="noopener">${esc(requestUrl)}</a>.
-      That's probably your fastest path — copy the letter above into it, or send the letter yourself if you'd rather.
-    </div>` : `
+      ${knownEmail
+        ? `This office also takes requests through its own online form:
+           <a href="${esc(requestUrl)}" rel="noopener">${esc(requestUrl)}</a> —
+           worth trying first. An office that built its own dedicated form
+           usually prefers it over email; the letter above still works if
+           you'd rather send that instead.`
+        : `We don't have a verified email for "${esc(inputs?.agency || "the office you named")}", but this office takes requests through its own online form:
+           <a href="${esc(requestUrl)}" rel="noopener">${esc(requestUrl)}</a>.
+           That's probably your fastest path — copy the letter above into it, or send the letter yourself if you'd rather.`}
+    </div>` : knownEmail ? "" : `
     <div class="unsourced">
       We don't have a verified email for "${esc(inputs?.agency || "the office you named")}" — most Florida offices don't publish one in bulk the way elections and sheriffs do. A few ways to find the right address:
       <ul>
