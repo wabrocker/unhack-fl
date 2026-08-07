@@ -765,7 +765,7 @@ function showDraft(c, text, inputs, requestUrl) {
         : ""}
     </div>
     ${requestUrl ? `
-    <div class="info-panel info-inline">
+    <div class="option-note">
       ${knownEmail
         ? `This office also takes requests through its own online form:
            <a href="${esc(requestUrl)}" rel="noopener">${esc(requestUrl)}</a> —

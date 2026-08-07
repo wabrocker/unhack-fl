@@ -121,6 +121,19 @@ button:not(:disabled):hover { filter: brightness(1.1); }
   border-radius: 0 var(--radius) var(--radius) 0;
 }
 
+/* A verified option worth surfacing in the letter output — same box
+   language as .info-panel, but deliberately NOT that class. .info-panel
+   is help-mode-only content (hidden by the rule below, and hard-hidden
+   again on every help-mode-off toggle so manually-opened disclosures
+   don't silently reappear pre-opened). This is a fact about the request,
+   not an optional explainer, so it has to survive both mechanisms. */
+.option-note {
+  margin: 0 0 1rem; padding: .9rem 1rem;
+  background: var(--bg); border: 1px solid var(--line);
+  border-left: 3px solid var(--accent); border-radius: var(--radius);
+  font-size: .95rem; max-width: 44rem;
+}
+
 footer { border-top: 1px solid var(--line); margin-top: 3rem; color: var(--ink-soft); font-size: .9rem; }
 footer a { color: var(--accent); }
 
