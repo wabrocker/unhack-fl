@@ -293,10 +293,7 @@ function onCountyChange() {
   // Honest about missing data rather than inventing a county URL.
   el.countyNote.innerHTML = c.soe_url
     ? `Elections office: <a href="${esc(c.soe_url)}" rel="noopener">${esc(c.name)} County Supervisor of Elections</a>`
-    : `<span class="unsourced">We don't have ${esc(c.name)} County's elections
-       office on file, so we won't guess at it.
-       <a href="${OFFICIAL_SOE_DIRECTORY}" rel="noopener">Find it in the state directory</a>.
-       </span>`;
+    : `<div class="unsourced">We don't have ${esc(c.name)} County's elections office on file, so we won't guess at it. <a href="${OFFICIAL_SOE_DIRECTORY}" rel="noopener">Find it in the state directory</a>.</div>`;
 }
 
 /** Single place that writes the county hint, so it can't drift. */
@@ -532,26 +529,17 @@ Re: Public records request under Chapter 119, Florida Statutes
 
 Dear Records Custodian,
 
-Under Chapter 119, Florida Statutes, and Article I, Section 24 of the
-Florida Constitution, I am requesting copies of the following public
-records:
+Under Chapter 119, Florida Statutes, and Article I, Section 24 of the Florida Constitution, I am requesting copies of the following public records:
 
 ${want}
 
 A few notes to make this easier to fulfill:
 
-- If any part of these records is exempt from disclosure, please provide
-  the remainder and identify the exemption relied on for each withheld
-  portion.
-- Electronic copies are fine, and preferred — PDF or the records' native
-  format, sent to the email address below.
-- If fulfilling this request will involve a charge, please contact me with
-  an estimate before doing the work, rather than proceeding.
+- If any part of these records is exempt from disclosure, please provide the remainder and identify the exemption relied on for each withheld portion.
+- Electronic copies are fine, and preferred — PDF or the records' native format, sent to the email address below.
+- If fulfilling this request will involve a charge, please contact me with an estimate before doing the work, rather than proceeding.
 
-I understand Chapter 119 does not set a specific deadline, and that you
-are entitled to a reasonable time to locate the records, review them, and
-redact anything exempt. A brief acknowledgment that you have received this
-request would be appreciated.
+I understand Chapter 119 does not set a specific deadline, and that you are entitled to a reasonable time to locate the records, review them, and redact anything exempt. A brief acknowledgment that you have received this request would be appreciated.
 
 Thank you for your time.
 
@@ -559,11 +547,7 @@ ${name}
 ${email}
 
 ---
-Formatted with Unhack FL (fl.unhackdemocracy.us), a free tool that puts
-public records requests into the form agencies can act on: a named
-custodian, specific records, a date range, exemption citations, and a cost
-estimate before charges. That describes this request, not the requester —
-no identity check was performed, and Chapter 119 does not require one.`;
+Formatted with Unhack FL (fl.unhackdemocracy.us), a free tool that puts public records requests into the form agencies can act on: a named custodian, specific records, a date range, exemption citations, and a cost estimate before charges. That describes this request, not the requester — no identity check was performed, and Chapter 119 does not require one.`;
 }
 
 function currentInputs() {
@@ -721,23 +705,22 @@ function showDraft(c, text, inputs) {
       </p>
     </div>
 
-    <p class="note">
-      Chapter 119 sets no express deadline; the agency gets a reasonable
-      time to retrieve, review, and redact. Send it to
+    <div class="note">
+      Chapter 119 sets no express deadline; the agency gets a reasonable time to retrieve, review, and redact.
       ${knownEmail
-        ? `${esc(c.name)} County's ${esc(verified.label)}: <a href="mailto:${esc(knownEmail)}">${esc(knownEmail)}</a>.`
-        : `<span class="unsourced">We don't have a verified email for
-           "${esc(inputs?.agency || "the office you named")}" — most Florida
-           offices don't publish one in bulk the way elections and sheriffs
-           do. A few ways to find the right address:
-           <ul>
-             <li>Search "${esc(c.name)} County Florida ${esc(inputs?.agency || "")} public records"</li>
-             <li>Check the office's own website for a records or FOIA contact</li>
-             <li>Call the county's main line and ask to be routed to public records for this office</li>
-           </ul>
-           A phone call also works — Chapter 119 doesn't require the request to be emailed.
-           </span>`}
-    </p>`;
+        ? ` Send it to ${esc(c.name)} County's ${esc(verified.label)}: <a href="mailto:${esc(knownEmail)}">${esc(knownEmail)}</a>.`
+        : ""}
+    </div>
+    ${knownEmail ? "" : `
+    <div class="unsourced">
+      We don't have a verified email for "${esc(inputs?.agency || "the office you named")}" — most Florida offices don't publish one in bulk the way elections and sheriffs do. A few ways to find the right address:
+      <ul>
+        <li>Search "${esc(c.name)} County Florida ${esc(inputs?.agency || "")} public records"</li>
+        <li>Check the office's own website for a records or FOIA contact</li>
+        <li>Call the county's main line and ask to be routed to public records for this office</li>
+      </ul>
+      A phone call also works — Chapter 119 doesn't require the request to be emailed.
+    </div>`}`;
 
   // Set as value, never innerHTML — text is never parsed as markup.
   document.getElementById("draft").value = text;

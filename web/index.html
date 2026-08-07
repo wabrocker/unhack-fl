@@ -80,7 +80,7 @@
     </select>
 
     <p class="hint" id="filter-status" role="status" aria-live="polite"></p>
-    <p class="note" id="county-note" hidden></p>
+    <div class="note" id="county-note" hidden></div>
   </section>
 
   <section class="cards" aria-label="Actions">
@@ -106,17 +106,16 @@
     </article>
 
     <article class="card" id="card-records">
-      <h3>Ask a public question
-        <button type="button" class="info-toggle" aria-expanded="false"
-                aria-controls="info-records"
-                aria-label="More about public records requests">i</button>
-      </h3>
+      <h3>Ask a public question</h3>
 
       <p>
         Florida's public records law is unusually strong. The barrier is
         knowing the form — so tell us what you want to know, and we'll
-        build a correctly-formed Chapter&nbsp;119 request you can send
-        yourself.
+        build a correctly-formed Chapter&nbsp;119
+        <button type="button" class="info-toggle" data-noscroll
+                aria-expanded="false" aria-controls="info-records"
+                aria-label="More about public records requests">i</button>
+        request you can send yourself.
       </p>
       <p class="meta help-only">Cross-partisan · one person can do it · free</p>
       <button type="button" data-action="records" aria-expanded="false"
