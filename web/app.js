@@ -79,6 +79,85 @@ function initHelpMode() {
   });
 }
 
+const TEST_MODE_KEY = "unhackfl-test-mode";
+
+/**
+ * Test mode: exercising the site yourself, not a real request. Sticky
+ * (stored, survives reload) and loud (the banner shows the whole time
+ * it's on) on purpose — a silent toggle could accidentally suppress a
+ * genuine action just as easily as it could accidentally count a fake
+ * one, and there'd be no way to notice either mistake.
+ *
+ * ?test=1 / ?test=0 in the URL sets it once, for a link you can send
+ * yourself or a tester rather than walking them through the checkbox.
+ */
+function initTestMode() {
+  const checkbox = document.getElementById("test-mode-toggle");
+  const banner = document.getElementById("test-mode-banner");
+
+  const params = new URLSearchParams(location.search);
+  if (params.has("test")) {
+    const on = params.get("test") !== "0";
+    try { localStorage.setItem(TEST_MODE_KEY, on ? "1" : "0"); } catch { /* ignore */ }
+    params.delete("test");
+    const rest = params.toString();
+    history.replaceState(null, "", location.pathname + (rest ? `?${rest}` : "") + location.hash);
+  }
+
+  let stored = null;
+  try { stored = localStorage.getItem(TEST_MODE_KEY); } catch { /* ignore */ }
+  const on = stored === "1";
+
+  if (checkbox) checkbox.checked = on;
+  if (banner) banner.hidden = !on;
+
+  const setOn = (nowOn) => {
+    try { localStorage.setItem(TEST_MODE_KEY, nowOn ? "1" : "0"); } catch { /* ignore */ }
+    if (checkbox) checkbox.checked = nowOn;
+    if (banner) banner.hidden = !nowOn;
+  };
+
+  checkbox?.addEventListener("change", () => setOn(checkbox.checked));
+  document.getElementById("test-mode-banner-off")
+    ?.addEventListener("click", () => setOn(false));
+}
+
+function isTestMode() {
+  if (location.hostname === "localhost" || location.hostname === "127.0.0.1") return true;
+  try { return localStorage.getItem(TEST_MODE_KEY) === "1"; } catch { return false; }
+}
+
+/**
+ * Anonymous usage counter. Fire-and-forget: never blocks the action it's
+ * attached to, and a failure here is invisible to the user on purpose —
+ * this is for Bill's own traction numbers, not something a citizen should
+ * ever see fail. No-ops entirely in test mode.
+ *
+ * The id is a random value generated once per browser and stored in
+ * localStorage — never a name, email, or IP — so a report can tell "94
+ * distinct browsers" from "310 total actions" without knowing who anyone
+ * is. If localStorage is unavailable (private browsing, blocked storage),
+ * skip tracking rather than fall back to something less anonymous.
+ */
+function track(event) {
+  if (isTestMode()) return;
+  let uid;
+  try {
+    uid = localStorage.getItem("unhackfl-uid");
+    if (!uid) {
+      uid = crypto.randomUUID();
+      localStorage.setItem("unhackfl-uid", uid);
+    }
+  } catch {
+    return;
+  }
+  fetch(API_BASE, {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify({ action: "track", event, uid }),
+  }).catch(() => { /* best-effort */ });
+}
+
 async function init() {
   try {
     const res = await fetch("../data/fl-counties.json");
@@ -112,6 +191,7 @@ async function init() {
   }
 
   initHelpMode();
+  initTestMode();
   renderCountyOptions(counties);
   renderTopicButtons();
 
@@ -450,7 +530,8 @@ function renderPollWorker(c) {
   // never a URL guessed from their domain.
   const apply = c.poll_worker_url
     ? `<p class="apply">
-         <a class="btn-secondary" href="${esc(c.poll_worker_url)}" rel="noopener">
+         <a class="btn-secondary" id="poll-worker-apply-link"
+            href="${esc(c.poll_worker_url)}" rel="noopener">
            ${esc(c.name)} County's poll worker page →
          </a>
        </p>
@@ -473,6 +554,12 @@ function renderPollWorker(c) {
     <p class="note help-only">Eligibility, training, and pay are set county by
     county and change between elections. Treat the county page and the
     office itself as authoritative over anything summarised here.</p>`;
+
+  // Track the click, not the render — a county with no poll_worker_url
+  // renders this panel with nothing to click, and merely viewing the
+  // panel isn't the action that matters.
+  document.getElementById("poll-worker-apply-link")
+    ?.addEventListener("click", () => track("poll_worker_link"));
 }
 
 /**
@@ -576,6 +663,7 @@ function onRecordsSubmit(event) {
   if (!inputs.agency || !inputs.want || !inputs.name || !inputs.email) return;
 
   showDraft(c, buildLetter(inputs), inputs, findRequestUrl(inputs.agency, c));
+  track("records_letter");
 }
 
 /**
@@ -645,6 +733,7 @@ async function onSharpen(c, inputs) {
       want: btn.dataset.sharpened,
     });
     status.textContent = "Rewritten — read it before sending.";
+    track("ai_rewrite");
   } catch {
     status.textContent = "Couldn't reach the rewriter. Your request is still fine.";
   } finally {

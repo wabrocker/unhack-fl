@@ -22,6 +22,15 @@
 })();
 </script>
 
+<!-- Deliberately NOT gated by help mode or any other visibility rule that
+     could hide it while still active — the whole point is that it can't
+     be silently on. See the .unsourced / .option-note incident notes in
+     app.js for why "tied to help mode" has bitten this project before. -->
+<div id="test-mode-banner" hidden role="status">
+  Test mode is on — actions on this page aren't being counted.
+  <button type="button" id="test-mode-banner-off">Turn off</button>
+</div>
+
 <header class="wrap">
   <h1>Unhack&nbsp;FL
     <button type="button" class="info-toggle" aria-expanded="false"
@@ -40,6 +49,18 @@
       <span>Help mode</span>
     </label>
     <span class="hint">Explain what things mean as you go.</span>
+  </div>
+
+  <div class="mode-switch help-only">
+    <label for="test-mode-toggle">
+      <input type="checkbox" id="test-mode-toggle">
+      <span class="switch-track" aria-hidden="true"><span class="switch-thumb"></span></span>
+      <span>Test mode</span>
+    </label>
+    <span class="hint">For trying the site yourself, not a real request —
+    actions won't be counted toward real usage. Stays on across visits
+    until you turn it off, and shows a banner the whole time so it can't
+    be silently forgotten.</span>
   </div>
 
   <div class="info-panel" id="info-mission" hidden role="region"

@@ -134,6 +134,27 @@ button:not(:disabled):hover { filter: brightness(1.1); }
   font-size: .95rem; max-width: 44rem;
 }
 
+/* Same "must survive help mode" requirement as .option-note above, for
+   the same reason — this is state about the current visit, not optional
+   explanatory content, so it can't be tied to the help-mode mechanism at
+   all. JS toggles the hidden attribute directly; the #test-mode-banner[hidden]
+   rule below is required despite that — an ID selector's own `display`
+   otherwise outranks the UA stylesheet's [hidden] { display: none }, so
+   without it the banner stayed visually shown even with hidden="" set. */
+#test-mode-banner[hidden] { display: none; }
+#test-mode-banner {
+  position: sticky; top: 0; z-index: 10;
+  display: flex; flex-wrap: wrap; align-items: center; gap: .6rem;
+  padding: .6rem 1rem;
+  background: var(--warn); color: var(--bg);
+  font-size: .9rem; font-weight: 600;
+}
+#test-mode-banner button {
+  font: inherit; font-weight: 700; padding: .2rem .6rem;
+  color: var(--warn); background: var(--bg);
+  border: 0; border-radius: var(--radius); cursor: pointer;
+}
+
 footer { border-top: 1px solid var(--line); margin-top: 3rem; color: var(--ink-soft); font-size: .9rem; }
 footer a { color: var(--accent); }
 

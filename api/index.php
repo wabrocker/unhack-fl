@@ -1,12 +1,17 @@
 <?php
 /**
- * unhack-fl — Anthropic API proxy.
+ * unhack-fl — Anthropic API proxy, plus a minimal anonymous usage counter.
  *
  * The only component that touches the API key. The browser never does.
  *
  * Design rule that matters most: the client CANNOT send a prompt. It sends
  * a named action plus structured fields, and this file builds the prompt.
  * Otherwise this becomes a free public Claude endpoint on Bill's card.
+ *
+ * The `track` action is unrelated to the AI proxy — it just appends an
+ * event to a local log, no API call involved. Kept in this file rather
+ * than a second endpoint because it needs the same POST-only, same-origin
+ * surface and nothing else.
  */
 
 declare(strict_types=1);
@@ -69,6 +74,67 @@ function env_key(?string &$why = null): string {
         : 'No .env found. Expected one above the web root, e.g. '
         . '/home/USER/domains/SITE/.env';
     return '';
+}
+
+/**
+ * The same directory search as env_key(), for the same reason: anything
+ * inside the document root is servable over HTTP, so the usage log needs
+ * to live above it. Prefers whichever candidate actually holds .env, so
+ * the log lands right next to it — one location to remember, one to back
+ * up — rather than independently picking whichever candidate happens to
+ * be writable, which could land somewhere Bill isn't looking.
+ *
+ * Local dev has no .env anywhere, so it falls through to the nearest
+ * writable directory above this file instead of the farthest, keeping a
+ * stray local log contained near the checkout rather than wandering up
+ * toward the home directory. Falls back to the system temp dir as a last
+ * resort, which on shared hosting may not survive — track() still works,
+ * but don't rely on it for anything that matters if this is what's in use.
+ */
+function private_dir(): string {
+    $candidates = [
+        __DIR__ . '/../../../../',
+        __DIR__ . '/../../../',
+        __DIR__ . '/../../',
+        __DIR__ . '/../',
+        __DIR__ . '/',
+    ];
+    foreach ($candidates as $p) {
+        $real = realpath($p);
+        if ($real !== false && is_readable($real . '/.env')) return $real;
+    }
+    foreach (array_reverse($candidates) as $p) {
+        $real = realpath($p);
+        if ($real !== false && is_writable($real)) return $real;
+    }
+    return sys_get_temp_dir();
+}
+
+const TRACK_EVENTS = ['records_letter', 'poll_worker_link', 'ai_rewrite'];
+
+/**
+ * Anonymous, append-only usage counter. Stores an event name, a per-browser
+ * random id (generated client-side, never tied to a name/email/IP), and the
+ * date — nothing else. The id lets a report distinguish "94 distinct
+ * browsers" from "310 total actions" without ever knowing who anyone is.
+ */
+function do_track(array $in): never {
+    $event = (string) ($in['event'] ?? '');
+    $uid   = (string) ($in['uid'] ?? '');
+    if (!in_array($event, TRACK_EVENTS, true)) fail(400, 'Unknown event.');
+    if (!preg_match('/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i', $uid)) {
+        fail(400, 'Bad id.');
+    }
+
+    $line = json_encode([
+        'event' => $event,
+        'uid'   => $uid,
+        'date'  => gmdate('Y-m-d'),
+    ], JSON_UNESCAPED_SLASHES) . "\n";
+    @file_put_contents(private_dir() . '/usage-log.ndjson', $line, FILE_APPEND | LOCK_EX);
+
+    echo json_encode(['ok' => true], JSON_UNESCAPED_SLASHES);
+    exit;
 }
 
 /** Crude but adequate per-IP limiter. Stores counts, never request content. */
@@ -182,6 +248,11 @@ if ($raw === false || strlen($raw) > 16000) fail(413, 'Request too large.');
 
 $in = json_decode($raw, true);
 if (!is_array($in)) fail(400, 'Expected JSON.');
+
+// Handled before the AI-proxy dispatch below: no API key needed, and it
+// shouldn't compete with build_sharpen_description/build_explain for the
+// rate limiter that exists to protect the API budget.
+if (($in['action'] ?? '') === 'track') do_track($in);
 
 $actions = [
     'sharpen_description' => 'build_sharpen_description',
