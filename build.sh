@@ -18,7 +18,7 @@ REMOTE_DIR="domains/unhackdemocracy.us/public_html/fl"
 rm -rf dist unhack-fl-deploy.zip
 mkdir -p dist/data dist/api
 
-cp web/index.html web/styles.css web/app.js dist/
+cp web/index.html web/styles.css web/app.js web/logo.svg dist/
 cp web/.htaccess dist/.htaccess
 cp data/*.json dist/data/   # copies every data file, not just the ones known when this line was written
 cp api/index.php api/.htaccess dist/api/

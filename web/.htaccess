@@ -25,6 +25,13 @@
   <FilesMatch "\.json$">
     Header set Cache-Control "public, max-age=300, must-revalidate"
   </FilesMatch>
+
+  <!-- Not hashed like js/css, and the JSON incident above is exactly the
+       failure mode to avoid if this ever needs a tweak — same 5-minute
+       bound rather than a long cache with no easy way to force it. -->
+  <FilesMatch "\.svg$">
+    Header set Cache-Control "public, max-age=300, must-revalidate"
+  </FilesMatch>
 </IfModule>
 
 # Never serve dotfiles, whatever ends up here.

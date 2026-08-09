@@ -41,6 +41,24 @@ body {
 
 .wrap { max-width: 44rem; margin: 0 auto; padding: 1.25rem; }
 
+/* Home link, top and bottom. Top: to the right of the H1, on the same
+   row. Bottom: repeated above the footer so it's reachable without
+   scrolling back up — same treatment as .option-note earlier in this
+   file's history, nothing here depends on help mode either. */
+.site-nav {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  gap: 1rem;
+}
+.site-nav h1 { margin-top: 0; }
+.home-link {
+  flex: none; display: inline-flex; align-items: center; gap: .5rem;
+  margin-top: 1.5rem; color: var(--ink-soft); text-decoration: none;
+  font-size: .85rem; font-weight: 600;
+}
+.home-link:hover { color: var(--accent); }
+.home-link img { border-radius: 6px; display: block; }
+.home-link-bottom { margin: 2rem 0 0; }
+
 h1 { font-size: 1.9rem; margin: 1.5rem 0 .25rem; letter-spacing: -.02em; }
 h2 { font-size: 1.15rem; margin: 2rem 0 .5rem; }
 h3 { font-size: 1.1rem; margin: 0 0 .5rem; }

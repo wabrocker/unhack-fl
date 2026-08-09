@@ -32,11 +32,17 @@
 </div>
 
 <header class="wrap">
-  <h1>Unhack&nbsp;FL
-    <button type="button" class="info-toggle" aria-expanded="false"
-            aria-controls="info-mission"
-            aria-label="What this project is for">i</button>
-  </h1>
+  <div class="site-nav">
+    <h1>Unhack&nbsp;FL
+      <button type="button" class="info-toggle" aria-expanded="false"
+              aria-controls="info-mission"
+              aria-label="What this project is for">i</button>
+    </h1>
+    <a class="home-link" href="https://unhackdemocracy.us"
+       aria-label="Unhacking Democracy home">
+      <img src="logo.svg" width="34" height="34" alt="">
+    </a>
+  </div>
   <p class="lede help-only">
     Two things a Floridian can actually do this week. Pick your county to
     start.
@@ -396,6 +402,16 @@
   </section>
 
 </main>
+
+<!-- Same home link as the header, repeated here so it's always reachable
+     at the bottom of the page without scrolling back up — most useful
+     exactly when the page is long (a generated letter, an open panel). -->
+<p class="wrap home-link-bottom">
+  <a class="home-link" href="https://unhackdemocracy.us">
+    <img src="logo.svg" width="28" height="28" alt="">
+    Unhacking Democracy home
+  </a>
+</p>
 
 <footer class="wrap">
   <p class="help-only">
