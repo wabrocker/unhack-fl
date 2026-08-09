@@ -57,7 +57,11 @@ body {
 }
 .home-link:hover { color: var(--accent); }
 .home-link img { border-radius: 6px; display: block; }
-.home-link-bottom { margin: 2rem 0 0; }
+/* margin-top only — a shorthand here would reset .wrap's margin:0 auto
+   left/right to 0, pinning this to the browser's left edge instead of
+   staying centered with the rest of the page. Exactly what happened the
+   first time this was written. */
+.home-link-bottom { margin-top: 2rem; }
 
 h1 { font-size: 1.9rem; margin: 1.5rem 0 .25rem; letter-spacing: -.02em; }
 h2 { font-size: 1.15rem; margin: 2rem 0 .5rem; }
