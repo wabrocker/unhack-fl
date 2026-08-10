@@ -151,10 +151,14 @@ function track(event) {
   } catch {
     return;
   }
+  // keepalive: the poll-worker link fires this and navigates away in the
+  // same click — without it, the browser can cancel the request mid-flight
+  // when the page starts unloading, silently losing the count.
   fetch(API_BASE, {
     method: "POST",
     headers: { "content-type": "application/json" },
     body: JSON.stringify({ action: "track", event, uid }),
+    keepalive: true,
   }).catch(() => { /* best-effort */ });
 }
 
