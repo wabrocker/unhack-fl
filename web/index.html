@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="Unhacking Democracy">
 <meta property="og:title" content="Unhack FL — two things you can do this week">
 <meta property="og:description" content="Two specific things a Florida resident can do this week to help repair democratic systems, with the reasoning and primary sources behind each one.">
-<meta property="og:url" content="https://fl.unhackdemocracy.us/">
+<meta property="og:url" content="https://unhackdemocracy.us/fl/">
 <meta property="og:image" content="https://unhackdemocracy.us/social-preview.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="1200">
@@ -23,6 +23,15 @@
 <meta name="twitter:title" content="Unhack FL — two things you can do this week">
 <meta name="twitter:description" content="Two specific things a Florida resident can do this week to help repair democratic systems, with the reasoning and primary sources behind each one.">
 <meta name="twitter:image" content="https://unhackdemocracy.us/social-preview.jpg">
+
+<!-- Both https://unhackdemocracy.us/fl/ and https://fl.unhackdemocracy.us/
+     serve this page: the subdomain's document root IS public_html/fl. Two
+     URLs for identical content split search ranking between them, so the
+     path form is declared canonical here. It scales to fifty states with
+     no extra DNS records or certificates, which the subdomain form does
+     not. The 301 from the subdomain is deliberately NOT set yet — it
+     touches .htaccess on a live site and can wait. -->
+<link rel="canonical" href="https://unhackdemocracy.us/fl/">
 
 <link rel="icon" href="logo.svg">
 <link rel="stylesheet" href="styles.css">
