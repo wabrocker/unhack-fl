@@ -371,3 +371,39 @@ button[aria-expanded="true"] .chevron { transform: rotate(-135deg); }
    between other sections. Zero just this heading's own margin to bring
    it back in line — .wrap's padding alone is enough here. */
 #county-h { margin-top: 0; }
+
+/* ---- Florida mark in the header ---------------------------------------
+   The state outline, drawn in currentColor so it themes with the page
+   rather than shipping a light and a dark image. Decorative: the header
+   already says Florida in words. */
+.state-mark {
+  color: var(--accent);
+  margin: .25rem 0 1rem;
+}
+.state-mark svg {
+  width: 96px;
+  height: auto;
+  display: block;
+}
+
+/* ---- Other organisations ---------------------------------------------- */
+.res-h {
+  font-size: .95rem;
+  margin: 1.4rem 0 .5rem;
+  color: var(--ink-soft);
+  text-transform: uppercase;
+  letter-spacing: .07em;
+}
+.res-list { list-style: none; margin: 0; padding: 0; }
+.res-list li {
+  padding: .7rem 0;
+  border-top: 1px solid var(--line);
+}
+.res-list li:last-child { border-bottom: 1px solid var(--line); }
+.res-list a { color: var(--accent); font-weight: 600; }
+.res-list span {
+  display: block;
+  color: var(--ink-soft);
+  font-size: .92rem;
+  margin-top: .2rem;
+}
